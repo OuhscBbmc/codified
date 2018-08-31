@@ -1,5 +1,4 @@
 #' @name table_nih_enrollment
-#' @export
 #'
 #' @title Produce an NIH-compliant enrolment table.
 #'
@@ -13,6 +12,8 @@
 #' @return Table for publication
 #'
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
 #' @author Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem
 #'
 #' @examples
@@ -30,7 +31,19 @@
 #'
 #' table_nih_enrollment(d1)
 #'
+#' \dontrun{
+#' table_nih_enrollment(d1) %>%
+#'   tidyr::spread(key=gender, value=n)
+#'
+#' table_nih_enrollment(d1) %>%
+#'   dplyr::mutate(
+#'     gender_ethnicity = paste0(gender, " by ", ethnicity)
+#'   ) %>%
+#'   dplyr::select(-gender, -ethnicity) %>%
+#'   tidyr::spread(key=gender_ethnicity, value=n)
+#'   }
 
+#' @export
 table_nih_enrollment <- function( d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
   checkmate::assert_data_frame(d                  , any.missing=F)
   # checkmate::assert_data_frame(d_lu_gender        , any.missing=T)
@@ -65,11 +78,10 @@ table_nih_enrollment <- function( d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
   )
 
   d %>%
-    dplyr::count(gender, race, ethnicity) %>%
+    dplyr::count(.data$gender, .data$race, .data$ethnicity) %>%
     dplyr::right_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
     dplyr::mutate(
-      n = dplyr::coalesce(n, 0L)
+      n = dplyr::coalesce(.data$n, 0L)
     )
-  # dplyr::count(gender, race, ethnicity)
 
 }

@@ -36,6 +36,17 @@ d1 <- tibble::tribble(
 
 table_nih_enrollment(d1)
 
+\dontrun{
+table_nih_enrollment(d1) \%>\%
+  tidyr::spread(key=gender, value=n)
+
+table_nih_enrollment(d1) \%>\%
+  dplyr::mutate(
+    gender_ethnicity = paste0(gender, " by ", ethnicity)
+  ) \%>\%
+  dplyr::select(-gender, -ethnicity) \%>\%
+  tidyr::spread(key=gender_ethnicity, value=n)
+  }
 }
 \author{
 Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem
