@@ -1,4 +1,5 @@
 #' @name table_nih_enrollment
+#' @aliases  table_nih_enrollment table_nih_enrollment_pretty
 #'
 #' @title Produce an NIH-compliant enrolment table.
 #'
@@ -30,6 +31,7 @@
 #' )
 #'
 #' table_nih_enrollment(d1)
+#' table_nih_enrollment_pretty(d1)
 #'
 #' \dontrun{
 #' table_nih_enrollment(d1) %>%
@@ -83,5 +85,25 @@ table_nih_enrollment <- function( d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
     dplyr::mutate(
       n = dplyr::coalesce(.data$n, 0L)
     )
+}
+
+#' @export
+table_nih_enrollment_pretty <- function(d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
+
+  d %>%
+    table_nih_enrollment() %>%
+    dplyr::mutate(
+      gender_ethnicity = paste0(.data$gender, " by ", .data$ethnicity)
+    ) %>%
+    dplyr::select(-.data$gender, -.data$ethnicity) %>%
+    tidyr::spread(key=.data$gender_ethnicity, value=.data$n) %>%
+    knitr::kable(
+      format = "html"
+    ) %>%
+    kableExtra::kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+      full_width        = FALSE
+    )
+
 
 }

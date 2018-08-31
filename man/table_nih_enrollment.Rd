@@ -2,6 +2,7 @@
 % Please edit documentation in R/table-nih-enrollment.R
 \name{table_nih_enrollment}
 \alias{table_nih_enrollment}
+\alias{table_nih_enrollment_pretty}
 \title{Produce an NIH-compliant enrolment table.}
 \usage{
 table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity)
