@@ -37,7 +37,39 @@ table_nih_enrollment <- function( d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
   # checkmate::assert_data_frame(d_lu_race          , any.missing=T)
   # checkmate::assert_data_frame(d_lu_ethnicity     , any.missing=T)
 
+  levels_gender <- c(
+    "Female",
+    "Male",
+    "Unknown/Not Reported"
+  )
+  levels_race <- c(
+    "American Indian/Alaska Native",
+    "Asian",
+    "Native Hawaiian or Other Pacific Islander",
+    "Black or African American",
+    "White",
+    "More than One Race",
+    "Unknown or Not Reported"
+  )
+  levels_ethnicity <- c(
+    "Not Hispanic or Latino",
+    "Hispanic or Latino",
+    "Unknown/Not Reported Ethnicity"
+  )
+
+  # Enumerate all possible combinations of the three variables
+  d_possible <- tidyr::crossing(
+    gender    = levels_gender,
+    race      = levels_race,
+    ethnicity = levels_ethnicity
+  )
+
   d %>%
-    dplyr::count(gender, race, ethnicity)
+    dplyr::count(gender, race, ethnicity) %>%
+    dplyr::right_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
+    dplyr::mutate(
+      n = dplyr::coalesce(n, 0L)
+    )
+  # dplyr::count(gender, race, ethnicity)
 
 }
