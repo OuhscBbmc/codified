@@ -5,7 +5,8 @@
 \alias{table_nih_enrollment_pretty}
 \title{Produce an NIH-compliant enrolment table.}
 \usage{
-table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity)
+table_nih_enrollment(d, d_lu_gender = NULL, d_lu_race = NULL,
+  d_lu_ethnicity = NULL)
 }
 \arguments{
 \item{d}{\link{data.frame} of observed values in the investigation. Required.}
@@ -22,20 +23,24 @@ Table for publication
 \description{
 Produce an NIH enrollment table, leveraging metadata to adapt to the observed \link{data.frame}.
 }
+\details{
+https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm
+}
 \examples{
 d1 <- tibble::tribble(
-  ~subject_id,   ~gender,                       ~race,                ~ethnicity,
-           1L,    "Male", "Black or African American",  "Not Hispanic or Latino",
-           2L,    "Male", "Black or African American",  "Not Hispanic or Latino",
-           3L,  "Female", "Black or African American",  "Not Hispanic or Latino",
-           4L,    "Male",                     "White",  "Not Hispanic or Latino",
-           5L,    "Male",                     "White",  "Not Hispanic or Latino",
-           6L,  "Female",                     "White",  "Not Hispanic or Latino",
-           7L,    "Male",                     "White",      "Hispanic or Latino",
-           8L,    "Male",                     "White",      "Hispanic or Latino"
+  ~subject_id,   ~gender,                       ~race,                        ~ethnicity,
+           1L,    "Male", "Black or African American",          "Not Hispanic or Latino",
+           2L,    "Male", "Black or African American",          "Not Hispanic or Latino",
+           3L,  "Female", "Black or African American",  "Unknown/Not Reported Ethnicity",
+           4L,    "Male",                     "White",          "Not Hispanic or Latino",
+           5L,    "Male",                     "White",          "Not Hispanic or Latino",
+           6L,  "Female",                     "White",          "Not Hispanic or Latino",
+           7L,    "Male",                     "White",              "Hispanic or Latino",
+           8L,    "Male",                     "White",              "Hispanic or Latino"
 )
 
 table_nih_enrollment(d1)
+table_nih_enrollment_pretty(d1)
 
 \dontrun{
 table_nih_enrollment(d1) \%>\%
@@ -48,6 +53,28 @@ table_nih_enrollment(d1) \%>\%
   dplyr::select(-gender, -ethnicity) \%>\%
   tidyr::spread(key=gender_ethnicity, value=n)
   }
+
+d2 <- tibble::tribble(
+  ~subject_id,   ~gender,   ~race,    ~ethnicity,
+           1L,    "Male", "Black or African American",  "Not Latino",
+           2L,    "Male", "Black or African American",  "Not Latino",
+           3L,  "Female", "Black or African American",     "Unknown",
+           4L,    "Male",                     "White",  "Not Latino",
+           5L,    "Male",                     "White",  "Not Latino",
+           6L,  "Female",                     "White",  "Not Latino",
+           7L,    "Male",                     "White",      "Latino",
+           8L,    "Male",                     "White",      "Latino"
+)
+
+ds_lu_ethnicity <- tibble::tribble(
+  ~input      ,   ~displayed                      ,
+  "Not Latino",  "Not Hispanic or Latino"         ,
+  "Latino"    ,  "Hispanic or Latino"             ,
+  "Unknown"   ,  "Unknown/Not Reported Ethnicity"
+)
+table_nih_enrollment(d2, d_lu_ethnicity=ds_lu_ethnicity)
+table_nih_enrollment_pretty(d2)
+
 }
 \author{
 Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem

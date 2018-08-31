@@ -12,6 +12,9 @@
 #'
 #' @return Table for publication
 #'
+#' @details
+#' https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm
+#'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #'
@@ -19,15 +22,15 @@
 #'
 #' @examples
 #' d1 <- tibble::tribble(
-#'   ~subject_id,   ~gender,                       ~race,                ~ethnicity,
-#'            1L,    "Male", "Black or African American",  "Not Hispanic or Latino",
-#'            2L,    "Male", "Black or African American",  "Not Hispanic or Latino",
-#'            3L,  "Female", "Black or African American",  "Not Hispanic or Latino",
-#'            4L,    "Male",                     "White",  "Not Hispanic or Latino",
-#'            5L,    "Male",                     "White",  "Not Hispanic or Latino",
-#'            6L,  "Female",                     "White",  "Not Hispanic or Latino",
-#'            7L,    "Male",                     "White",      "Hispanic or Latino",
-#'            8L,    "Male",                     "White",      "Hispanic or Latino"
+#'   ~subject_id,   ~gender,                       ~race,                        ~ethnicity,
+#'            1L,    "Male", "Black or African American",          "Not Hispanic or Latino",
+#'            2L,    "Male", "Black or African American",          "Not Hispanic or Latino",
+#'            3L,  "Female", "Black or African American",  "Unknown/Not Reported Ethnicity",
+#'            4L,    "Male",                     "White",          "Not Hispanic or Latino",
+#'            5L,    "Male",                     "White",          "Not Hispanic or Latino",
+#'            6L,  "Female",                     "White",          "Not Hispanic or Latino",
+#'            7L,    "Male",                     "White",              "Hispanic or Latino",
+#'            8L,    "Male",                     "White",              "Hispanic or Latino"
 #' )
 #'
 #' table_nih_enrollment(d1)
@@ -44,13 +47,36 @@
 #'   dplyr::select(-gender, -ethnicity) %>%
 #'   tidyr::spread(key=gender_ethnicity, value=n)
 #'   }
+#'
+#' d2 <- tibble::tribble(
+#'   ~subject_id,   ~gender,   ~race,    ~ethnicity,
+#'            1L,    "Male", "Black or African American",  "Not Latino",
+#'            2L,    "Male", "Black or African American",  "Not Latino",
+#'            3L,  "Female", "Black or African American",     "Unknown",
+#'            4L,    "Male",                     "White",  "Not Latino",
+#'            5L,    "Male",                     "White",  "Not Latino",
+#'            6L,  "Female",                     "White",  "Not Latino",
+#'            7L,    "Male",                     "White",      "Latino",
+#'            8L,    "Male",                     "White",      "Latino"
+#' )
+#'
+#' ds_lu_ethnicity <- tibble::tribble(
+#'   ~input      ,   ~displayed                      ,
+#'   "Not Latino",  "Not Hispanic or Latino"         ,
+#'   "Latino"    ,  "Hispanic or Latino"             ,
+#'   "Unknown"   ,  "Unknown/Not Reported Ethnicity"
+#' )
+#' table_nih_enrollment(d2, d_lu_ethnicity=ds_lu_ethnicity)
+#' table_nih_enrollment_pretty(d2)
+#'
 
 #' @export
-table_nih_enrollment <- function( d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
+table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
   checkmate::assert_data_frame(d                  , any.missing=F)
-  # checkmate::assert_data_frame(d_lu_gender        , any.missing=T)
-  # checkmate::assert_data_frame(d_lu_race          , any.missing=T)
-  # checkmate::assert_data_frame(d_lu_ethnicity     , any.missing=T)
+  checkmate::assert_data_frame(d_lu_gender        , any.missing=F, null.ok=T)
+  checkmate::assert_data_frame(d_lu_race          , any.missing=F, null.ok=T)
+  checkmate::assert_data_frame(d_lu_ethnicity     , any.missing=F, null.ok=T)
+
 
   levels_gender <- c(
     "Female",
@@ -79,12 +105,36 @@ table_nih_enrollment <- function( d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
     ethnicity = levels_ethnicity
   )
 
-  d %>%
-    dplyr::count(.data$gender, .data$race, .data$ethnicity) %>%
-    dplyr::right_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
+  d_count <- d %>%
+    dplyr::count(.data$gender, .data$race, .data$ethnicity)
+
+  if( !is.null(d_lu_gender) ) {
+    d_count <- d_count %>%
+      dplyr::left_join(d_lu_gender, by=c("gender" = "input")) %>%
+      dplyr::select(-.data$gender) %>%
+      dplyr::rename(gender = .data$displayed)
+  }
+
+  if( !is.null(d_lu_race) ) {
+    d_count <- d_count %>%
+      dplyr::left_join(d_lu_race, by=c("race" = "input")) %>%
+      dplyr::select(-.data$race) %>%
+      dplyr::rename(race = .data$displayed)
+  }
+
+  if( !is.null(d_lu_ethnicity) ) {
+    d_count <- d_count %>%
+      dplyr::left_join(d_lu_ethnicity, by=c("ethnicity" = "input")) %>%
+      dplyr::select(-.data$ethnicity) %>%
+      dplyr::rename(ethnicity = .data$displayed)
+  }
+
+  d_count %>%
+    dplyr::full_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
     dplyr::mutate(
       n = dplyr::coalesce(.data$n, 0L)
-    )
+    ) %>%
+    dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n)
 }
 
 #' @export
