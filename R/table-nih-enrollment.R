@@ -219,19 +219,43 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
     dplyr::select(-.data$gender, -.data$ethnicity) %>%
     tidyr::spread(key=.data$gender_ethnicity, value=.data$n) %>%
     dplyr::select(!!column_order) %>%
+    # dplyr::select(
+    #   `Racial\nCategories`      = `race`,
+    #   `Female`                  = `Female by Not Hispanic or Latino`,
+    #   `Male`                    = `Male by Not Hispanic or Latino`,
+    #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Not Hispanic or Latino`,
+    #   `Female`                  = `Female by Hispanic or Latino`,
+    #   `Male`                    = `Male by Hispanic or Latino`,
+    #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Hispanic or Latino`,
+    #   `Female`                  = `Female by Unknown/Not Reported Ethnicity`,
+    #   `Male`                    = `Male by Unknown/Not Reported Ethnicity`,
+    #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Unknown/Not Reported Ethnicity`,
+    # ) %>%
     knitr::kable(
-      format = "html"
+      format = "html",
+      col.names = c(
+        "Racial\nCategories",
+        "Female",
+        "Male",
+        "Unknown/ Not Reported",
+        "Female",
+        "Male",
+        "Unknown/ Not Reported",
+        "Female",
+        "Male",
+        "Unknown/ Not Reported"
+      )
     ) %>%
     kableExtra::kable_styling(
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width        = FALSE
     ) %>%
     kableExtra::add_header_above(c(
-      " " = 1,
-      "Not Hispanic or Latino" = 3,
-      "Hispanic or Latino" = 3,
-      "Unknown/Not Reported Ethnicity" = 3
+      " "                               = 1L,
+      "Not Hispanic or Latino"          = 3L,
+      "Hispanic or Latino"              = 3L,
+      "Unknown/Not Reported Ethnicity"  = 3L
     )) %>%
-    kableExtra::add_header_above(c(" " = 1, "Ethnic Categories" = 9))
+    kableExtra::add_header_above(c(" " = 1L, "Ethnic Categories" = 9L))
 }
 

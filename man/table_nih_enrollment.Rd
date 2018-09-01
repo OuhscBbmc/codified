@@ -115,12 +115,14 @@ table_nih_enrollment(
   d_lu_ethnicity = ds_lu_ethnicity
 )
 
+
 table_nih_enrollment_pretty(
   d              = ds_3,
   d_lu_gender    = ds_lu_gender,
   d_lu_race      = ds_lu_race,
   d_lu_ethnicity = ds_lu_ethnicity
 )
+
 
 }
 \author{
