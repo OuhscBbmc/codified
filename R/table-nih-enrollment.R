@@ -69,6 +69,44 @@
 #' table_nih_enrollment(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
 #' table_nih_enrollment_pretty(ds_2)
 #'
+#' ## Read a 500-patient fake dataset
+#' library(magrittr)
+#' path <- system.file("misc/example-data-1.csv", package="codified")
+#' ds_2 <- readr::read_csv(path) %>%
+#'   dplyr::mutate(
+#'     gender     = as.character(gender),
+#'     race       = as.character(race),
+#'     ethnicity  = as.character(ethnicity)
+#'   )
+#'
+#' ds_lu_gender <- tibble::tribble(
+#'   ~input,   ~displayed                      ,
+#'   "0"   ,  "Female",
+#'   "1"   ,  "Male",
+#'   "U"   ,  "Unknown/Not Reported"
+#' )
+#' ds_lu_race <- tibble::tribble(
+#'   ~input ,   ~displayed                      ,
+#'   "1"    , "American Indian/Alaska Native",
+#'   "2"    , "Asian",
+#'   "3"    , "Native Hawaiian or Other Pacific Islander",
+#'   "4"    , "Black or African American",
+#'   "5"    , "White",
+#'   "M"    , "More than One Race",
+#'   "6"    , "Unknown or Not Reported"
+#' )
+#' ds_lu_ethnicity <- tibble::tribble(
+#'   ~input,   ~displayed                      ,
+#'   "2"   ,  "Not Hispanic or Latino"         ,
+#'   "1"   ,  "Hispanic or Latino"             ,
+#'   "0"   ,  "Unknown/Not Reported Ethnicity"
+#' )
+#' table_nih_enrollment(
+#'   d              = ds_2,
+#'   d_lu_gender    = ds_lu_gender,
+#'   d_lu_race      = ds_lu_race,
+#'   d_lu_ethnicity = ds_lu_ethnicity
+#' )
 
 #' @export
 table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
