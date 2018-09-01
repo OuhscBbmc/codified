@@ -21,26 +21,26 @@
 #' @author Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem
 #'
 #' @examples
-#' d1 <- tibble::tribble(
-#'   ~subject_id,   ~gender,                       ~race,                        ~ethnicity,
-#'            1L,    "Male", "Black or African American",          "Not Hispanic or Latino",
-#'            2L,    "Male", "Black or African American",          "Not Hispanic or Latino",
-#'            3L,  "Female", "Black or African American",  "Unknown/Not Reported Ethnicity",
-#'            4L,    "Male",                     "White",          "Not Hispanic or Latino",
-#'            5L,    "Male",                     "White",          "Not Hispanic or Latino",
-#'            6L,  "Female",                     "White",          "Not Hispanic or Latino",
-#'            7L,    "Male",                     "White",              "Hispanic or Latino",
-#'            8L,    "Male",                     "White",              "Hispanic or Latino"
+#' ds_1 <- tibble::tribble(
+#'   ~subject_id,   ~gender  , ~race                      ,   ~ethnicity                     ,
+#'            1L,   "Male"   , "Black or African American",  "Not Hispanic or Latino"        ,
+#'            2L,   "Male"   , "Black or African American",  "Not Hispanic or Latino"        ,
+#'            3L,   "Female" , "Black or African American",  "Unknown/Not Reported Ethnicity",
+#'            4L,   "Male"   , "White"                    ,  "Not Hispanic or Latino"        ,
+#'            5L,   "Male"   , "White"                    ,  "Not Hispanic or Latino"        ,
+#'            6L,   "Female" , "White"                    ,  "Not Hispanic or Latino"        ,
+#'            7L,   "Male"   , "White"                    ,  "Hispanic or Latino"            ,
+#'            8L,   "Male"   , "White"                    ,  "Hispanic or Latino"
 #' )
 #'
-#' table_nih_enrollment(d1)
-#' table_nih_enrollment_pretty(d1)
+#' table_nih_enrollment(ds_1)
+#' table_nih_enrollment_pretty(ds_1)
 #'
 #' \dontrun{
-#' table_nih_enrollment(d1) %>%
+#' table_nih_enrollment(ds_1) %>%
 #'   tidyr::spread(key=gender, value=n)
 #'
-#' table_nih_enrollment(d1) %>%
+#' table_nih_enrollment(ds_1) %>%
 #'   dplyr::mutate(
 #'     gender_ethnicity = paste0(gender, " by ", ethnicity)
 #'   ) %>%
@@ -48,16 +48,16 @@
 #'   tidyr::spread(key=gender_ethnicity, value=n)
 #'   }
 #'
-#' d2 <- tibble::tribble(
-#'   ~subject_id,   ~gender,   ~race,    ~ethnicity,
-#'            1L,    "Male", "Black or African American",  "Not Latino",
-#'            2L,    "Male", "Black or African American",  "Not Latino",
-#'            3L,  "Female", "Black or African American",     "Unknown",
-#'            4L,    "Male",                     "White",  "Not Latino",
-#'            5L,    "Male",                     "White",  "Not Latino",
-#'            6L,  "Female",                     "White",  "Not Latino",
-#'            7L,    "Male",                     "White",      "Latino",
-#'            8L,    "Male",                     "White",      "Latino"
+#' ds_2 <- tibble::tribble(
+#'   ~subject_id,  ~gender , ~race                      , ~ethnicity    ,
+#'            1L,  "Male"  , "Black or African American", "Not Latino"  ,
+#'            2L,  "Male"  , "Black or African American", "Not Latino"  ,
+#'            3L,  "Female", "Black or African American", "Unknown"     ,
+#'            4L,  "Male"  , "White"                    , "Not Latino"  ,
+#'            5L,  "Male"  , "White"                    , "Not Latino"  ,
+#'            6L,  "Female", "White"                    , "Not Latino"  ,
+#'            7L,  "Male"  , "White"                    , "Latino"      ,
+#'            8L,  "Male"  , "White"                    , "Latino"
 #' )
 #'
 #' ds_lu_ethnicity <- tibble::tribble(
@@ -66,8 +66,8 @@
 #'   "Latino"    ,  "Hispanic or Latino"             ,
 #'   "Unknown"   ,  "Unknown/Not Reported Ethnicity"
 #' )
-#' table_nih_enrollment(d2, d_lu_ethnicity=ds_lu_ethnicity)
-#' table_nih_enrollment_pretty(d2)
+#' table_nih_enrollment(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
+#' table_nih_enrollment_pretty(ds_2)
 #'
 
 #' @export
@@ -76,7 +76,6 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
   checkmate::assert_data_frame(d_lu_gender        , any.missing=F, null.ok=T)
   checkmate::assert_data_frame(d_lu_race          , any.missing=F, null.ok=T)
   checkmate::assert_data_frame(d_lu_ethnicity     , any.missing=F, null.ok=T)
-
 
   levels_gender <- c(
     "Female",
@@ -139,7 +138,6 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
 
 #' @export
 table_nih_enrollment_pretty <- function(d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
-
   d %>%
     table_nih_enrollment() %>%
     dplyr::mutate(
@@ -154,6 +152,4 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender, d_lu_race, d_lu_ethnicit
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width        = FALSE
     )
-
-
 }
