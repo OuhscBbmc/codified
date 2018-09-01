@@ -46,7 +46,7 @@
 #'   ) %>%
 #'   dplyr::select(-gender, -ethnicity) %>%
 #'   tidyr::spread(key=gender_ethnicity, value=n)
-#'   }
+#' }
 #'
 #' ds_2 <- tibble::tribble(
 #'   ~subject_id,  ~gender , ~race                      , ~ethnicity    ,
@@ -67,12 +67,12 @@
 #'   "Unknown"   ,  "Unknown/Not Reported Ethnicity"
 #' )
 #' table_nih_enrollment(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
-#' table_nih_enrollment_pretty(ds_2)
+#' table_nih_enrollment_pretty(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
 #'
 #' ## Read a 500-patient fake dataset
 #' library(magrittr)
 #' path <- system.file("misc/example-data-1.csv", package="codified")
-#' ds_2 <- readr::read_csv(path) %>%
+#' ds_3 <- readr::read_csv(path) %>%
 #'   dplyr::mutate(
 #'     gender     = as.character(gender),
 #'     race       = as.character(race),
@@ -101,12 +101,21 @@
 #'   "1"   ,  "Hispanic or Latino"             ,
 #'   "0"   ,  "Unknown/Not Reported Ethnicity"
 #' )
+#'
 #' table_nih_enrollment(
-#'   d              = ds_2,
+#'   d              = ds_3,
 #'   d_lu_gender    = ds_lu_gender,
 #'   d_lu_race      = ds_lu_race,
 #'   d_lu_ethnicity = ds_lu_ethnicity
 #' )
+#'
+#' table_nih_enrollment_pretty(
+#'   d              = ds_3,
+#'   d_lu_gender    = ds_lu_gender,
+#'   d_lu_race      = ds_lu_race,
+#'   d_lu_ethnicity = ds_lu_ethnicity
+#' )
+#'
 
 #' @export
 table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
@@ -140,7 +149,12 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
     gender    = levels_gender,
     race      = levels_race,
     ethnicity = levels_ethnicity
-  )
+  ) #%>%
+  # dplyr::transmute(
+  #   gender_ethnicity = paste0(.data$gender, " by ", .data$ethnicity)
+  # ) %>%
+  # dplyr::pull(gender_ethnicity) %>%
+  # dput()
 
   d_count <- d %>%
     dplyr::count(.data$gender, .data$race, .data$ethnicity)
@@ -169,15 +183,18 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
   d_count %>%
     dplyr::full_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
     dplyr::mutate(
+      gender    = factor(.data$gender   , levels=levels_gender    ),
+      race      = factor(.data$race     , levels=levels_race      ),
+      ethnicity = factor(.data$ethnicity, levels=levels_ethnicity ),
       n = dplyr::coalesce(.data$n, 0L)
     ) %>%
-    dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n)
+    dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n) %>%
+    dplyr::arrange(.data$gender, .data$race, .data$ethnicity)
 }
 
 #' @export
-table_nih_enrollment_pretty <- function(d, d_lu_gender, d_lu_race, d_lu_ethnicity ) {
-  d %>%
-    table_nih_enrollment() %>%
+table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
+  table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity) %>%
     dplyr::mutate(
       gender_ethnicity = paste0(.data$gender, " by ", .data$ethnicity)
     ) %>%
@@ -191,3 +208,16 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender, d_lu_race, d_lu_ethnicit
       full_width        = FALSE
     )
 }
+# levels_wide <- c(
+#   "Female by Not Hispanic or Latino",
+#   "Male by Not Hispanic or Latino",
+#   "Unknown/Not Reported by Not Hispanic or Latino",
+#
+#   "Female by Hispanic or Latino",
+#   "Male by Hispanic or Latino",
+#   "Unknown/Not Reported by Hispanic or Latino",
+#
+#   "Female by Unknown/Not Reported Ethnicity",
+#   "Male by Unknown/Not Reported Ethnicity",
+#   "Unknown/Not Reported by Unknown/Not Reported Ethnicity"
+# )

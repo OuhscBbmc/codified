@@ -2,66 +2,30 @@ library(testthat)
 context("NIH Table")
 
 expected_1 <- structure(
-  list(gender = c("Female", "Female", "Male", "Male",
-  "Male", "Female", "Female", "Female", "Female", "Female", "Female",
-  "Female", "Female", "Female", "Female", "Female", "Female", "Female",
-  "Female", "Female", "Female", "Female", "Female", "Female", "Male",
-  "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Male",
-  "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Male",
-  "Male", "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported",
-  "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported",
-  "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported",
-  "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported",
-  "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported",
-  "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported",
-  "Unknown/Not Reported", "Unknown/Not Reported", "Unknown/Not Reported"
-  ), race = c("Black or African American", "White", "Black or African American",
-  "White", "White", "American Indian/Alaska Native", "American Indian/Alaska Native",
-  "American Indian/Alaska Native", "Asian", "Asian", "Asian", "Black or African American",
-  "Black or African American", "More than One Race", "More than One Race",
-  "More than One Race", "Native Hawaiian or Other Pacific Islander",
-  "Native Hawaiian or Other Pacific Islander", "Native Hawaiian or Other Pacific Islander",
-  "Unknown or Not Reported", "Unknown or Not Reported", "Unknown or Not Reported",
-  "White", "White", "American Indian/Alaska Native", "American Indian/Alaska Native",
-  "American Indian/Alaska Native", "Asian", "Asian", "Asian", "Black or African American",
-  "Black or African American", "More than One Race", "More than One Race",
-  "More than One Race", "Native Hawaiian or Other Pacific Islander",
-  "Native Hawaiian or Other Pacific Islander", "Native Hawaiian or Other Pacific Islander",
-  "Unknown or Not Reported", "Unknown or Not Reported", "Unknown or Not Reported",
-  "White", "American Indian/Alaska Native", "American Indian/Alaska Native",
-  "American Indian/Alaska Native", "Asian", "Asian", "Asian", "Black or African American",
-  "Black or African American", "Black or African American", "More than One Race",
-  "More than One Race", "More than One Race", "Native Hawaiian or Other Pacific Islander",
-  "Native Hawaiian or Other Pacific Islander", "Native Hawaiian or Other Pacific Islander",
-  "Unknown or Not Reported", "Unknown or Not Reported", "Unknown or Not Reported",
-  "White", "White", "White"), ethnicity = c("Unknown/Not Reported Ethnicity",
-  "Not Hispanic or Latino", "Not Hispanic or Latino", "Hispanic or Latino",
-  "Not Hispanic or Latino", "Hispanic or Latino", "Not Hispanic or Latino",
-  "Unknown/Not Reported Ethnicity", "Hispanic or Latino", "Not Hispanic or Latino",
-  "Unknown/Not Reported Ethnicity", "Hispanic or Latino", "Not Hispanic or Latino",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Unknown/Not Reported Ethnicity", "Hispanic or Latino",
-  "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity", "Hispanic or Latino",
-  "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity", "Hispanic or Latino",
-  "Unknown/Not Reported Ethnicity", "Hispanic or Latino", "Not Hispanic or Latino",
-  "Unknown/Not Reported Ethnicity", "Hispanic or Latino", "Not Hispanic or Latino",
-  "Unknown/Not Reported Ethnicity", "Hispanic or Latino", "Not Hispanic or Latino",
-  "Unknown/Not Reported Ethnicity", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity",
-  "Hispanic or Latino", "Not Hispanic or Latino", "Unknown/Not Reported Ethnicity"
-  ), n = c(1L, 1L, 2L, 2L, 2L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
-  0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
-  0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
-  0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
-  0L, 0L)), class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA,
-  -63L)
+  list(gender = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L,
+  1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L,
+  2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
+  2L, 2L, 2L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L,
+  3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L), .Label = c("Female", "Male",
+  "Unknown/Not Reported"), class = "factor"), race = structure(c(1L,
+  1L, 1L, 2L, 2L, 2L, 3L, 3L, 3L, 4L, 4L, 4L, 5L, 5L, 5L, 6L, 6L,
+  6L, 7L, 7L, 7L, 1L, 1L, 1L, 2L, 2L, 2L, 3L, 3L, 3L, 4L, 4L, 4L,
+  5L, 5L, 5L, 6L, 6L, 6L, 7L, 7L, 7L, 1L, 1L, 1L, 2L, 2L, 2L, 3L,
+  3L, 3L, 4L, 4L, 4L, 5L, 5L, 5L, 6L, 6L, 6L, 7L, 7L, 7L), .Label = c("American Indian/Alaska Native",
+  "Asian", "Native Hawaiian or Other Pacific Islander", "Black or African American",
+  "White", "More than One Race", "Unknown or Not Reported"), class = "factor"),
+  ethnicity = structure(c(1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L,
+  1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L,
+  1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L,
+  1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L,
+  1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L), .Label = c("Not Hispanic or Latino",
+  "Hispanic or Latino", "Unknown/Not Reported Ethnicity"), class = "factor"),
+  n = c(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L,
+  0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
+  0L, 0L, 2L, 0L, 0L, 2L, 2L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
+  0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,
+  0L, 0L, 0L, 0L, 0L)), class = c("tbl_df", "tbl", "data.frame"
+  ), row.names = c(NA, -63L)
 )
 
 
@@ -150,4 +114,44 @@ test_that("ds_1c --all metadata required", {
 
   observed <- table_nih_enrollment(d_1c, d_lu_gender=d_lu_gender, d_lu_race=d_lu_race, d_lu_ethnicity=d_lu_ethnicity)
   expect_equal(observed, expected_1)
+})
+
+test_that("ds_2 --500 patients w/ numeric codes", {
+
+  # library(magrittr)
+  path <- system.file("misc/example-data-1.csv", package="codified")
+  d_2 <- readr::read_csv(path) %>%
+    dplyr::mutate(
+      gender     = as.character(gender),
+      race       = as.character(race),
+      ethnicity  = as.character(ethnicity)
+    )
+  d_lu_gender <- tibble::tribble(
+    ~input,   ~displayed                      ,
+    "0"   ,  "Female",
+    "1"   ,  "Male",
+    "U"   ,  "Unknown/Not Reported"
+  )
+  d_lu_race <- tibble::tribble(
+    ~input ,   ~displayed                      ,
+    "1"    , "American Indian/Alaska Native",
+    "2"    , "Asian",
+    "3"    , "Native Hawaiian or Other Pacific Islander",
+    "4"    , "Black or African American",
+    "5"    , "White",
+    "M"    , "More than One Race",
+    "6"    , "Unknown or Not Reported"
+  )
+  d_lu_ethnicity <- tibble::tribble(
+    ~input,   ~displayed                      ,
+    "2"   ,  "Not Hispanic or Latino"         ,
+    "1"   ,  "Hispanic or Latino"             ,
+    "0"   ,  "Unknown/Not Reported Ethnicity"
+  )
+  table_nih_enrollment(
+    d              = d_2,
+    d_lu_gender    = d_lu_gender,
+    d_lu_race      = d_lu_race,
+    d_lu_ethnicity = d_lu_ethnicity
+  )
 })
