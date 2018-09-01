@@ -1,7 +1,7 @@
 library(testthat)
 context("Pretty NIH Table")
 
-d1 <- tibble::tribble(
+ds_1a <- tibble::tribble(
   ~subject_id,   ~gender,                       ~race,                ~ethnicity,
            1L,    "Male", "Black or African American",  "Not Hispanic or Latino",
            2L,    "Male", "Black or African American",  "Not Hispanic or Latino",
@@ -13,12 +13,7 @@ d1 <- tibble::tribble(
            8L,    "Male",                     "White",      "Hispanic or Latino"
 )
 
-
-
 test_that("Smoke Test", {
-  testthat::skip_on_cran()
-
-  observed <- table_nih_enrollment_pretty(d1)
+  observed <- table_nih_enrollment_pretty(ds_1a)
   expect_true(!is.null(observed))
 })
-
