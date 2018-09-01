@@ -109,12 +109,14 @@
 #'   d_lu_ethnicity = ds_lu_ethnicity
 #' )
 #'
+#'
 #' table_nih_enrollment_pretty(
 #'   d              = ds_3,
 #'   d_lu_gender    = ds_lu_gender,
 #'   d_lu_race      = ds_lu_race,
 #'   d_lu_ethnicity = ds_lu_ethnicity
 #' )
+#'
 #'
 
 #' @export
@@ -194,30 +196,42 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
 
 #' @export
 table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
+  column_order <- c(
+    "race",
+
+    "Female by Not Hispanic or Latino",
+    "Male by Not Hispanic or Latino",
+    "Unknown/Not Reported by Not Hispanic or Latino",
+
+    "Female by Hispanic or Latino",
+    "Male by Hispanic or Latino",
+    "Unknown/Not Reported by Hispanic or Latino",
+
+    "Female by Unknown/Not Reported Ethnicity",
+    "Male by Unknown/Not Reported Ethnicity",
+    "Unknown/Not Reported by Unknown/Not Reported Ethnicity"
+  )
+
   table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity) %>%
     dplyr::mutate(
       gender_ethnicity = paste0(.data$gender, " by ", .data$ethnicity)
     ) %>%
     dplyr::select(-.data$gender, -.data$ethnicity) %>%
     tidyr::spread(key=.data$gender_ethnicity, value=.data$n) %>%
+    dplyr::select(!!column_order) %>%
     knitr::kable(
       format = "html"
     ) %>%
     kableExtra::kable_styling(
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width        = FALSE
-    )
+    ) %>%
+    kableExtra::add_header_above(c(
+      " " = 1,
+      "Not Hispanic or Latino" = 3,
+      "Hispanic or Latino" = 3,
+      "Unknown/Not Reported Ethnicity" = 3
+    )) %>%
+    kableExtra::add_header_above(c(" " = 1, "Ethnic Categories" = 9))
 }
-# levels_wide <- c(
-#   "Female by Not Hispanic or Latino",
-#   "Male by Not Hispanic or Latino",
-#   "Unknown/Not Reported by Not Hispanic or Latino",
-#
-#   "Female by Hispanic or Latino",
-#   "Male by Hispanic or Latino",
-#   "Unknown/Not Reported by Hispanic or Latino",
-#
-#   "Female by Unknown/Not Reported Ethnicity",
-#   "Male by Unknown/Not Reported Ethnicity",
-#   "Unknown/Not Reported by Unknown/Not Reported Ethnicity"
-# )
+
