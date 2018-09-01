@@ -215,7 +215,7 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
   table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity) %>%
     dplyr::mutate(
       # n                 = scales::comma(n),
-      n                 = n + 1000,
+      # n                 = n + 1000, # This line is just to test the commas
       gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
     ) %>%
     dplyr::select(-.data$gender, -.data$ethnicity) %>%
