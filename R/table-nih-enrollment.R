@@ -214,7 +214,9 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
 
   table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity) %>%
     dplyr::mutate(
-      gender_ethnicity = paste0(.data$gender, " by ", .data$ethnicity)
+      # n                 = scales::comma(n),
+      n                 = n + 1000,
+      gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
     ) %>%
     dplyr::select(-.data$gender, -.data$ethnicity) %>%
     tidyr::spread(key=.data$gender_ethnicity, value=.data$n) %>%
@@ -232,7 +234,9 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
     #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Unknown/Not Reported Ethnicity`,
     # ) %>%
     knitr::kable(
-      format = "html",
+      format  = "html",
+      # align   = "lrrrrrrrrr",
+      format.args = list(big.mark=","),
       col.names = c(
         "Racial\nCategories",
         "Female",
@@ -250,6 +254,7 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width        = FALSE
     ) %>%
+    kableExtra::column_spec(c(1, 4, 7), border_right = T) %>%
     kableExtra::add_header_above(c(
       " "                               = 1L,
       "Not Hispanic or Latino"          = 3L,
