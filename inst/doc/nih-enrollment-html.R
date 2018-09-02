@@ -2,8 +2,51 @@
 knitr::opts_chunk$set(echo = TRUE)
 
 ## ----cars----------------------------------------------------------------
-summary(cars)
+library(magrittr)
+path <- system.file("misc/example-data-1.csv", package="codified")
+col_types <- readr::cols_only(
+  record_id = readr::col_integer(),
+  name_last = readr::col_character(),
+  dob       = readr::col_date(format = ""),
+  gender    = readr::col_integer(),
+  race      = readr::col_integer(),
+  ethnicity = readr::col_integer()
+)
+ds <- readr::read_csv(path, col_types=col_types) %>%
+  dplyr::mutate(
+    gender     = as.character(gender),
+    race       = as.character(race),
+    ethnicity  = as.character(ethnicity)
+  )
+ds %>% 
+  head(10) %>% 
+  knitr::kable(caption = "Observed Dataset (first ten rows)")
 
-## ----pressure, echo=FALSE------------------------------------------------
-plot(pressure)
+ds_lu_gender <- tibble::tribble(
+  ~input,   ~displayed                      ,
+  "0"   ,  "Female",
+  "1"   ,  "Male",
+  "U"   ,  "Unknown/Not Reported"
+)
+knitr::kable(ds_lu_gender, caption = "Gender Mapping")
+
+ds_lu_race <- tibble::tribble(
+  ~input ,   ~displayed                      ,
+  "1"    , "American Indian/Alaska Native",
+  "2"    , "Asian",
+  "3"    , "Native Hawaiian or Other Pacific Islander",
+  "4"    , "Black or African American",
+  "5"    , "White",
+  "M"    , "More than One Race",
+  "6"    , "Unknown or Not Reported"
+)
+knitr::kable(ds_lu_race, caption = "Race Mapping")
+
+ds_lu_ethnicity <- tibble::tribble(
+  ~input,   ~displayed                      ,
+  "2"   ,  "Not Hispanic or Latino"         ,
+  "1"   ,  "Hispanic or Latino"             ,
+  "0"   ,  "Unknown/Not Reported Ethnicity"
+)
+knitr::kable(ds_lu_ethnicity, caption = "Ethnicity Mapping")
 
