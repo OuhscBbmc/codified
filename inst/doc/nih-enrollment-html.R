@@ -3,6 +3,28 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## ----declare, echo=F-----------------------------------------------------
 
+## ----install-------------------------------------------------------------
+if( !requireNamespace("REDCapR", quietly=T) )
+  install.packages("REDCapR")
+
+if( !requireNamespace("codified", quietly=T) )
+  devtools::install_github(repo= "OuhscBbmc/codified")
+
+library(REDCapR)
+library(codified)
+
+## ----download------------------------------------------------------------
+fake_redcap_demodata <- REDCapR::redcap_read_oneshot(
+  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  
+  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",
+  guess_type = FALSE
+)$data
+
+
+
+## ----convert-------------------------------------------------------------
+table_nih_enrollment(fake_redcap_demodata)
+
 ## ----establish-----------------------------------------------------------
 library(magrittr)
 

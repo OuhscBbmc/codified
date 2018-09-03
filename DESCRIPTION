@@ -22,8 +22,10 @@ Imports:
     tidyr (>= 0.7.0)
 Suggests:
     checkmate  (>= 1.8.4),
+    devtools,
     kableExtra,
     knitr (>= 1.18.0),
+    REDCapR,
     rmarkdown,
     sessioninfo,
     testthat (>= 0.9)

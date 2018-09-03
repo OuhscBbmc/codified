@@ -22,6 +22,43 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r declare, echo=F}
 ```
 
+### Example with fake clinical trial data
+
+You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.
+
+First, install the `REDCap` and `codified` packages if necessary, and then [load them into memory](http://r-pkgs.had.co.nz/package.html#package).  
+
+
+```{r install}
+if( !requireNamespace("REDCapR", quietly=T) )
+  install.packages("REDCapR")
+
+if( !requireNamespace("codified", quietly=T) )
+  devtools::install_github(repo= "OuhscBbmc/codified")
+
+library(REDCapR)
+library(codified)
+```
+
+Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata
+
+```{r download}
+fake_redcap_demodata <- REDCapR::redcap_read_oneshot(
+  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  
+  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",
+  guess_type = FALSE
+)$data
+
+
+```
+
+Now, convert these demographic data into a properly formatted NIH enrollment table
+
+```{r convert}
+table_nih_enrollment(fake_redcap_demodata)
+```
+
+
 ## Establish Datasets
 
 
