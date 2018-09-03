@@ -8,6 +8,7 @@ output:
     toc: true
     toc_depth: 2
     toc_float: true
+    number_sections: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{NIH Enrollment Tables in HTML}
@@ -22,42 +23,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r declare, echo=F}
 ```
 
-### Example with fake clinical trial data
+Install `codified` Package
+=====================================================
 
-You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.
-
-First, install the `REDCap` and `codified` packages if necessary, and then [load them into memory](http://r-pkgs.had.co.nz/package.html#package).  
+First, install the `codified` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).  
 
 
-```{r install}
-if( !requireNamespace("REDCapR", quietly=T) )
-  install.packages("REDCapR")
-
+```{r install-codified}
 if( !requireNamespace("codified", quietly=T) )
   devtools::install_github(repo= "OuhscBbmc/codified")
 
-library(REDCapR)
 library(codified)
 ```
 
-Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata
-
-```{r download}
-fake_redcap_demodata <- REDCapR::redcap_read_oneshot(
-  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  
-  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",
-  guess_type = FALSE
-)$data
-
-
-```
-
-Now, convert these demographic data into a properly formatted NIH enrollment table
-
-```{r convert}
-table_nih_enrollment(fake_redcap_demodata)
-```
-
+Local Data Source
+=====================================================
 
 ## Establish Datasets
 
@@ -137,4 +117,40 @@ codified::table_nih_enrollment_pretty(
   d_lu_race      = ds_lu_race,
   d_lu_ethnicity = ds_lu_ethnicity
 )
+```
+
+REDCap Data Source
+=====================================================
+
+
+## Example with fake clinical trial data
+
+You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.
+
+First, install the `REDCap` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).  
+
+
+```{r install-redcapr}
+if( !requireNamespace("REDCapR", quietly=T) )
+  install.packages("REDCapR")
+
+library(REDCapR)
+```
+
+Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata
+
+```{r download}
+fake_redcap_demodata <- REDCapR::redcap_read_oneshot(
+  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  
+  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",
+  guess_type = FALSE
+)$data
+
+
+```
+
+Now, convert these demographic data into a properly formatted NIH enrollment table
+
+```{r convert}
+table_nih_enrollment(fake_redcap_demodata)
 ```

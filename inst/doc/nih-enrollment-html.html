@@ -1497,42 +1497,16 @@ div.tocify {
 </div>
 
 
-<div id="example-with-fake-clinical-trial-data" class="section level3">
-<h3>Example with fake clinical trial data</h3>
-<p>You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.</p>
-<p>First, install the <code>REDCap</code> and <code>codified</code> packages if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load them into memory</a>.</p>
-<pre class="r"><code>if( !requireNamespace(&quot;REDCapR&quot;, quietly=T) )
-  install.packages(&quot;REDCapR&quot;)
-
-if( !requireNamespace(&quot;codified&quot;, quietly=T) )
+<div id="install-codified-package" class="section level1">
+<h1>Install <code>codified</code> Package</h1>
+<p>First, install the <code>codified</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
+<pre class="r"><code>if( !requireNamespace(&quot;codified&quot;, quietly=T) )
   devtools::install_github(repo= &quot;OuhscBbmc/codified&quot;)
 
-library(REDCapR)
 library(codified)</code></pre>
-<p>Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata</p>
-<pre class="r"><code>fake_redcap_demodata &lt;- REDCapR::redcap_read_oneshot(
-  redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  
-  token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,
-  guess_type = FALSE
-)$data</code></pre>
-<pre><code>## 500 records and 13 columns were read from REDCap in 0.5 seconds.  The http status code was 200.</code></pre>
-<p>Now, convert these demographic data into a properly formatted NIH enrollment table</p>
-<pre class="r"><code>table_nih_enrollment(fake_redcap_demodata)</code></pre>
-<pre><code>## # A tibble: 85 x 4
-##    gender race                              ethnicity                    n
-##    &lt;fct&gt;  &lt;fct&gt;                             &lt;fct&gt;                    &lt;int&gt;
-##  1 Female American Indian/Alaska Native     Not Hispanic or Latino       0
-##  2 Female American Indian/Alaska Native     Hispanic or Latino           0
-##  3 Female American Indian/Alaska Native     Unknown/Not Reported Et…     0
-##  4 Female Asian                             Not Hispanic or Latino       0
-##  5 Female Asian                             Hispanic or Latino           0
-##  6 Female Asian                             Unknown/Not Reported Et…     0
-##  7 Female Native Hawaiian or Other Pacific… Not Hispanic or Latino       0
-##  8 Female Native Hawaiian or Other Pacific… Hispanic or Latino           0
-##  9 Female Native Hawaiian or Other Pacific… Unknown/Not Reported Et…     0
-## 10 Female Black or African American         Not Hispanic or Latino       0
-## # ... with 75 more rows</code></pre>
 </div>
+<div id="local-data-source" class="section level1">
+<h1>Local Data Source</h1>
 <div id="establish-datasets" class="section level2">
 <h2>Establish Datasets</h2>
 <pre class="r"><code>library(magrittr)
@@ -3179,6 +3153,42 @@ Unknown or Not Reported
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div id="redcap-data-source" class="section level1">
+<h1>REDCap Data Source</h1>
+<div id="example-with-fake-clinical-trial-data" class="section level2">
+<h2>Example with fake clinical trial data</h2>
+<p>You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.</p>
+<p>First, install the <code>REDCap</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
+<pre class="r"><code>if( !requireNamespace(&quot;REDCapR&quot;, quietly=T) )
+  install.packages(&quot;REDCapR&quot;)
+
+library(REDCapR)</code></pre>
+<p>Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata</p>
+<pre class="r"><code>fake_redcap_demodata &lt;- REDCapR::redcap_read_oneshot(
+  redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  
+  token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,
+  guess_type = FALSE
+)$data</code></pre>
+<pre><code>## 500 records and 13 columns were read from REDCap in 0.7 seconds.  The http status code was 200.</code></pre>
+<p>Now, convert these demographic data into a properly formatted NIH enrollment table</p>
+<pre class="r"><code>table_nih_enrollment(fake_redcap_demodata)</code></pre>
+<pre><code>## # A tibble: 85 x 4
+##    gender race                              ethnicity                    n
+##    &lt;fct&gt;  &lt;fct&gt;                             &lt;fct&gt;                    &lt;int&gt;
+##  1 Female American Indian/Alaska Native     Not Hispanic or Latino       0
+##  2 Female American Indian/Alaska Native     Hispanic or Latino           0
+##  3 Female American Indian/Alaska Native     Unknown/Not Reported Et…     0
+##  4 Female Asian                             Not Hispanic or Latino       0
+##  5 Female Asian                             Hispanic or Latino           0
+##  6 Female Asian                             Unknown/Not Reported Et…     0
+##  7 Female Native Hawaiian or Other Pacific… Not Hispanic or Latino       0
+##  8 Female Native Hawaiian or Other Pacific… Hispanic or Latino           0
+##  9 Female Native Hawaiian or Other Pacific… Unknown/Not Reported Et…     0
+## 10 Female Black or African American         Not Hispanic or Latino       0
+## # ... with 75 more rows</code></pre>
+</div>
 </div>
 
 
