@@ -2,7 +2,7 @@ codified
 =====================================
 Produce standard/formalized demographics tables
 
-This is a common need for clinical researchers to document and track the demographics of consented subjects. A common use case is for reporting to funding agencies, including the National Institutes of Health (NIH). The NIH requires a particular format for the [PHS Inclusion Enrollment Report](https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm) in each annual Research Performance Progress Report ([RPPR](https://grants.nih.gov/grants/rppr/index.htm))
+A common need for clinical researchers is to document and track the demographics of all consented subjects. A common use case is for reporting to funding agencies, including the National Institutes of Health (NIH). The NIH requires a particular format for the [PHS Inclusion Enrollment Report](https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm) in each annual Research Performance Progress Report ([RPPR](https://grants.nih.gov/grants/rppr/index.htm))
 
 
 
