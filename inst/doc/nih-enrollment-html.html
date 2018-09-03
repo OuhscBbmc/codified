@@ -1498,7 +1498,7 @@ div.tocify {
 
 
 <div id="install-codified-package" class="section level1">
-<h1>Install <code>codified</code> Package</h1>
+<h1><span class="header-section-number">1</span> Install <code>codified</code> Package</h1>
 <p>First, install the <code>codified</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
 <pre class="r"><code>if( !requireNamespace(&quot;codified&quot;, quietly=T) )
   devtools::install_github(repo= &quot;OuhscBbmc/codified&quot;)
@@ -1506,9 +1506,9 @@ div.tocify {
 library(codified)</code></pre>
 </div>
 <div id="local-data-source" class="section level1">
-<h1>Local Data Source</h1>
+<h1><span class="header-section-number">2</span> Local Data Source</h1>
 <div id="establish-datasets" class="section level2">
-<h2>Establish Datasets</h2>
+<h2><span class="header-section-number">2.1</span> Establish Datasets</h2>
 <pre class="r"><code>library(magrittr)
 
 path &lt;- system.file(&quot;misc/example-data-1.csv&quot;, package=&quot;codified&quot;)
@@ -1940,7 +1940,7 @@ Unknown/Not Reported Ethnicity
 </table>
 </div>
 <div id="apply-map-to-observed-dataset" class="section level2">
-<h2>Apply Map to Observed Dataset</h2>
+<h2><span class="header-section-number">2.2</span> Apply Map to Observed Dataset</h2>
 <pre class="r"><code>ds_summary_long &lt;- codified::table_nih_enrollment(
   d              = ds,
   d_lu_gender    = ds_lu_gender,
@@ -2856,7 +2856,7 @@ Unknown/Not Reported Ethnicity
 </table>
 </div>
 <div id="conform-to-nih-cosmetics" class="section level2">
-<h2>Conform to NIH Cosmetics</h2>
+<h2><span class="header-section-number">2.3</span> Conform to NIH Cosmetics</h2>
 <pre class="r"><code>codified::table_nih_enrollment_pretty(
   d              = ds,
   d_lu_gender    = ds_lu_gender,
@@ -3156,38 +3156,322 @@ Unknown or Not Reported
 </div>
 </div>
 <div id="redcap-data-source" class="section level1">
-<h1>REDCap Data Source</h1>
-<div id="example-with-fake-clinical-trial-data" class="section level2">
-<h2>Example with fake clinical trial data</h2>
-<p>You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.</p>
-<p>First, install the <code>REDCap</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
+<h1><span class="header-section-number">3</span> REDCap Data Source</h1>
+<p>A hosted (fake) clinical trial dataset demonstrate how to extract demographic data from <a href="https://projectredcap.org/">REDCap</a>.</p>
+<div id="establish-datasets-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Establish Datasets</h2>
+<p>First, install the <code>REDCapR</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
 <pre class="r"><code>if( !requireNamespace(&quot;REDCapR&quot;, quietly=T) )
   install.packages(&quot;REDCapR&quot;)
 
 library(REDCapR)</code></pre>
-<p>Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata</p>
-<pre class="r"><code>fake_redcap_demodata &lt;- REDCapR::redcap_read_oneshot(
-  redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  
-  token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,
-  guess_type = FALSE
+<p>Next, download the data from the REDCap database into the <code>ds_2</code> data.frame.</p>
+<pre class="r"><code>ds_2 &lt;- REDCapR::redcap_read_oneshot(
+  redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  # URL of REDCap Server.
+  token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-speciifc token/password.
+  guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data</code></pre>
-<pre><code>## 500 records and 13 columns were read from REDCap in 0.7 seconds.  The http status code was 200.</code></pre>
-<p>Now, convert these demographic data into a properly formatted NIH enrollment table</p>
-<pre class="r"><code>table_nih_enrollment(fake_redcap_demodata)</code></pre>
-<pre><code>## # A tibble: 85 x 4
-##    gender race                              ethnicity                    n
-##    &lt;fct&gt;  &lt;fct&gt;                             &lt;fct&gt;                    &lt;int&gt;
-##  1 Female American Indian/Alaska Native     Not Hispanic or Latino       0
-##  2 Female American Indian/Alaska Native     Hispanic or Latino           0
-##  3 Female American Indian/Alaska Native     Unknown/Not Reported Et…     0
-##  4 Female Asian                             Not Hispanic or Latino       0
-##  5 Female Asian                             Hispanic or Latino           0
-##  6 Female Asian                             Unknown/Not Reported Et…     0
-##  7 Female Native Hawaiian or Other Pacific… Not Hispanic or Latino       0
-##  8 Female Native Hawaiian or Other Pacific… Hispanic or Latino           0
-##  9 Female Native Hawaiian or Other Pacific… Unknown/Not Reported Et…     0
-## 10 Female Black or African American         Not Hispanic or Latino       0
-## # ... with 75 more rows</code></pre>
+<pre><code>## 500 records and 13 columns were read from REDCap in 0.8 seconds.  The http status code was 200.</code></pre>
+</div>
+<div id="conform-to-nih-cosmetics-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> Conform to NIH Cosmetics</h2>
+<p>Now, convert these demographic data into a properly formatted NIH enrollment table. Pass the <code>ds_lu_gender</code>, <code>ds_lu_race</code>, and <code>ds_lu_ethnicity</code> metadata, which was defined above. As a reminder, these translate values like <code>1</code> to <code>Male</code> and <code>3</code> to <code>Native Hawaiian or Other Pacific Islander</code>.</p>
+<pre class="r"><code>table_nih_enrollment_pretty(
+  d               = ds_2,
+  d_lu_gender     = ds_lu_gender,
+  d_lu_race       = ds_lu_race,
+  d_lu_ethnicity  = ds_lu_ethnicity
+)</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="9">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Ethnic Categories
+</div>
+</th>
+</tr>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Not Hispanic or Latino
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Hispanic or Latino
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Unknown/Not Reported Ethnicity
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Racial Categories
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/<br>Not Reported
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/<br>Not Reported
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/<br>Not Reported
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Asian
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Black or African American
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+White
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+More than One Race
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Unknown or Not Reported
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

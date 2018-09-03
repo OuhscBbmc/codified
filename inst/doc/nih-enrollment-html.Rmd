@@ -8,6 +8,7 @@ output:
     toc: true
     toc_depth: 2
     toc_float: true
+    number_sections: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{NIH Enrollment Tables in HTML}
@@ -41,7 +42,7 @@ Local Data Source
 ## Establish Datasets
 
 
-```{r establish}
+```{r local-establish}
 library(magrittr)
 
 path <- system.file("misc/example-data-1.csv", package="codified")
@@ -95,7 +96,7 @@ knitr::kable(ds_lu_ethnicity, caption = "Ethnicity Mapping")
 
 ##  Apply Map to Observed Dataset
 
-```{r apply-map}
+```{r local-apply-map}
 ds_summary_long <- codified::table_nih_enrollment(
   d              = ds,
   d_lu_gender    = ds_lu_gender,
@@ -109,7 +110,7 @@ knitr::kable(ds_summary_long, caption = "Counts of Each Subgroup")
 
 ##  Conform to NIH Cosmetics 
 
-```{r cosmetically-format}
+```{r local-cosmetically-format}
 codified::table_nih_enrollment_pretty(
   d              = ds,
   d_lu_gender    = ds_lu_gender,
@@ -122,11 +123,12 @@ REDCap Data Source
 =====================================================
 
 
-## Example with fake clinical trial data
+A hosted (fake) clinical trial dataset demonstrate how to extract demographic data from [REDCap](https://projectredcap.org/).
 
-You can use a hosted fake clinical trial dataset to demonstrate how to extract demographic data from REDCap.
+## Establish Datasets
 
-First, install the `REDCap` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).  
+
+First, install the `REDCapR` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).  
 
 
 ```{r install-redcapr}
@@ -136,20 +138,26 @@ if( !requireNamespace("REDCapR", quietly=T) )
 library(REDCapR)
 ```
 
-Next, download the data from the REDCap database into the dataframe object fake_redcap_demodata
+Next, download the data from the REDCap database into the `ds_2` data.frame.
 
-```{r download}
-fake_redcap_demodata <- REDCapR::redcap_read_oneshot(
-  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  
-  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",
-  guess_type = FALSE
+```{r redcap-establish}
+ds_2 <- REDCapR::redcap_read_oneshot(
+  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
+  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-speciifc token/password.
+  guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data
-
-
 ```
 
-Now, convert these demographic data into a properly formatted NIH enrollment table
 
-```{r convert}
-table_nih_enrollment(fake_redcap_demodata)
+## Conform to NIH Cosmetics 
+
+Now, convert these demographic data into a properly formatted NIH enrollment table.  Pass the `ds_lu_gender`, `ds_lu_race`, and `ds_lu_ethnicity` metadata, which was defined above.  As a reminder, these translate values like `1` to `Male` and `3` to `Native Hawaiian or Other Pacific Islander`.
+
+```{r redcap-local-cosmetically-format}
+table_nih_enrollment_pretty(
+  d               = ds_2,
+  d_lu_gender     = ds_lu_gender,
+  d_lu_race       = ds_lu_race,
+  d_lu_ethnicity  = ds_lu_ethnicity
+)
 ```

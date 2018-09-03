@@ -9,7 +9,7 @@ if( !requireNamespace("codified", quietly=T) )
 
 library(codified)
 
-## ----establish-----------------------------------------------------------
+## ----local-establish-----------------------------------------------------
 library(magrittr)
 
 path <- system.file("misc/example-data-1.csv", package="codified")
@@ -59,7 +59,7 @@ ds_lu_ethnicity <- tibble::tribble(
 )
 knitr::kable(ds_lu_ethnicity, caption = "Ethnicity Mapping")
 
-## ----apply-map-----------------------------------------------------------
+## ----local-apply-map-----------------------------------------------------
 ds_summary_long <- codified::table_nih_enrollment(
   d              = ds,
   d_lu_gender    = ds_lu_gender,
@@ -69,7 +69,7 @@ ds_summary_long <- codified::table_nih_enrollment(
 
 knitr::kable(ds_summary_long, caption = "Counts of Each Subgroup")
 
-## ----cosmetically-format-------------------------------------------------
+## ----local-cosmetically-format-------------------------------------------
 codified::table_nih_enrollment_pretty(
   d              = ds,
   d_lu_gender    = ds_lu_gender,
@@ -83,15 +83,18 @@ if( !requireNamespace("REDCapR", quietly=T) )
 
 library(REDCapR)
 
-## ----download------------------------------------------------------------
-fake_redcap_demodata <- REDCapR::redcap_read_oneshot(
-  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  
-  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",
-  guess_type = FALSE
+## ----redcap-establish----------------------------------------------------
+ds_2 <- REDCapR::redcap_read_oneshot(
+  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
+  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-speciifc token/password.
+  guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data
 
-
-
-## ----convert-------------------------------------------------------------
-table_nih_enrollment(fake_redcap_demodata)
+## ----redcap-local-cosmetically-format------------------------------------
+table_nih_enrollment_pretty(
+  d               = ds_2,
+  d_lu_gender     = ds_lu_gender,
+  d_lu_race       = ds_lu_race,
+  d_lu_ethnicity  = ds_lu_ethnicity
+)
 
