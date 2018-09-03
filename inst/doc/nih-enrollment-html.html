@@ -12,10 +12,15 @@
 
 <meta name="author" content="Will Beasley, Peter Higgins" />
 
-<meta name="date" content="2018-09-01" />
+<meta name="date" content="2018-09-02" />
 
 <title>NIH Enrollment Tables in HTML</title>
 
+<script>$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -316,12 +321,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">NIH Enrollment Tables in HTML</h1>
 <h4 class="author"><em>Will Beasley, Peter Higgins</em></h4>
-<h4 class="date"><em>2018-09-01</em></h4>
+<h4 class="date"><em>2018-09-02</em></h4>
 
 
 <div id="TOC">
 <ul>
 <li><a href="#establish-datasets">Establish Datasets</a></li>
+<li><a href="#apply-map-to-observed-dataset">Apply Map to Observed Dataset</a></li>
+<li><a href="#modify-cosmetics-to-conform-with-nih-enrollment-format">Modify Cosmetics to Conform with NIH Enrollment Format</a></li>
 </ul>
 </div>
 
@@ -330,24 +337,25 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;misc/example-data-1.csv&quot;</span>, <span class="dt">package=</span><span class="st">&quot;codified&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">col_types &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">cols_only</span>(</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">record_id =</span> readr<span class="op">::</span><span class="kw">col_integer</span>(),</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">name_last =</span> readr<span class="op">::</span><span class="kw">col_character</span>(),</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">dob       =</span> readr<span class="op">::</span><span class="kw">col_date</span>(<span class="dt">format =</span> <span class="st">&quot;&quot;</span>),</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="dt">gender    =</span> readr<span class="op">::</span><span class="kw">col_integer</span>(),</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">race      =</span> readr<span class="op">::</span><span class="kw">col_integer</span>(),</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">ethnicity =</span> readr<span class="op">::</span><span class="kw">col_integer</span>()</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">ds &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(path, <span class="dt">col_types=</span>col_types) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="dt">gender     =</span> <span class="kw">as.character</span>(gender),</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="dt">race       =</span> <span class="kw">as.character</span>(race),</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="dt">ethnicity  =</span> <span class="kw">as.character</span>(ethnicity)</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">  )</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">ds <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Observed Dataset (first ten rows)&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;misc/example-data-1.csv&quot;</span>, <span class="dt">package=</span><span class="st">&quot;codified&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">col_types &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">cols_only</span>(</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">record_id =</span> readr<span class="op">::</span><span class="kw">col_integer</span>(),</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">name_last =</span> readr<span class="op">::</span><span class="kw">col_character</span>(),</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="dt">dob       =</span> readr<span class="op">::</span><span class="kw">col_date</span>(<span class="dt">format =</span> <span class="st">&quot;&quot;</span>),</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">gender    =</span> readr<span class="op">::</span><span class="kw">col_integer</span>(),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">race      =</span> readr<span class="op">::</span><span class="kw">col_integer</span>(),</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">ethnicity =</span> readr<span class="op">::</span><span class="kw">col_integer</span>()</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">ds &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(path, <span class="dt">col_types=</span>col_types) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="dt">gender     =</span> <span class="kw">as.character</span>(gender),</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="dt">race       =</span> <span class="kw">as.character</span>(race),</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">    <span class="dt">ethnicity  =</span> <span class="kw">as.character</span>(ethnicity)</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">  )</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">ds <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Observed Dataset (first ten rows)&quot;</span>)</a></code></pre></div>
 <table>
 <caption>
 Observed Dataset (first ten rows)
@@ -753,6 +761,1221 @@ Hispanic or Latino
 </td>
 <td style="text-align:left;">
 Unknown/Not Reported Ethnicity
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="apply-map-to-observed-dataset" class="section level2">
+<h2>Apply Map to Observed Dataset</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ds_summary_long &lt;-<span class="st"> </span>codified<span class="op">::</span><span class="kw">table_nih_enrollment</span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">d              =</span> ds,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">d_lu_gender    =</span> ds_lu_gender,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">d_lu_race      =</span> ds_lu_race,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">d_lu_ethnicity =</span> ds_lu_ethnicity</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">knitr<span class="op">::</span><span class="kw">kable</span>(ds_summary_long, <span class="dt">caption =</span> <span class="st">&quot;Counts of Each Subgroup&quot;</span>)</a></code></pre></div>
+<table>
+<caption>
+Counts of Each Subgroup
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:left;">
+ethnicity
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+154
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="modify-cosmetics-to-conform-with-nih-enrollment-format" class="section level2">
+<h2>Modify Cosmetics to Conform with NIH Enrollment Format</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">codified<span class="op">::</span><span class="kw">table_nih_enrollment_pretty</span>(</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">d              =</span> ds,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">d_lu_gender    =</span> ds_lu_gender,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">d_lu_race      =</span> ds_lu_race,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">d_lu_ethnicity =</span> ds_lu_ethnicity</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">)</a></code></pre></div>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="9">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Ethnic Categories
+</div>
+</th>
+</tr>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Not Hispanic or Latino
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Hispanic or Latino
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Unknown/Not Reported Ethnicity
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Racial Categories
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/ Not Reported
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/ Not Reported
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/ Not Reported
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Asian
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Black or African American
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+White
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+More than One Race
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Unknown or Not Reported
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
 </td>
 </tr>
 </tbody>

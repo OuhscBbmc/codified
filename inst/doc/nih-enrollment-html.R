@@ -1,8 +1,9 @@
 ## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 
-## ----cars----------------------------------------------------------------
+## ----establish-----------------------------------------------------------
 library(magrittr)
+
 path <- system.file("misc/example-data-1.csv", package="codified")
 col_types <- readr::cols_only(
   record_id = readr::col_integer(),
@@ -49,4 +50,22 @@ ds_lu_ethnicity <- tibble::tribble(
   "0"   ,  "Unknown/Not Reported Ethnicity"
 )
 knitr::kable(ds_lu_ethnicity, caption = "Ethnicity Mapping")
+
+## ----apply-map-----------------------------------------------------------
+ds_summary_long <- codified::table_nih_enrollment(
+  d              = ds,
+  d_lu_gender    = ds_lu_gender,
+  d_lu_race      = ds_lu_race,
+  d_lu_ethnicity = ds_lu_ethnicity
+)
+
+knitr::kable(ds_summary_long, caption = "Counts of Each Subgroup")
+
+## ----cosmetically-format-------------------------------------------------
+codified::table_nih_enrollment_pretty(
+  d              = ds,
+  d_lu_gender    = ds_lu_gender,
+  d_lu_race      = ds_lu_race,
+  d_lu_ethnicity = ds_lu_ethnicity
+)
 

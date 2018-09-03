@@ -20,8 +20,9 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
+```{r establish}
 library(magrittr)
+
 path <- system.file("misc/example-data-1.csv", package="codified")
 col_types <- readr::cols_only(
   record_id = readr::col_integer(),
@@ -70,3 +71,28 @@ ds_lu_ethnicity <- tibble::tribble(
 knitr::kable(ds_lu_ethnicity, caption = "Ethnicity Mapping")
 ```
 
+
+##  Apply Map to Observed Dataset
+
+```{r apply-map}
+ds_summary_long <- codified::table_nih_enrollment(
+  d              = ds,
+  d_lu_gender    = ds_lu_gender,
+  d_lu_race      = ds_lu_race,
+  d_lu_ethnicity = ds_lu_ethnicity
+)
+
+knitr::kable(ds_summary_long, caption = "Counts of Each Subgroup")
+```
+
+
+##  Modify Cosmetics to Conform with NIH Enrollment Format
+
+```{r cosmetically-format}
+codified::table_nih_enrollment_pretty(
+  d              = ds,
+  d_lu_gender    = ds_lu_gender,
+  d_lu_race      = ds_lu_race,
+  d_lu_ethnicity = ds_lu_ethnicity
+)
+```
