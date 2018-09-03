@@ -237,17 +237,18 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
       format  = "html",
       # align   = "lrrrrrrrrr",
       format.args = list(big.mark=","),
+      escape      = FALSE,
       col.names = c(
         "Racial\nCategories",
         "Female",
         "Male",
-        "Unknown/ Not Reported",
+        "Unknown/<br/>Not Reported",
         "Female",
         "Male",
-        "Unknown/ Not Reported",
+        "Unknown/<br/>Not Reported",
         "Female",
         "Male",
-        "Unknown/ Not Reported"
+        "Unknown/<br/>Not Reported"
       )
     ) %>%
     kableExtra::kable_styling(
