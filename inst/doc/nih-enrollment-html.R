@@ -27,8 +27,8 @@ ds <- readr::read_csv(path, col_types=col_types) %>%
     race       = as.character(race),
     ethnicity  = as.character(ethnicity)
   )
-ds %>% 
-  head(10) %>% 
+ds %>%
+  head(10) %>%
   knitr::kable(caption = "Observed Dataset (first ten rows)")
 
 ds_lu_gender <- tibble::tribble(
@@ -79,7 +79,8 @@ codified::table_nih_enrollment_pretty(
 
 ## ----install-redcapr-----------------------------------------------------
 if( !requireNamespace("REDCapR", quietly=T) )
-  install.packages("REDCapR")
+  devtools::install_github(repo= "OuhscBbmc/REDCapR")
+  # install.packages("REDCapR")
 
 library(REDCapR)
 
