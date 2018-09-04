@@ -11,7 +11,7 @@
 
 <meta name="author" content="Will Beasley and Peter Higgins" />
 
-<meta name="date" content="2018-09-03" />
+<meta name="date" content="2018-09-04" />
 
 <title>NIH Enrollment Tables in HTML</title>
 
@@ -1492,7 +1492,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">NIH Enrollment Tables in HTML</h1>
 <h4 class="author"><em>Will Beasley and Peter Higgins</em></h4>
-<h4 class="date"><em>2018-09-03</em></h4>
+<h4 class="date"><em>2018-09-04</em></h4>
 
 </div>
 
@@ -3157,7 +3157,7 @@ Unknown or Not Reported
 </div>
 <div id="redcap-data-source" class="section level1">
 <h1><span class="header-section-number">3</span> REDCap Data Source</h1>
-<p>A hosted (fake) clinical trial dataset demonstrate how to extract demographic data from <a href="https://projectredcap.org/">REDCap</a>.</p>
+<p>A hosted (fake) clinical trial dataset demonstrates how to extract demographic data from <a href="https://projectredcap.org/">REDCap</a> and then present the demographic data in the NIH Inclusion Enrollment Report format.</p>
 <div id="establish-datasets-1" class="section level2">
 <h2><span class="header-section-number">3.1</span> Establish Datasets</h2>
 <p>First, install the <code>REDCapR</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
@@ -3171,7 +3171,7 @@ library(REDCapR)</code></pre>
   token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-speciifc token/password.
   guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data</code></pre>
-<pre><code>## 500 records and 13 columns were read from REDCap in 0.8 seconds.  The http status code was 200.</code></pre>
+<pre><code>## 500 records and 13 columns were read from REDCap in 0.4 seconds.  The http status code was 200.</code></pre>
 </div>
 <div id="conform-to-nih-cosmetics-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Conform to NIH Cosmetics</h2>
@@ -3473,6 +3473,11 @@ Unknown or Not Reported
 </tbody>
 </table>
 </div>
+</div>
+<div id="scug-focus-group" class="section level1">
+<h1><span class="header-section-number">4</span> SCUG Focus Group</h1>
+<p><strong>Upcoming Features</strong> 1. Create tables in a fresh docx file with <a href="https://davidgohel.github.io/flextable/">flextable</a>. <a href="https://github.com/OuhscBbmc/codified/issues/5">Issue #5</a> 1. Create tables in a fresh pdf file <a href="https://github.com/OuhscBbmc/codified/issues/5">Issue #5</a>. 1. Populate tables in an existing pdf file with <a href="https://CRAN.R-project.org/package=staplr">staplr</a>? 1. The ‘totals’ column &amp; row are calculated. The NIH form does this already, so this is mostly for the purpose of checking. <a href="https://github.com/OuhscBbmc/codified/issues/4">Issue #4</a>. 1. Allow variable namesto change (eg, <code>Gender</code> instead of <code>gender</code>). <a href="https://github.com/OuhscBbmc/codified/issues/3">Issue #3</a>. 1. <a href="http://pkgdown.r-lib.org/">pkgdown site</a>, like <a href="https://ouhscbbmc.github.io/REDCapR/">REDCapR</a>.</p>
+<p>**Group discussion*:** * Any holes in the functionality or concept? * What else (<em>e.g.</em>, features or explanation) do you think would be helpful? * Are people able to run this. Is the vignette clear?</p>
 </div>
 
 
