@@ -123,7 +123,7 @@ REDCap Data Source
 =====================================================
 
 
-A hosted (fake) clinical trial dataset demonstrate how to extract demographic data from [REDCap](https://projectredcap.org/).
+A hosted (fake) clinical trial dataset demonstrates how to extract demographic data from [REDCap](https://projectredcap.org/) and then present the demographic data in the NIH Inclusion Enrollment Report format.
 
 ## Establish Datasets
 
