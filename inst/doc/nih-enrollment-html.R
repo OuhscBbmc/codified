@@ -98,3 +98,35 @@ table_nih_enrollment_pretty(
   d_lu_ethnicity  = ds_lu_ethnicity
 )
 
+## ----collapsing-levels---------------------------------------------------
+ds_lu_race_3 <- tibble::tribble(
+  ~input                      , ~displayed                                  ,
+  "American Indian"           , "American Indian/Alaska Native"             , # Combine w/ Alaska Native
+  "Alaska Native"             , "American Indian/Alaska Native"             , # Combine w/ American Indian
+  "Asian"                     , "Asian"                                     ,
+  "Native Hawaiian"           , "Native Hawaiian or Other Pacific Islander" , # Combine w/ Pacific Islanders
+  "Pacific Islander"          , "Native Hawaiian or Other Pacific Islander" , # Combine w/ Hawaiian
+  "Black or African American" , "Black or African American"                 ,
+  "White"                     , "White"                                     ,
+  "More than One Race"        , "More than One Race"                        ,
+  "Unknown or Not Reported"   , "Unknown or Not Reported"
+)
+
+ds_3 <- tibble::tribble(
+  ~subject_id,   ~gender  , ~race            ,  ~ethnicity                 ,
+           1L,   "Female" , "American Indian",  "Not Hispanic or Latino"   ,
+           2L,   "Male"   , "American Indian",  "Not Hispanic or Latino"   ,
+           3L,   "Male"   , "American Indian",  "Not Hispanic or Latino"   ,
+           4L,   "Female" , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
+           5L,   "Male"   , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
+           6L,   "Male"   , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
+           7L,   "Male"   , "White"          ,  "Not Hispanic or Latino"   ,
+           8L,   "Male"   , "White"          ,  "Not Hispanic or Latino"        
+)
+
+table_nih_enrollment_pretty(
+  d               = ds_3,
+  d_lu_race       = ds_lu_race_3
+)
+
+

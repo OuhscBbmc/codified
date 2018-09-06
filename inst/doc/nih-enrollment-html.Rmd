@@ -162,6 +162,44 @@ table_nih_enrollment_pretty(
 )
 ```
 
+
+Collapsing Levels
+=====================================================
+
+Many observed datasets may collect race with a different set of levels.  For instance in `ds_3`, the `American Indian` level is separate from the `Alaska Native` level.  In the first and second rows in the metadata below, the two levels are effectively combined into the`American Indian/Alaska Native` level, so it complies with the format of the NIH Enrollment table.
+
+```{r collapsing-levels}
+ds_lu_race_3 <- tibble::tribble(
+  ~input                      , ~displayed                                  ,
+  "American Indian"           , "American Indian/Alaska Native"             , # Combine w/ Alaska Native
+  "Alaska Native"             , "American Indian/Alaska Native"             , # Combine w/ American Indian
+  "Asian"                     , "Asian"                                     ,
+  "Native Hawaiian"           , "Native Hawaiian or Other Pacific Islander" , # Combine w/ Pacific Islanders
+  "Pacific Islander"          , "Native Hawaiian or Other Pacific Islander" , # Combine w/ Hawaiian
+  "Black or African American" , "Black or African American"                 ,
+  "White"                     , "White"                                     ,
+  "More than One Race"        , "More than One Race"                        ,
+  "Unknown or Not Reported"   , "Unknown or Not Reported"
+)
+
+ds_3 <- tibble::tribble(
+  ~subject_id,   ~gender  , ~race            ,  ~ethnicity                 ,
+           1L,   "Female" , "American Indian",  "Not Hispanic or Latino"   ,
+           2L,   "Male"   , "American Indian",  "Not Hispanic or Latino"   ,
+           3L,   "Male"   , "American Indian",  "Not Hispanic or Latino"   ,
+           4L,   "Female" , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
+           5L,   "Male"   , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
+           6L,   "Male"   , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
+           7L,   "Male"   , "White"          ,  "Not Hispanic or Latino"   ,
+           8L,   "Male"   , "White"          ,  "Not Hispanic or Latino"        
+)
+
+table_nih_enrollment_pretty(
+  d               = ds_3,
+  d_lu_race       = ds_lu_race_3
+)
+
+```
 Feedback Welcome
 =====================================================
 

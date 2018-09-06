@@ -2453,7 +2453,7 @@ library(REDCapR)</code></pre>
   token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-speciifc token/password.
   guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data</code></pre>
-<pre><code>## 500 records and 13 columns were read from REDCap in 0.6 seconds.  The http status code was 200.</code></pre>
+<pre><code>## 500 records and 13 columns were read from REDCap in 3.8 seconds.  The http status code was 200.</code></pre>
 </div>
 <div id="conform-to-nih-cosmetics-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Conform to NIH Cosmetics</h2>
@@ -2756,8 +2756,331 @@ Unknown or Not Reported
 </table>
 </div>
 </div>
+<div id="collapsing-levels" class="section level1">
+<h1><span class="header-section-number">4</span> Collapsing Levels</h1>
+<p>Many observed datasets may collect race with a different set of levels. For instance in <code>ds_3</code>, the <code>American Indian</code> level is separate from the <code>Alaska Native</code> level. In the first and second rows in the metadata below, the two levels are effectively combined into the<code>American Indian/Alaska Native</code> level, so it complies with the format of the NIH Enrollment table.</p>
+<pre class="r"><code>ds_lu_race_3 &lt;- tibble::tribble(
+  ~input                      , ~displayed                                  ,
+  &quot;American Indian&quot;           , &quot;American Indian/Alaska Native&quot;             , # Combine w/ Alaska Native
+  &quot;Alaska Native&quot;             , &quot;American Indian/Alaska Native&quot;             , # Combine w/ American Indian
+  &quot;Asian&quot;                     , &quot;Asian&quot;                                     ,
+  &quot;Native Hawaiian&quot;           , &quot;Native Hawaiian or Other Pacific Islander&quot; , # Combine w/ Pacific Islanders
+  &quot;Pacific Islander&quot;          , &quot;Native Hawaiian or Other Pacific Islander&quot; , # Combine w/ Hawaiian
+  &quot;Black or African American&quot; , &quot;Black or African American&quot;                 ,
+  &quot;White&quot;                     , &quot;White&quot;                                     ,
+  &quot;More than One Race&quot;        , &quot;More than One Race&quot;                        ,
+  &quot;Unknown or Not Reported&quot;   , &quot;Unknown or Not Reported&quot;
+)
+
+ds_3 &lt;- tibble::tribble(
+  ~subject_id,   ~gender  , ~race            ,  ~ethnicity                 ,
+           1L,   &quot;Female&quot; , &quot;American Indian&quot;,  &quot;Not Hispanic or Latino&quot;   ,
+           2L,   &quot;Male&quot;   , &quot;American Indian&quot;,  &quot;Not Hispanic or Latino&quot;   ,
+           3L,   &quot;Male&quot;   , &quot;American Indian&quot;,  &quot;Not Hispanic or Latino&quot;   ,
+           4L,   &quot;Female&quot; , &quot;Alaska Native&quot;  ,  &quot;Not Hispanic or Latino&quot;   ,
+           5L,   &quot;Male&quot;   , &quot;Alaska Native&quot;  ,  &quot;Not Hispanic or Latino&quot;   ,
+           6L,   &quot;Male&quot;   , &quot;Alaska Native&quot;  ,  &quot;Not Hispanic or Latino&quot;   ,
+           7L,   &quot;Male&quot;   , &quot;White&quot;          ,  &quot;Not Hispanic or Latino&quot;   ,
+           8L,   &quot;Male&quot;   , &quot;White&quot;          ,  &quot;Not Hispanic or Latino&quot;        
+)
+
+table_nih_enrollment_pretty(
+  d               = ds_3,
+  d_lu_race       = ds_lu_race_3
+)</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="9">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Ethnic Categories
+</div>
+</th>
+</tr>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Not Hispanic or Latino
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Hispanic or Latino
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Unknown/Not Reported Ethnicity
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Racial Categories
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/<br>Not Reported
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/<br>Not Reported
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Unknown/<br>Not Reported
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Asian
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Black or African American
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+White
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+More than One Race
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Unknown or Not Reported
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;border-right:1px solid;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="feedback-welcome" class="section level1">
-<h1><span class="header-section-number">4</span> Feedback Welcome</h1>
+<h1><span class="header-section-number">5</span> Feedback Welcome</h1>
 <p>Please share your opinions with us by creating an issue at <a href="https://github.com/OuhscBbmc/codified/issues" class="uri">https://github.com/OuhscBbmc/codified/issues</a>.</p>
 <p><strong>Upcoming Features</strong></p>
 <ol style="list-style-type: decimal">

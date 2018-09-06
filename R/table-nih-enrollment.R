@@ -158,31 +158,29 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
   # dplyr::pull(gender_ethnicity) %>%
   # dput()
 
-  d_count <- d %>%
-    dplyr::count(.data$gender, .data$race, .data$ethnicity)
-
   if( !is.null(d_lu_gender) ) {
-    d_count <- d_count %>%
+    d <- d %>%
       dplyr::left_join(d_lu_gender, by=c("gender" = "input")) %>%
       dplyr::select(-.data$gender) %>%
       dplyr::rename(gender = .data$displayed)
   }
 
   if( !is.null(d_lu_race) ) {
-    d_count <- d_count %>%
+    d <- d %>%
       dplyr::left_join(d_lu_race, by=c("race" = "input")) %>%
       dplyr::select(-.data$race) %>%
       dplyr::rename(race = .data$displayed)
   }
 
   if( !is.null(d_lu_ethnicity) ) {
-    d_count <- d_count %>%
+    d <- d %>%
       dplyr::left_join(d_lu_ethnicity, by=c("ethnicity" = "input")) %>%
       dplyr::select(-.data$ethnicity) %>%
       dplyr::rename(ethnicity = .data$displayed)
   }
 
-  d_count %>%
+  d_count <- d %>%
+    dplyr::count(.data$gender, .data$race, .data$ethnicity) %>%
     dplyr::full_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
     dplyr::mutate(
       gender    = factor(.data$gender   , levels=levels_gender    ),
