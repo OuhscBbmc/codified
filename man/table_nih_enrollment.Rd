@@ -27,6 +27,7 @@ Produce an NIH enrollment table, leveraging metadata to adapt to the observed \l
 https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm
 }
 \examples{
+library(magrittr)
 ds_1 <- tibble::tribble(
   ~subject_id,   ~gender  , ~race                      ,   ~ethnicity                     ,
            1L,   "Male"   , "Black or African American",  "Not Hispanic or Latino"        ,
@@ -42,7 +43,6 @@ ds_1 <- tibble::tribble(
 table_nih_enrollment(ds_1)
 table_nih_enrollment_pretty(ds_1)
 
-\dontrun{
 table_nih_enrollment(ds_1) \%>\%
   tidyr::spread(key=gender, value=n)
 
@@ -52,7 +52,6 @@ table_nih_enrollment(ds_1) \%>\%
   ) \%>\%
   dplyr::select(-gender, -ethnicity) \%>\%
   tidyr::spread(key=gender_ethnicity, value=n)
-}
 
 ds_2 <- tibble::tribble(
   ~subject_id,  ~gender , ~race                      , ~ethnicity    ,
@@ -76,7 +75,6 @@ table_nih_enrollment(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
 table_nih_enrollment_pretty(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
 
 ## Read a 500-patient fake dataset
-library(magrittr)
 path <- system.file("misc/example-data-1.csv", package="codified")
 ds_3 <- readr::read_csv(path) \%>\%
   dplyr::mutate(
@@ -115,15 +113,12 @@ table_nih_enrollment(
   d_lu_ethnicity = ds_lu_ethnicity
 )
 
-
 table_nih_enrollment_pretty(
   d              = ds_3,
   d_lu_gender    = ds_lu_gender,
   d_lu_race      = ds_lu_race,
   d_lu_ethnicity = ds_lu_ethnicity
 )
-
-
 }
 \author{
 Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem

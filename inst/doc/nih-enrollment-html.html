@@ -1530,177 +1530,363 @@ ds %&gt;%
   head(10) %&gt;% 
   knitr::kable(caption = &quot;Observed Dataset (first ten rows)&quot;)</code></pre>
 <table>
-<caption>Observed Dataset (first ten rows)</caption>
+<caption>
+Observed Dataset (first ten rows)
+</caption>
 <thead>
-<tr class="header">
-<th align="right">record_id</th>
-<th align="left">name_last</th>
-<th align="left">dob</th>
-<th align="left">ethnicity</th>
-<th align="left">race</th>
-<th align="left">gender</th>
+<tr>
+<th style="text-align:right;">
+record_id
+</th>
+<th style="text-align:left;">
+name_last
+</th>
+<th style="text-align:left;">
+dob
+</th>
+<th style="text-align:left;">
+ethnicity
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:left;">
+gender
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Cornel</td>
-<td align="left">1991-05-13</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Cornel
+</td>
+<td style="text-align:left;">
+1991-05-13
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">Wojdyla</td>
-<td align="left">1931-10-14</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Wojdyla
+</td>
+<td style="text-align:left;">
+1931-10-14
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">Stunkard</td>
-<td align="left">1964-09-15</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">1</td>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Stunkard
+</td>
+<td style="text-align:left;">
+1964-09-15
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">Cimochowski</td>
-<td align="left">1969-05-03</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">1</td>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Cimochowski
+</td>
+<td style="text-align:left;">
+1969-05-03
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="left">Woodland</td>
-<td align="left">1969-11-22</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Woodland
+</td>
+<td style="text-align:left;">
+1969-11-22
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="left">Pistoia</td>
-<td align="left">1943-08-26</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">1</td>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Pistoia
+</td>
+<td style="text-align:left;">
+1943-08-26
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="left">Ahlquist</td>
-<td align="left">1944-01-22</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Ahlquist
+</td>
+<td style="text-align:left;">
+1944-01-22
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">Ashlin</td>
-<td align="left">1931-04-14</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">1</td>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Ashlin
+</td>
+<td style="text-align:left;">
+1931-04-14
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="right">9</td>
-<td align="left">Djokovic</td>
-<td align="left">1962-07-07</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Djokovic
+</td>
+<td style="text-align:left;">
+1962-07-07
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="left">Mosses</td>
-<td align="left">1978-06-20</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Mosses
+</td>
+<td style="text-align:left;">
+1978-06-20
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>ds_lu_gender &lt;- tibble::tribble(
-  ~input,   ~displayed                      ,
-  &quot;0&quot;   ,  &quot;Female&quot;,
-  &quot;1&quot;   ,  &quot;Male&quot;,
+  ~input,   ~displayed            ,
+  &quot;0&quot;   ,  &quot;Female&quot;               , 
+  &quot;1&quot;   ,  &quot;Male&quot;                 ,
   &quot;U&quot;   ,  &quot;Unknown/Not Reported&quot;
 )
 knitr::kable(ds_lu_gender, caption = &quot;Gender Mapping&quot;)</code></pre>
 <table>
-<caption>Gender Mapping</caption>
+<caption>
+Gender Mapping
+</caption>
 <thead>
-<tr class="header">
-<th align="left">input</th>
-<th align="left">displayed</th>
+<tr>
+<th style="text-align:left;">
+input
+</th>
+<th style="text-align:left;">
+displayed
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">0</td>
-<td align="left">Female</td>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Female
+</td>
 </tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">Male</td>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Male
+</td>
 </tr>
-<tr class="odd">
-<td align="left">U</td>
-<td align="left">Unknown/Not Reported</td>
+<tr>
+<td style="text-align:left;">
+U
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>ds_lu_race &lt;- tibble::tribble(
-  ~input ,   ~displayed                      ,
-  &quot;1&quot;    , &quot;American Indian/Alaska Native&quot;,
-  &quot;2&quot;    , &quot;Asian&quot;,
-  &quot;3&quot;    , &quot;Native Hawaiian or Other Pacific Islander&quot;,
-  &quot;4&quot;    , &quot;Black or African American&quot;,
-  &quot;5&quot;    , &quot;White&quot;,
-  &quot;M&quot;    , &quot;More than One Race&quot;,
+  ~input , ~displayed                                   ,
+  &quot;1&quot;    , &quot;American Indian/Alaska Native&quot;              ,
+  &quot;2&quot;    , &quot;Asian&quot;                                      ,
+  &quot;3&quot;    , &quot;Native Hawaiian or Other Pacific Islander&quot;  ,
+  &quot;4&quot;    , &quot;Black or African American&quot;                  ,
+  &quot;5&quot;    , &quot;White&quot;                                      ,
+  &quot;M&quot;    , &quot;More than One Race&quot;                         ,
   &quot;6&quot;    , &quot;Unknown or Not Reported&quot;
 )
 knitr::kable(ds_lu_race, caption = &quot;Race Mapping&quot;)</code></pre>
 <table>
-<caption>Race Mapping</caption>
+<caption>
+Race Mapping
+</caption>
 <thead>
-<tr class="header">
-<th align="left">input</th>
-<th align="left">displayed</th>
+<tr>
+<th style="text-align:left;">
+input
+</th>
+<th style="text-align:left;">
+displayed
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">American Indian/Alaska Native</td>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
 </tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">Asian</td>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Asian
+</td>
 </tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
 </tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">Black or African American</td>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
 </tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">White</td>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+White
+</td>
 </tr>
-<tr class="even">
-<td align="left">M</td>
-<td align="left">More than One Race</td>
+<tr>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
 </tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="left">Unknown or Not Reported</td>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
 </tr>
 </tbody>
 </table>
@@ -1712,25 +1898,43 @@ knitr::kable(ds_lu_race, caption = &quot;Race Mapping&quot;)</code></pre>
 )
 knitr::kable(ds_lu_ethnicity, caption = &quot;Ethnicity Mapping&quot;)</code></pre>
 <table>
-<caption>Ethnicity Mapping</caption>
+<caption>
+Ethnicity Mapping
+</caption>
 <thead>
-<tr class="header">
-<th align="left">input</th>
-<th align="left">displayed</th>
+<tr>
+<th style="text-align:left;">
+input
+</th>
+<th style="text-align:left;">
+displayed
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">Not Hispanic or Latino</td>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
 </tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">Hispanic or Latino</td>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
 </tr>
-<tr class="odd">
-<td align="left">0</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
 </tr>
 </tbody>
 </table>
@@ -1746,393 +1950,907 @@ knitr::kable(ds_lu_ethnicity, caption = &quot;Ethnicity Mapping&quot;)</code></p
 
 knitr::kable(ds_summary_long, caption = &quot;Counts of Each Subgroup&quot;)</code></pre>
 <table>
-<caption>Counts of Each Subgroup</caption>
+<caption>
+Counts of Each Subgroup
+</caption>
 <thead>
-<tr class="header">
-<th align="left">gender</th>
-<th align="left">race</th>
-<th align="left">ethnicity</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:left;">
+ethnicity
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">8</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">Asian</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">Asian</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">Asian</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">28</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+28
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">Black or African American</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">Black or African American</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">172</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+172
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">Black or African American</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">14</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+14
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">White</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">White</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">22</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+22
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">White</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">More than One Race</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">More than One Race</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">More than One Race</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Female</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">7</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+7
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">10</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">Asian</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">Asian</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">Asian</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">22</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+22
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">Black or African American</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">Black or African American</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">154</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+154
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">Black or African American</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">White</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">White</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">33</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+33
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">White</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">More than One Race</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">More than One Race</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">More than One Race</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Male</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">7</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+7
+</td>
 </tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">American Indian/Alaska Native</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+American Indian/Alaska Native
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Asian</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Asian</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Asian</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Asian
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Native Hawaiian or Other Pacific Islander</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Native Hawaiian or Other Pacific Islander
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Black or African American</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Black or African American</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Black or African American</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Black or African American
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">White</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">White</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">White</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">More than One Race</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">More than One Race</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">More than One Race</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+More than One Race
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Not Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Not Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Hispanic or Latino</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Hispanic or Latino
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Unknown/Not Reported</td>
-<td align="left">Unknown or Not Reported</td>
-<td align="left">Unknown/Not Reported Ethnicity</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+Unknown/Not Reported
+</td>
+<td style="text-align:left;">
+Unknown or Not Reported
+</td>
+<td style="text-align:left;">
+Unknown/Not Reported Ethnicity
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
 </tbody>
 </table>
@@ -2453,7 +3171,7 @@ library(REDCapR)</code></pre>
   token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-speciifc token/password.
   guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data</code></pre>
-<pre><code>## 500 records and 13 columns were read from REDCap in 3.8 seconds.  The http status code was 200.</code></pre>
+<pre><code>## 500 records and 13 columns were read from REDCap in 0.7 seconds.  The http status code was 200.</code></pre>
 </div>
 <div id="conform-to-nih-cosmetics-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Conform to NIH Cosmetics</h2>

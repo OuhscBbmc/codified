@@ -21,6 +21,7 @@
 #' @author Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem
 #'
 #' @examples
+#' library(magrittr)
 #' ds_1 <- tibble::tribble(
 #'   ~subject_id,   ~gender  , ~race                      ,   ~ethnicity                     ,
 #'            1L,   "Male"   , "Black or African American",  "Not Hispanic or Latino"        ,
@@ -36,7 +37,6 @@
 #' table_nih_enrollment(ds_1)
 #' table_nih_enrollment_pretty(ds_1)
 #'
-#' \dontrun{
 #' table_nih_enrollment(ds_1) %>%
 #'   tidyr::spread(key=gender, value=n)
 #'
@@ -46,7 +46,6 @@
 #'   ) %>%
 #'   dplyr::select(-gender, -ethnicity) %>%
 #'   tidyr::spread(key=gender_ethnicity, value=n)
-#' }
 #'
 #' ds_2 <- tibble::tribble(
 #'   ~subject_id,  ~gender , ~race                      , ~ethnicity    ,
@@ -70,7 +69,6 @@
 #' table_nih_enrollment_pretty(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
 #'
 #' ## Read a 500-patient fake dataset
-#' library(magrittr)
 #' path <- system.file("misc/example-data-1.csv", package="codified")
 #' ds_3 <- readr::read_csv(path) %>%
 #'   dplyr::mutate(
@@ -109,15 +107,13 @@
 #'   d_lu_ethnicity = ds_lu_ethnicity
 #' )
 #'
-#'
 #' table_nih_enrollment_pretty(
 #'   d              = ds_3,
 #'   d_lu_gender    = ds_lu_gender,
 #'   d_lu_race      = ds_lu_race,
 #'   d_lu_ethnicity = ds_lu_ethnicity
 #' )
-#'
-#'
+
 
 #' @export
 table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
@@ -151,12 +147,7 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
     gender    = levels_gender,
     race      = levels_race,
     ethnicity = levels_ethnicity
-  ) #%>%
-  # dplyr::transmute(
-  #   gender_ethnicity = paste0(.data$gender, " by ", .data$ethnicity)
-  # ) %>%
-  # dplyr::pull(gender_ethnicity) %>%
-  # dput()
+  )
 
   if( !is.null(d_lu_gender) ) {
     d <- d %>%
@@ -186,7 +177,7 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
       gender    = factor(.data$gender   , levels=levels_gender    ),
       race      = factor(.data$race     , levels=levels_race      ),
       ethnicity = factor(.data$ethnicity, levels=levels_ethnicity ),
-      n = dplyr::coalesce(.data$n, 0L)
+      n         = dplyr::coalesce(.data$n, 0L)
     ) %>%
     dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n) %>%
     dplyr::arrange(.data$gender, .data$race, .data$ethnicity)
@@ -212,31 +203,16 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
 
   table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity) %>%
     dplyr::mutate(
-      # n                 = scales::comma(n),
-      # n                 = n + 1000, # This line is just to test the commas
       gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
     ) %>%
     dplyr::select(-.data$gender, -.data$ethnicity) %>%
     tidyr::spread(key=.data$gender_ethnicity, value=.data$n) %>%
     dplyr::select(!!column_order) %>%
-    # dplyr::select(
-    #   `Racial\nCategories`      = `race`,
-    #   `Female`                  = `Female by Not Hispanic or Latino`,
-    #   `Male`                    = `Male by Not Hispanic or Latino`,
-    #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Not Hispanic or Latino`,
-    #   `Female`                  = `Female by Hispanic or Latino`,
-    #   `Male`                    = `Male by Hispanic or Latino`,
-    #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Hispanic or Latino`,
-    #   `Female`                  = `Female by Unknown/Not Reported Ethnicity`,
-    #   `Male`                    = `Male by Unknown/Not Reported Ethnicity`,
-    #   `Unknown/ Not Reported`   = `Unknown/Not Reported by Unknown/Not Reported Ethnicity`,
-    # ) %>%
     knitr::kable(
-      format  = "html",
-      # align   = "lrrrrrrrrr",
+      format      = "html",
       format.args = list(big.mark=","),
       escape      = FALSE,
-      col.names = c(
+      col.names   = c(
         "Racial\nCategories",
         "Female",
         "Male",
@@ -262,4 +238,3 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
     )) %>%
     kableExtra::add_header_above(c(" " = 1L, "Ethnic Categories" = 9L))
 }
-
