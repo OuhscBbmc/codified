@@ -133,7 +133,7 @@ First, install the `REDCapR` package if necessary, and then [load it into memory
 
 ```{r install-redcapr}
 if( !requireNamespace("REDCapR", quietly=T) )
-  install.packages("REDCapR")
+  devtools::install_github("OuhscBbmc/REDCapR")
 
 library(REDCapR)
 ```
@@ -162,10 +162,13 @@ table_nih_enrollment_pretty(
 )
 ```
 
-SCUG Focus Group
+Feedback Welcome
 =====================================================
 
+Please share your opinions with us by creating an issue at https://github.com/OuhscBbmc/codified/issues.
+
 **Upcoming Features**
+
 1. Create tables in a fresh docx file with [flextable](https://davidgohel.github.io/flextable/). [Issue #5](https://github.com/OuhscBbmc/codified/issues/5)
 1. Create tables in a fresh pdf file [Issue #5](https://github.com/OuhscBbmc/codified/issues/5).
 1. Populate tables in an existing pdf file with [staplr](https://CRAN.R-project.org/package=staplr)?
@@ -173,7 +176,11 @@ SCUG Focus Group
 1. Allow variable namesto change (eg, `Gender` instead of `gender`).  [Issue #3](https://github.com/OuhscBbmc/codified/issues/3).
 1. [pkgdown site](http://pkgdown.r-lib.org/), like [REDCapR](https://ouhscbbmc.github.io/REDCapR/).
 
-**Group discussion*:** 
+**Group discussion**
+
 * Any holes in the functionality or concept?
 * What else (*e.g.*, features or explanation) do you think would be helpful?
-* Are people able to run this.  Is the vignette clear?
+* Are people able to run this package?  Is the vignette clear?
+* What other standardized tables/graphs/whatever could this be applied to?
+    * IRB continuation tables?
+    * Graphs?

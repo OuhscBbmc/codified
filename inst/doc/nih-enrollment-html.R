@@ -79,7 +79,7 @@ codified::table_nih_enrollment_pretty(
 
 ## ----install-redcapr-----------------------------------------------------
 if( !requireNamespace("REDCapR", quietly=T) )
-  install.packages("REDCapR")
+  devtools::install_github("OuhscBbmc/REDCapR")
 
 library(REDCapR)
 
