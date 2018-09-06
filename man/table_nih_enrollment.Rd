@@ -6,7 +6,8 @@
 \title{Produce an NIH-compliant enrolment table.}
 \usage{
 table_nih_enrollment(d, d_lu_gender = NULL, d_lu_race = NULL,
-  d_lu_ethnicity = NULL)
+  d_lu_ethnicity = NULL, variable_gender = "gender",
+  variable_race = "race", variable_ethnicity = "ethnicity")
 }
 \arguments{
 \item{d}{\link{data.frame} of observed values in the investigation. Required.}
@@ -16,6 +17,12 @@ table_nih_enrollment(d, d_lu_gender = NULL, d_lu_race = NULL,
 \item{d_lu_race}{\link{data.frame} that maps the observed levels of gender to the NIH-recommended levels of gender. Required only if the levels are not the same.}
 
 \item{d_lu_ethnicity}{\link{data.frame} that maps the observed levels of gender to the NIH-recommended levels of gender. Required only if the levels are not the same.}
+
+\item{variable_gender}{name of the gender variable in the \code{d} \link{data.frame}.  Defaults to gender.}
+
+\item{variable_race}{name of the race variable in the \code{d} \link{data.frame}.  Defaults to race.}
+
+\item{variable_ethnicity}{name of the ethnicity variable in the \code{d} \link{data.frame}.  Defaults to ethnicity.}
 }
 \value{
 Table for publication

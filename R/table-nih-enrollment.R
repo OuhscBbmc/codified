@@ -9,7 +9,9 @@
 #' @param d_lu_gender [data.frame] that maps the observed levels of gender to the NIH-recommended levels of gender. Required only if the levels are not the same.
 #' @param d_lu_race [data.frame] that maps the observed levels of gender to the NIH-recommended levels of gender. Required only if the levels are not the same.
 #' @param d_lu_ethnicity [data.frame] that maps the observed levels of gender to the NIH-recommended levels of gender. Required only if the levels are not the same.
-#'
+#' @param variable_gender    name of the gender variable in the `d` [data.frame].  Defaults to gender.
+#' @param variable_race      name of the race variable in the `d` [data.frame].  Defaults to race.
+#' @param variable_ethnicity name of the ethnicity variable in the `d` [data.frame].  Defaults to ethnicity.
 #' @return Table for publication
 #'
 #' @details
@@ -116,11 +118,18 @@
 
 
 #' @export
-table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
+table_nih_enrollment <- function(
+  d,
+  d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL,
+  variable_gender="gender", variable_race="race", variable_ethnicity="ethnicity"
+) {
   checkmate::assert_data_frame(d                  , any.missing=F)
   checkmate::assert_data_frame(d_lu_gender        , any.missing=F, null.ok=T)
   checkmate::assert_data_frame(d_lu_race          , any.missing=F, null.ok=T)
   checkmate::assert_data_frame(d_lu_ethnicity     , any.missing=F, null.ok=T)
+  checkmate::assert_character( variable_gender    , any.missing=F, min.chars=1, len=1)
+  checkmate::assert_character( variable_race      , any.missing=F, min.chars=1, len=1)
+  checkmate::assert_character( variable_ethnicity , any.missing=F, min.chars=1, len=1)
 
   levels_gender <- c(
     "Female",
@@ -149,6 +158,12 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
     ethnicity = levels_ethnicity
   )
 
+  d <- d %>%
+    dplyr::select_(
+      "gender"      = variable_gender   ,
+      "race"        = variable_race     ,
+      "ethnicity"   = variable_ethnicity
+    )
   if( !is.null(d_lu_gender) ) {
     d <- d %>%
       dplyr::left_join(d_lu_gender, by=c("gender" = "input")) %>%
@@ -184,7 +199,11 @@ table_nih_enrollment <- function( d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethn
 }
 
 #' @export
-table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL ) {
+table_nih_enrollment_pretty <- function(
+  d,
+  d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL,
+  variable_gender="gender", variable_race="race", variable_ethnicity="ethnicity"
+) {
   column_order <- c(
     "race",
 
@@ -201,7 +220,7 @@ table_nih_enrollment_pretty <- function(d, d_lu_gender=NULL, d_lu_race=NULL, d_l
     "Unknown/Not Reported by Unknown/Not Reported Ethnicity"
   )
 
-  table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity) %>%
+  table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity, variable_gender, variable_race, variable_ethnicity) %>%
     dplyr::mutate(
       gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
     ) %>%

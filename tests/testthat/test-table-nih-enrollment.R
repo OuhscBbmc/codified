@@ -79,14 +79,14 @@ test_that("ds_1b --ethnicity metadata required", {
 test_that("ds_1c --all metadata required", {
   d_1c <- tibble::tribble(
     ~subject_id,  ~gender , ~race , ~ethnicity    ,
-             1L,  "M"     , "B"   , "Not Latino"  ,
-             2L,  "M"     , "B"   , "Not Latino"  ,
-             3L,  "F"     , "B"   , "Unknown"     ,
-             4L,  "M"     , "W"   , "Not Latino"  ,
-             5L,  "M"     , "W"   , "Not Latino"  ,
-             6L,  "F"     , "W"   , "Not Latino"  ,
-             7L,  "M"     , "W"   , "Latino"      ,
-             8L,  "M"     , "W"   , "Latino"
+    1L,  "M"     , "B"   , "Not Latino"  ,
+    2L,  "M"     , "B"   , "Not Latino"  ,
+    3L,  "F"     , "B"   , "Unknown"     ,
+    4L,  "M"     , "W"   , "Not Latino"  ,
+    5L,  "M"     , "W"   , "Not Latino"  ,
+    6L,  "F"     , "W"   , "Not Latino"  ,
+    7L,  "M"     , "W"   , "Latino"      ,
+    8L,  "M"     , "W"   , "Latino"
   )
 
   d_lu_gender <- tibble::tribble(
@@ -113,6 +113,18 @@ test_that("ds_1c --all metadata required", {
   )
 
   observed <- table_nih_enrollment(d_1c, d_lu_gender=d_lu_gender, d_lu_race=d_lu_race, d_lu_ethnicity=d_lu_ethnicity)
+  expect_equal(observed, expected_1)
+})
+
+test_that("ds_1d --different variable names", {
+  ds_1d <- ds_1a %>%
+    dplyr::rename(
+      vg  = gender,
+      vr  = race,
+      ve  = ethnicity
+    )
+
+  observed <- table_nih_enrollment(ds_1d, variable_gender="vg", variable_race="vr", variable_ethnicity="ve")
   expect_equal(observed, expected_1)
 })
 
