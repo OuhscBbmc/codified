@@ -13,7 +13,10 @@ Depends:
     R(>= 3.0.0),
     stats
 Imports:
+    checkmate (>= 1.8.4),
     dplyr (>= 0.7.0),
+    kableExtra,
+    knitr (>= 1.18.0),
     magrittr,
     methods,
     readr (>= 1.1.0),
@@ -21,14 +24,10 @@ Imports:
     tibble (>= 1.4.0),
     tidyr (>= 0.7.0)
 Suggests:
-    checkmate  (>= 1.8.4),
     devtools,
-    kableExtra,
-    knitr (>= 1.18.0),
     REDCapR,
     rmarkdown,
-    sessioninfo,
-    testthat (>= 0.9)
+    testthat (>= 2.0)
 License: MIT + file LICENSE
 LazyData: TRUE
 VignetteBuilder: knitr
