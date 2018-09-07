@@ -1,7 +1,7 @@
 #' @name table_nih_enrollment
 #' @aliases  table_nih_enrollment table_nih_enrollment_pretty
 #'
-#' @title Produce an NIH-compliant enrolment table.
+#' @title Produce an NIH-compliant enrollment table.
 #'
 #' @description Produce an NIH enrollment table, leveraging metadata to adapt to the observed [data.frame].
 #'
