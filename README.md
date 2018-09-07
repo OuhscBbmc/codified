@@ -20,7 +20,7 @@ devtools::install_github(repo="OuhscBbmc/codified")
 
 In the future, the *release* version can be installed from [CRAN](https://cran.r-project.org/package=codified).
 ```r
-# install.packages("codified") # Not yet on CRAN.
+install.packages("codified")
 ```
 
 The package can be uninstalled from your local machine with `remove.packages("codified")`.
