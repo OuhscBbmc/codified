@@ -84,18 +84,25 @@ if( !requireNamespace("REDCapR", quietly=T) )
 library(REDCapR)
 
 ## ----redcap-establish----------------------------------------------------
-if( "0.9.8" < packageVersion("REDCapR") ) {
+if( !requireNamespace("REDCapR", quietly=TRUE) ) {
+  ds <- ds_2 # If REDCapR isn't installed, use the previous version of the dataset.
+} else if( "0.9.8" < packageVersion("REDCapR") ) {
   ds_2 <- REDCapR::redcap_read_oneshot(
     redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
-    token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-speciifc token/password.
+    token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-specific token/password.
     guess_type = FALSE                                  # Keep all variables as strings/characters.
   )$data  
 } else {
   # Older versions of REDCapR don't have the `guess_type` parameter
   ds_2 <- REDCapR::redcap_read_oneshot(
     redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
-    token      = "F304DEC3793FECC3B6DEEFF66302CAD3"     # User-speciifc token/password.
-  )$data
+    token      = "F304DEC3793FECC3B6DEEFF66302CAD3"     # User-specific token/password.
+  )$data %>% 
+    dplyr::mutate(
+      gender      = as.character(gender),
+      race        = as.character(race),
+      ethnicity   = as.character(ethnicity)
+    )
 }
 
 ## ----redcap-local-cosmetically-format------------------------------------

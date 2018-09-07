@@ -4,7 +4,7 @@
 \name{codified-package}
 \alias{codified}
 \alias{codified-package}
-\title{codified: Produce standard/formalized demographics tables}
+\title{codified: Produce Standard/Formalized Demographics Tables}
 \description{
 Augment clinical data with metadata to create
     output used in conventional publications and reports.

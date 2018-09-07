@@ -1,5 +1,5 @@
 Package: codified
-Title: Produce standard/formalized demographics tables
+Title: Produce Standard/Formalized Demographics Tables
 Description: Augment clinical data with metadata to create
     output used in conventional publications and reports.
 Version: 0.2.0

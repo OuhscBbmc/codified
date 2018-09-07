@@ -1525,43 +1525,8 @@ ds &lt;- readr::read_csv(path, col_types=col_types) %&gt;%
     gender     = as.character(gender),
     race       = as.character(race),
     ethnicity  = as.character(ethnicity)
-  )</code></pre>
-<pre><code>## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed
-
-## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
-## length of NULL cannot be changed</code></pre>
-<pre class="r"><code>ds %&gt;% 
+  )
+ds %&gt;% 
   head(10) %&gt;% 
   knitr::kable(caption = &quot;Observed Dataset (first ten rows)&quot;)</code></pre>
 <table>
@@ -2482,21 +2447,34 @@ Unknown or Not Reported
   devtools::install_github(&quot;OuhscBbmc/REDCapR&quot;)
 
 library(REDCapR)</code></pre>
-<p>Next, download the data from the REDCap database into the <code>ds_2</code> data.frame.</p>
-<pre class="r"><code>if( &quot;0.9.8&quot; &lt; packageVersion(&quot;REDCapR&quot;) ) {
+<p>Next, download the data from the REDCap database into the <code>ds_2</code> data.frame. If you’re running the most recent version of REDCapR (available on GitHub), the code will be:</p>
+<pre class="r"><code>ds_2 &lt;- REDCapR::redcap_read_oneshot(
+  redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  # URL of REDCap Server.
+  token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-specific token/password.
+  guess_type = FALSE                                  # Keep all variables as strings/characters.
+)$data  </code></pre>
+<p>The following code is more complicated than normal, because the vignette has to account for different versions of REDCapR being installed on the machine.</p>
+<pre class="r"><code>if( !requireNamespace(&quot;REDCapR&quot;, quietly=TRUE) ) {
+  ds &lt;- ds_2 # If REDCapR isn't installed, use the previous version of the dataset.
+} else if( &quot;0.9.8&quot; &lt; packageVersion(&quot;REDCapR&quot;) ) {
   ds_2 &lt;- REDCapR::redcap_read_oneshot(
     redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  # URL of REDCap Server.
-    token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-speciifc token/password.
+    token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;,    # User-specific token/password.
     guess_type = FALSE                                  # Keep all variables as strings/characters.
   )$data  
 } else {
   # Older versions of REDCapR don't have the `guess_type` parameter
   ds_2 &lt;- REDCapR::redcap_read_oneshot(
     redcap_uri = &quot;https://bbmc.ouhsc.edu/redcap/api/&quot;,  # URL of REDCap Server.
-    token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;     # User-speciifc token/password.
-  )$data
+    token      = &quot;F304DEC3793FECC3B6DEEFF66302CAD3&quot;     # User-specific token/password.
+  )$data %&gt;% 
+    dplyr::mutate(
+      gender      = as.character(gender),
+      race        = as.character(race),
+      ethnicity   = as.character(ethnicity)
+    )
 }</code></pre>
-<pre><code>## 500 records and 13 columns were read from REDCap in 0.5 seconds.  The http status code was 200.</code></pre>
+<pre><code>## 500 records and 13 columns were read from REDCap in 0.8 seconds.  The http status code was 200.</code></pre>
 </div>
 <div id="conform-to-nih-cosmetics-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Conform to NIH Cosmetics</h2>
