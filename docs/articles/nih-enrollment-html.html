@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codified</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -122,10 +122,45 @@
 <a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="dt">gender     =</span> <span class="kw">as.character</span>(gender),</a>
 <a class="sourceLine" id="cb2-15" data-line-number="15">    <span class="dt">race       =</span> <span class="kw">as.character</span>(race),</a>
 <a class="sourceLine" id="cb2-16" data-line-number="16">    <span class="dt">ethnicity  =</span> <span class="kw">as.character</span>(ethnicity)</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">  )</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">ds <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="dt">caption =</span> <span class="st">"Observed Dataset (first ten rows)"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-17" data-line-number="17">  )</a></code></pre></div>
+<pre><code>## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ds <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="dt">caption =</span> <span class="st">"Observed Dataset (first ten rows)"</span>)</a></code></pre></div>
 <table class="table">
 <caption>Observed Dataset (first ten rows)</caption>
 <thead><tr class="header">
@@ -219,13 +254,13 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ds_lu_gender &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="op">~</span>input,   <span class="op">~</span>displayed            ,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="st">"0"</span>   ,  <span class="st">"Female"</span>               , </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="st">"1"</span>   ,  <span class="st">"Male"</span>                 ,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="st">"U"</span>   ,  <span class="st">"Unknown/Not Reported"</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_lu_gender, <span class="dt">caption =</span> <span class="st">"Gender Mapping"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ds_lu_gender &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="op">~</span>input,   <span class="op">~</span>displayed            ,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="st">"0"</span>   ,  <span class="st">"Female"</span>               , </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="st">"1"</span>   ,  <span class="st">"Male"</span>                 ,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="st">"U"</span>   ,  <span class="st">"Unknown/Not Reported"</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_lu_gender, <span class="dt">caption =</span> <span class="st">"Gender Mapping"</span>)</a></code></pre></div>
 <table class="table">
 <caption>Gender Mapping</caption>
 <thead><tr class="header">
@@ -247,17 +282,17 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ds_lu_race &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="op">~</span>input , <span class="op">~</span>displayed                                   ,</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="st">"1"</span>    , <span class="st">"American Indian/Alaska Native"</span>              ,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="st">"2"</span>    , <span class="st">"Asian"</span>                                      ,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="st">"3"</span>    , <span class="st">"Native Hawaiian or Other Pacific Islander"</span>  ,</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="st">"4"</span>    , <span class="st">"Black or African American"</span>                  ,</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="st">"5"</span>    , <span class="st">"White"</span>                                      ,</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="st">"M"</span>    , <span class="st">"More than One Race"</span>                         ,</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="st">"6"</span>    , <span class="st">"Unknown or Not Reported"</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">)</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_lu_race, <span class="dt">caption =</span> <span class="st">"Race Mapping"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ds_lu_race &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="op">~</span>input , <span class="op">~</span>displayed                                   ,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="st">"1"</span>    , <span class="st">"American Indian/Alaska Native"</span>              ,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="st">"2"</span>    , <span class="st">"Asian"</span>                                      ,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="st">"3"</span>    , <span class="st">"Native Hawaiian or Other Pacific Islander"</span>  ,</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="st">"4"</span>    , <span class="st">"Black or African American"</span>                  ,</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="st">"5"</span>    , <span class="st">"White"</span>                                      ,</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="st">"M"</span>    , <span class="st">"More than One Race"</span>                         ,</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">  <span class="st">"6"</span>    , <span class="st">"Unknown or Not Reported"</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_lu_race, <span class="dt">caption =</span> <span class="st">"Race Mapping"</span>)</a></code></pre></div>
 <table class="table">
 <caption>Race Mapping</caption>
 <thead><tr class="header">
@@ -295,13 +330,13 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ds_lu_ethnicity &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="op">~</span>input,   <span class="op">~</span>displayed                      ,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="st">"2"</span>   ,  <span class="st">"Not Hispanic or Latino"</span>         ,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="st">"1"</span>   ,  <span class="st">"Hispanic or Latino"</span>             ,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="st">"0"</span>   ,  <span class="st">"Unknown/Not Reported Ethnicity"</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_lu_ethnicity, <span class="dt">caption =</span> <span class="st">"Ethnicity Mapping"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ds_lu_ethnicity &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="op">~</span>input,   <span class="op">~</span>displayed                      ,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="st">"2"</span>   ,  <span class="st">"Not Hispanic or Latino"</span>         ,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="st">"1"</span>   ,  <span class="st">"Hispanic or Latino"</span>             ,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="st">"0"</span>   ,  <span class="st">"Unknown/Not Reported Ethnicity"</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_lu_ethnicity, <span class="dt">caption =</span> <span class="st">"Ethnicity Mapping"</span>)</a></code></pre></div>
 <table class="table">
 <caption>Ethnicity Mapping</caption>
 <thead><tr class="header">
@@ -327,14 +362,14 @@
 <div id="apply-map-to-observed-dataset" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apply-map-to-observed-dataset" class="anchor"></a>Apply Map to Observed Dataset</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ds_summary_long &lt;-<span class="st"> </span>codified<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/codified/topics/table_nih_enrollment">table_nih_enrollment</a></span>(</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">d              =</span> ds,</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">d_lu_gender    =</span> ds_lu_gender,</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">d_lu_race      =</span> ds_lu_race,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">d_lu_ethnicity =</span> ds_lu_ethnicity</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_summary_long, <span class="dt">caption =</span> <span class="st">"Counts of Each Subgroup"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">ds_summary_long &lt;-<span class="st"> </span>codified<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/codified/topics/table_nih_enrollment">table_nih_enrollment</a></span>(</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="dt">d              =</span> ds,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">d_lu_gender    =</span> ds_lu_gender,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">d_lu_race      =</span> ds_lu_race,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">d_lu_ethnicity =</span> ds_lu_ethnicity</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ds_summary_long, <span class="dt">caption =</span> <span class="st">"Counts of Each Subgroup"</span>)</a></code></pre></div>
 <table class="table">
 <caption>Counts of Each Subgroup</caption>
 <thead><tr class="header">
@@ -728,12 +763,12 @@
 <div id="conform-to-nih-cosmetics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conform-to-nih-cosmetics" class="anchor"></a>Conform to NIH Cosmetics</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">codified<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/codified/topics/table_nih_enrollment">table_nih_enrollment_pretty</a></span>(</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">d              =</span> ds,</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">d_lu_gender    =</span> ds_lu_gender,</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">d_lu_race      =</span> ds_lu_race,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">d_lu_ethnicity =</span> ds_lu_ethnicity</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">codified<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/codified/topics/table_nih_enrollment">table_nih_enrollment_pretty</a></span>(</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">d              =</span> ds,</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">d_lu_gender    =</span> ds_lu_gender,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">d_lu_race      =</span> ds_lu_race,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">d_lu_ethnicity =</span> ds_lu_ethnicity</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">)</a></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1034,28 +1069,36 @@ Unknown or Not Reported
 <h2 class="hasAnchor">
 <a href="#establish-datasets-1" class="anchor"></a>Establish Datasets</h2>
 <p>First, install the <code>REDCapR</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package">load it into memory</a>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="cf">if</span>( <span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">"REDCapR"</span>, <span class="dt">quietly=</span>T) )</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">  devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"OuhscBbmc/REDCapR"</span>)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">library</span>(REDCapR)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="cf">if</span>( <span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">"REDCapR"</span>, <span class="dt">quietly=</span>T) )</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"OuhscBbmc/REDCapR"</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">library</span>(REDCapR)</a></code></pre></div>
 <p>Next, download the data from the REDCap database into the <code>ds_2</code> data.frame.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ds_<span class="dv">2</span> &lt;-<span class="st"> </span>REDCapR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/REDCapR/topics/redcap_read_oneshot">redcap_read_oneshot</a></span>(</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">redcap_uri =</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">token      =</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>,    <span class="co"># User-speciifc token/password.</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">guess_type =</span> <span class="ot">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">)<span class="op">$</span>data</a></code></pre></div>
-<pre><code>## 500 records and 13 columns were read from REDCap in 1.7 seconds.  The http status code was 200.</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="cf">if</span>( <span class="st">"0.9.8"</span> <span class="op">&lt;</span><span class="st"> </span><span class="kw">packageVersion</span>(<span class="st">"REDCapR"</span>) ) {</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  ds_<span class="dv">2</span> &lt;-<span class="st"> </span>REDCapR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/REDCapR/topics/redcap_read_oneshot">redcap_read_oneshot</a></span>(</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">    <span class="dt">redcap_uri =</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">    <span class="dt">token      =</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>,    <span class="co"># User-speciifc token/password.</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">    <span class="dt">guess_type =</span> <span class="ot">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">  )<span class="op">$</span>data  </a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">  <span class="co"># Older versions of REDCapR don't have the `guess_type` parameter</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">  ds_<span class="dv">2</span> &lt;-<span class="st"> </span>REDCapR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/REDCapR/topics/redcap_read_oneshot">redcap_read_oneshot</a></span>(</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">    <span class="dt">redcap_uri =</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">    <span class="dt">token      =</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>     <span class="co"># User-speciifc token/password.</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">  )<span class="op">$</span>data</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">}</a></code></pre></div>
+<pre><code>## 500 records and 13 columns were read from REDCap in 0.6 seconds.  The http status code was 200.</code></pre>
 </div>
 <div id="conform-to-nih-cosmetics-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conform-to-nih-cosmetics-1" class="anchor"></a>Conform to NIH Cosmetics</h2>
 <p>Now, convert these demographic data into a properly formatted NIH enrollment table. Pass the <code>ds_lu_gender</code>, <code>ds_lu_race</code>, and <code>ds_lu_ethnicity</code> metadata, which was defined above. As a reminder, these translate values like <code>1</code> to <code>Male</code> and <code>3</code> to <code>Native Hawaiian or Other Pacific Islander</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span>(</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="dt">d               =</span> ds_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">d_lu_gender     =</span> ds_lu_gender,</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">d_lu_race       =</span> ds_lu_race,</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">  <span class="dt">d_lu_ethnicity  =</span> ds_lu_ethnicity</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span>(</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="dt">d               =</span> ds_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="dt">d_lu_gender     =</span> ds_lu_gender,</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="dt">d_lu_race       =</span> ds_lu_race,</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="dt">d_lu_ethnicity  =</span> ds_lu_ethnicity</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">)</a></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1352,35 +1395,35 @@ Unknown or Not Reported
 <h1 class="hasAnchor">
 <a href="#collapsing-levels" class="anchor"></a>Collapsing Levels</h1>
 <p>Many observed datasets may collect race with a different set of levels. For instance in <code>ds_3</code>, the <code>American Indian</code> level is separate from the <code>Alaska Native</code> level. In the first and second rows in the metadata below, the two levels are effectively combined into the<code>American Indian/Alaska Native</code> level, so it complies with the format of the NIH Enrollment table.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">ds_lu_race_<span class="dv">3</span> &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="op">~</span>input                      , <span class="op">~</span>displayed                                  ,</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="st">"American Indian"</span>           , <span class="st">"American Indian/Alaska Native"</span>             , <span class="co"># Combine w/ Alaska Native</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="st">"Alaska Native"</span>             , <span class="st">"American Indian/Alaska Native"</span>             , <span class="co"># Combine w/ American Indian</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="st">"Asian"</span>                     , <span class="st">"Asian"</span>                                     ,</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">  <span class="st">"Native Hawaiian"</span>           , <span class="st">"Native Hawaiian or Other Pacific Islander"</span> , <span class="co"># Combine w/ Pacific Islanders</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7">  <span class="st">"Pacific Islander"</span>          , <span class="st">"Native Hawaiian or Other Pacific Islander"</span> , <span class="co"># Combine w/ Hawaiian</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">  <span class="st">"Black or African American"</span> , <span class="st">"Black or African American"</span>                 ,</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">  <span class="st">"White"</span>                     , <span class="st">"White"</span>                                     ,</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10">  <span class="st">"More than One Race"</span>        , <span class="st">"More than One Race"</span>                        ,</a>
-<a class="sourceLine" id="cb12-11" data-line-number="11">  <span class="st">"Unknown or Not Reported"</span>   , <span class="st">"Unknown or Not Reported"</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12">)</a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb12-14" data-line-number="14">ds_<span class="dv">3</span> &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
-<a class="sourceLine" id="cb12-15" data-line-number="15">  <span class="op">~</span>subject_id,   <span class="op">~</span>gender  , <span class="op">~</span>race            ,  <span class="op">~</span>ethnicity                 ,</a>
-<a class="sourceLine" id="cb12-16" data-line-number="16">           1L,   <span class="st">"Female"</span> , <span class="st">"American Indian"</span>,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-17" data-line-number="17">           2L,   <span class="st">"Male"</span>   , <span class="st">"American Indian"</span>,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-18" data-line-number="18">           3L,   <span class="st">"Male"</span>   , <span class="st">"American Indian"</span>,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-19" data-line-number="19">           4L,   <span class="st">"Female"</span> , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-20" data-line-number="20">           5L,   <span class="st">"Male"</span>   , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-21" data-line-number="21">           6L,   <span class="st">"Male"</span>   , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-22" data-line-number="22">           7L,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
-<a class="sourceLine" id="cb12-23" data-line-number="23">           8L,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span>        </a>
-<a class="sourceLine" id="cb12-24" data-line-number="24">)</a>
-<a class="sourceLine" id="cb12-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="kw"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span>(</a>
-<a class="sourceLine" id="cb12-27" data-line-number="27">  <span class="dt">d               =</span> ds_<span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb12-28" data-line-number="28">  <span class="dt">d_lu_race       =</span> ds_lu_race_<span class="dv">3</span></a>
-<a class="sourceLine" id="cb12-29" data-line-number="29">)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">ds_lu_race_<span class="dv">3</span> &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">  <span class="op">~</span>input                      , <span class="op">~</span>displayed                                  ,</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">  <span class="st">"American Indian"</span>           , <span class="st">"American Indian/Alaska Native"</span>             , <span class="co"># Combine w/ Alaska Native</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="st">"Alaska Native"</span>             , <span class="st">"American Indian/Alaska Native"</span>             , <span class="co"># Combine w/ American Indian</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">  <span class="st">"Asian"</span>                     , <span class="st">"Asian"</span>                                     ,</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">  <span class="st">"Native Hawaiian"</span>           , <span class="st">"Native Hawaiian or Other Pacific Islander"</span> , <span class="co"># Combine w/ Pacific Islanders</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">  <span class="st">"Pacific Islander"</span>          , <span class="st">"Native Hawaiian or Other Pacific Islander"</span> , <span class="co"># Combine w/ Hawaiian</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="st">"Black or African American"</span> , <span class="st">"Black or African American"</span>                 ,</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">  <span class="st">"White"</span>                     , <span class="st">"White"</span>                                     ,</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">  <span class="st">"More than One Race"</span>        , <span class="st">"More than One Race"</span>                        ,</a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">  <span class="st">"Unknown or Not Reported"</span>   , <span class="st">"Unknown or Not Reported"</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14">ds_<span class="dv">3</span> &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
+<a class="sourceLine" id="cb14-15" data-line-number="15">  <span class="op">~</span>subject_id,   <span class="op">~</span>gender  , <span class="op">~</span>race            ,  <span class="op">~</span>ethnicity                 ,</a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">           1L,   <span class="st">"Female"</span> , <span class="st">"American Indian"</span>,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-17" data-line-number="17">           2L,   <span class="st">"Male"</span>   , <span class="st">"American Indian"</span>,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-18" data-line-number="18">           3L,   <span class="st">"Male"</span>   , <span class="st">"American Indian"</span>,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-19" data-line-number="19">           4L,   <span class="st">"Female"</span> , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-20" data-line-number="20">           5L,   <span class="st">"Male"</span>   , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-21" data-line-number="21">           6L,   <span class="st">"Male"</span>   , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-22" data-line-number="22">           7L,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span>   ,</a>
+<a class="sourceLine" id="cb14-23" data-line-number="23">           8L,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span>        </a>
+<a class="sourceLine" id="cb14-24" data-line-number="24">)</a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="kw"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span>(</a>
+<a class="sourceLine" id="cb14-27" data-line-number="27">  <span class="dt">d               =</span> ds_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb14-28" data-line-number="28">  <span class="dt">d_lu_race       =</span> ds_lu_race_<span class="dv">3</span></a>
+<a class="sourceLine" id="cb14-29" data-line-number="29">)</a></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>

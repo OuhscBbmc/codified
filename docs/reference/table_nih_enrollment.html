@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codified</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -472,17 +472,17 @@
     <span class='kw'>ethnicity</span>  <span class='kw'>=</span> <span class='fu'>as.character</span>(<span class='no'>ethnicity</span>)
   )</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  record_id = col_double(),</span>
+#&gt; <span class='message'>  record_id = col_integer(),</span>
 #&gt; <span class='message'>  name_last = col_character(),</span>
 #&gt; <span class='message'>  name_first = col_character(),</span>
 #&gt; <span class='message'>  address = col_character(),</span>
 #&gt; <span class='message'>  phone = col_double(),</span>
 #&gt; <span class='message'>  dob = col_date(format = ""),</span>
-#&gt; <span class='message'>  ethnicity = col_double(),</span>
-#&gt; <span class='message'>  race = col_double(),</span>
-#&gt; <span class='message'>  gender = col_double(),</span>
+#&gt; <span class='message'>  ethnicity = col_integer(),</span>
+#&gt; <span class='message'>  race = col_integer(),</span>
+#&gt; <span class='message'>  gender = col_integer(),</span>
 #&gt; <span class='message'>  height_cm = col_double(),</span>
-#&gt; <span class='message'>  weight_kg = col_double(),</span>
+#&gt; <span class='message'>  weight_kg = col_integer(),</span>
 #&gt; <span class='message'>  email = col_character()</span>
 #&gt; <span class='message'>)</span></div><div class='input'>
 <span class='no'>ds_lu_gender</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tribble'>tribble</a></span>(

@@ -2,8 +2,8 @@ Package: codified
 Title: Produce standard/formalized demographics tables
 Description: Augment clinical data with metadata to create
     output used in conventional publications and reports.
-Version: 0.1.1.9001
-Date: 2018-08-27
+Version: 0.2.0
+Date: 2018-09-06
 Authors@R: c(person("Will", "Beasley", role = c("aut", "cre"), email =
     "wibeasley@hotmail.com", comment = c(ORCID = "0000-0002-5613-5006")),
     person("Peter", "Higgins", role = "ctb"))
@@ -16,7 +16,7 @@ Imports:
     dplyr (>= 0.7.0),
     magrittr,
     methods,
-    readr (>= 1.2.0),
+    readr (>= 1.1.0),
     rlang,
     tibble (>= 1.4.0),
     tidyr (>= 0.7.0)
@@ -29,8 +29,6 @@ Suggests:
     rmarkdown,
     sessioninfo,
     testthat (>= 0.9)
-Remotes:
-  github::tidyverse/readr
 License: MIT + file LICENSE
 LazyData: TRUE
 VignetteBuilder: knitr

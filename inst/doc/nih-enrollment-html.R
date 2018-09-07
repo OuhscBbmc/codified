@@ -84,11 +84,19 @@ if( !requireNamespace("REDCapR", quietly=T) )
 library(REDCapR)
 
 ## ----redcap-establish----------------------------------------------------
-ds_2 <- REDCapR::redcap_read_oneshot(
-  redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
-  token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-speciifc token/password.
-  guess_type = FALSE                                  # Keep all variables as strings/characters.
-)$data
+if( "0.9.8" < packageVersion("REDCapR") ) {
+  ds_2 <- REDCapR::redcap_read_oneshot(
+    redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
+    token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-speciifc token/password.
+    guess_type = FALSE                                  # Keep all variables as strings/characters.
+  )$data  
+} else {
+  # Older versions of REDCapR don't have the `guess_type` parameter
+  ds_2 <- REDCapR::redcap_read_oneshot(
+    redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
+    token      = "F304DEC3793FECC3B6DEEFF66302CAD3"     # User-speciifc token/password.
+  )$data
+}
 
 ## ----redcap-local-cosmetically-format------------------------------------
 table_nih_enrollment_pretty(
@@ -128,5 +136,4 @@ table_nih_enrollment_pretty(
   d               = ds_3,
   d_lu_race       = ds_lu_race_3
 )
-
 

@@ -12,6 +12,7 @@ Augment clinical data with metadata to create
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://ouhscbbmc.github.io/codified/}
   \item \url{https://github.com/OuhscBbmc/codified}
   \item \url{https://github.com/higgi13425/nih_enrollment_table}
   \item Report bugs at \url{https://github.com/OuhscBbmc/codified/issues}
