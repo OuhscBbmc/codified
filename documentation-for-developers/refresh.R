@@ -18,7 +18,7 @@ test_results_checked <- devtools::test(filter = "table-nih-enrollment")
 test_results_not_checked <- testthat::test_dir("./tests/manual/")
 
 # devtools::check(force_suggests = FALSE)
-# devtools::build_win(version="R-devel") #CRAN submission policies encourage the development version
+# devtools::check_win_devel() #CRAN submission policies encourage the development version
 # devtools::check_rhub(email="wibeasley@hotmail.com")
 # devtools::revdep_check(pkg="codified", recursive=TRUE)
 # devtools::release(check=FALSE) #Careful, the last question ultimately uploads it to CRAN, where you can't delete/reverse your decision.
