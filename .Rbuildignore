@@ -1,3 +1,4 @@
+^CRAN-RELEASE$
 ^CODE_OF_CONDUCT\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -12,6 +13,7 @@ playgrounds/
 utility/
 ^\.travis\.yml$
 ^appveyor\.yml$
+^LICENSE\.md$
 ^revdep$
 ^CONDUCT\.md$
 ^.*\.o$
