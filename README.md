@@ -10,16 +10,16 @@ The <b>codified</b> package, in combination with the <b>REDCapR</b> package, pro
 
 ### Installation and Documentation
 
-The *development* version can be installed from [GitHub](https://github.com/OuhscBbmc/codified) after installing the `devtools` package.
+The *development* version can be installed from [GitHub](https://github.com/OuhscBbmc/codified) after installing the [remotes](https://CRAN.R-project.org/package=remotes) package.
 
 ```r
-install.packages("devtools") # Run this line if the 'devtools' package isn't installed already.
-devtools::install_github(repo="OuhscBbmc/codified")
+install.packages("remotes") # Run this line if the 'remotes' package isn't installed already.
+remotes::install_github(repo="OuhscBbmc/codified")
 ```
 
-In the future, the *release* version can be installed from [CRAN](https://cran.r-project.org/package=codified).
+The *release* version can be installed from [CRAN](https://cran.r-project.org/package=codified).
 ```r
-# install.packages("codified") # CRAN submissions are disabled the first week of Sept 2018.
+install.packages("codified") 
 ```
 
 The package can be uninstalled from your local machine with `remove.packages("codified")`.
@@ -38,7 +38,7 @@ The package can be uninstalled from your local machine with `remove.packages("co
 | [License](https://choosealicense.com/) | [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) |
 | [Development Doc](https://www.rdocumentation.org/) | [![Rdoc](https://img.shields.io/badge/pkgodwn-GitHub.io-orange.svg?longCache=true&style=style=for-the-badge)](https://ouhscbbmc.github.io/codified/) |
 | [Zenodo Archive](https://zenodo.org/search?ln=en&p=codified) | [![DOI](https://zenodo.org/badge/146359325.svg)](https://zenodo.org/badge/latestdoi/146359325) |
-<!--| [CRAN Version](https://cran.r-project.org/package=codified) | [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codified)](https://cran.r-project.org/package=codified) |
+| [CRAN Version](https://cran.r-project.org/package=codified) | [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codified)](https://cran.r-project.org/package=codified) |
 | [CRAN Rate](http://cranlogs.r-pkg.org/) | ![CRANPace](http://cranlogs.r-pkg.org/badges/codified) |
 | [Production Doc](https://www.rdocumentation.org/) | [![Rdoc](http://www.rdocumentation.org/badges/version/codified)](http://www.rdocumentation.org/packages/codified) |
--->
+
