@@ -5,9 +5,15 @@
 \alias{table_nih_enrollment_pretty}
 \title{Produce an NIH-compliant enrollment table.}
 \usage{
-table_nih_enrollment(d, d_lu_gender = NULL, d_lu_race = NULL,
-  d_lu_ethnicity = NULL, variable_gender = "gender",
-  variable_race = "race", variable_ethnicity = "ethnicity")
+table_nih_enrollment(
+  d,
+  d_lu_gender = NULL,
+  d_lu_race = NULL,
+  d_lu_ethnicity = NULL,
+  variable_gender = "gender",
+  variable_race = "race",
+  variable_ethnicity = "ethnicity"
+)
 }
 \arguments{
 \item{d}{\link{data.frame} of observed values in the investigation. Required.}

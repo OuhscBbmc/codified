@@ -6,8 +6,7 @@
 \alias{codified-package}
 \title{codified: Produce Standard/Formalized Demographics Tables}
 \description{
-Augment clinical data with metadata to create
-    output used in conventional publications and reports.
+Augment clinical data with metadata to create output used in conventional publications and reports.
 }
 \seealso{
 Useful links:
@@ -20,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Will Beasley \email{wibeasley@hotmail.com} (0000-0002-5613-5006)
+\strong{Maintainer}: Will Beasley \email{wibeasley@hotmail.com} (\href{https://orcid.org/0000-0002-5613-5006}{ORCID})
 
 Other contributors:
 \itemize{
