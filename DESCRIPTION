@@ -18,13 +18,12 @@ Imports:
     kableExtra,
     knitr (>= 1.18.0),
     magrittr,
-    methods,
-    readr (>= 1.1.0),
     rlang,
     tibble (>= 1.4.0),
     tidyr (>= 0.7.0)
 Suggests:
     devtools,
+    readr (>= 1.1.0),
     REDCapR,
     rmarkdown,
     testthat (>= 2.0)
