@@ -1,14 +1,14 @@
 codified
 =====================================
+
 Produce standard/formalized demographics tables
 
 Clinical researchers often need to document and report the demographics of all consented subjects. A common use case is for reporting to funding agencies, including the National Institutes of Health (NIH). The NIH requires a particular format for the [PHS Inclusion Enrollment Report](https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm) in each annual Research Performance Progress Report ([RPPR](https://grants.nih.gov/grants/rppr/index.htm)).
 
-The <b>codified</b> package, in combination with the <b>REDCapR</b> package, provides a pipeline to directly extract the demographics of consented subjects from a REDCap database, and to rapidly and reproducibly produce standard demographics tables.  This pipeline is demonstrated in the vignette, *[NIH Enrollment Tables in HTML](https://ouhscbbmc.github.io/codified/articles/nih-enrollment-html.html)*.
+The **codified** package, in combination with the **REDCapR** package, provides a pipeline to directly extract the demographics of consented subjects from a REDCap database, and to rapidly and reproducibly produce standard demographics tables.  This pipeline is demonstrated in the vignette, *[NIH Enrollment Tables in HTML](https://ouhscbbmc.github.io/codified/articles/nih-enrollment-html.html)*.
 
-
-
-### Installation and Documentation
+Installation and Documentation
+-----------------------
 
 The *development* version can be installed from [GitHub](https://github.com/OuhscBbmc/codified) after installing the [remotes](https://CRAN.R-project.org/package=remotes) package.
 
@@ -18,14 +18,15 @@ remotes::install_github(repo="OuhscBbmc/codified")
 ```
 
 The *release* version can be installed from [CRAN](https://cran.r-project.org/package=codified).
+
 ```r
 install.packages("codified")
 ```
 
 The package can be uninstalled from your local machine with `remove.packages("codified")`.
 
-
-### Build Status and Package Characteristics
+Build Status and Package Characteristics
+-----------------------
 
 | [GitHub](https://github.com/OuhscBbmc/codified) | [Github Actions](https://github.com/OuhscBbmc/codified/actions) | [Coveralls](https://coveralls.io/r/OuhscBbmc/codified) |
 | :----- | :---------------------------: |  :-------: |
