@@ -11,6 +11,8 @@ documentation-peek.pdf
 documentation-for-developers/
 playgrounds/
 utility/
+^\.github$
+^\.markdownlist\.json$
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^LICENSE\.md$
