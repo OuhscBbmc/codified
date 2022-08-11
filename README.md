@@ -19,7 +19,7 @@ remotes::install_github(repo="OuhscBbmc/codified")
 
 The *release* version can be installed from [CRAN](https://cran.r-project.org/package=codified).
 ```r
-install.packages("codified") 
+install.packages("codified")
 ```
 
 The package can be uninstalled from your local machine with `remove.packages("codified")`.
@@ -27,10 +27,10 @@ The package can be uninstalled from your local machine with `remove.packages("co
 
 ### Build Status and Package Characteristics
 
-| [GitHub](https://github.com/OuhscBbmc/codified) | [Travis-CI](https://travis-ci.org/OuhscBbmc/codified/builds) | [AppVeyor](https://ci.appveyor.com/project/wibeasley/codified/history) | [Coveralls](https://coveralls.io/r/OuhscBbmc/codified) |
-| :----- | :---------------------------: | :-----------------------------: | :-------: |
-| [Master](https://github.com/OuhscBbmc/codified/tree/master) | [![Build Status](https://travis-ci.org/OuhscBbmc/codified.svg?branch=master)](https://travis-ci.org/OuhscBbmc/codified) | [![Build status](https://ci.appveyor.com/api/projects/status/geka1g6d7ms45fh8/branch/master?svg=true)](https://ci.appveyor.com/project/wibeasley/codified/branch/master) | [![Coverage Status](https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=master)](https://coveralls.io/github/OuhscBbmc/codified?branch=master) |
-| [Dev](https://github.com/OuhscBbmc/codified/tree/dev) | [![Build Status](https://travis-ci.org/OuhscBbmc/codified.svg?branch=dev)](https://travis-ci.org/OuhscBbmc/codified) | [![Build status](https://ci.appveyor.com/api/projects/status/geka1g6d7ms45fh8/branch/dev?svg=true)](https://ci.appveyor.com/project/wibeasley/codified/branch/dev) | [![Coverage Status](https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=dev)](https://coveralls.io/github/OuhscBbmc/codified?branch=dev) |
+| [GitHub](https://github.com/OuhscBbmc/codified) | [Github Actions](https://github.com/OuhscBbmc/codified/actions) | [Coveralls](https://coveralls.io/r/OuhscBbmc/codified) |
+| :----- | :---------------------------: |  :-------: |
+| [Main](https://github.com/OuhscBbmc/codified/tree/main) | [![R-CMD-check](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml/badge.svg)](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml) | [![Coverage Status](https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=main)](https://coveralls.io/github/OuhscBbmc/codified?branch=main) |
+| [Dev](https://github.com/OuhscBbmc/codified/tree/dev) | [![R-CMD-check](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml/badge.svg?branch=dev)](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml) | [![Coverage Status](https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=dev)](https://coveralls.io/github/OuhscBbmc/codified?branch=dev) |
 | | *Ubuntu LTS* | *Windows Server* | *Test Coverage* |
 
 | Key | Value |
@@ -41,4 +41,3 @@ The package can be uninstalled from your local machine with `remove.packages("co
 | [CRAN Version](https://cran.r-project.org/package=codified) | [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codified)](https://cran.r-project.org/package=codified) |
 | [CRAN Rate](http://cranlogs.r-pkg.org/) | ![CRANPace](http://cranlogs.r-pkg.org/badges/codified) |
 | [Production Doc](https://www.rdocumentation.org/) | [![Rdoc](http://www.rdocumentation.org/badges/version/codified)](http://www.rdocumentation.org/packages/codified) |
-
