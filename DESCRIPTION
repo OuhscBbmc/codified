@@ -2,8 +2,7 @@ Package: codified
 Title: Produce Standard/Formalized Demographics Tables
 Description: Augment clinical data with metadata to create
     output used in conventional publications and reports.
-Version: 0.2.0
-Date: 2018-09-06
+Version: 0.2.9001
 Authors@R: c(person("Will", "Beasley", role = c("aut", "cre"), email =
     "wibeasley@hotmail.com", comment = c(ORCID = "0000-0002-5613-5006")),
     person("Peter", "Higgins", role = "ctb"))
