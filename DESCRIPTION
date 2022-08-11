@@ -22,6 +22,7 @@ Imports:
     tibble (>= 1.4.0),
     tidyr (>= 0.7.0)
 Suggests:
+    covr (>= 3.4),
     devtools,
     readr (>= 1.1.0),
     REDCapR,
