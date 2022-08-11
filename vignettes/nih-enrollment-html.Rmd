@@ -24,10 +24,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Install `codified` Package
-=====================================================
+-----------------------------------------------------
 
-First, install the `codified` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).  
-
+First, install the `codified` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-codified}
 if( !requireNamespace("codified", quietly=T) )
@@ -37,10 +36,9 @@ library(codified)
 ```
 
 Local Data Source
-=====================================================
+-----------------------------------------------------
 
-## Establish Datasets
-
+### Establish Datasets
 
 ```{r local-establish}
 library(magrittr)
@@ -60,13 +58,13 @@ ds <- readr::read_csv(path, col_types=col_types) %>%
     race       = as.character(race),
     ethnicity  = as.character(ethnicity)
   )
-ds %>% 
-  head(10) %>% 
+ds %>%
+  head(10) %>%
   knitr::kable(caption = "Observed Dataset (first ten rows)")
 
 ds_lu_gender <- tibble::tribble(
   ~input,   ~displayed            ,
-  "0"   ,  "Female"               , 
+  "0"   ,  "Female"               ,
   "1"   ,  "Male"                 ,
   "U"   ,  "Unknown/Not Reported"
 )
@@ -93,8 +91,7 @@ ds_lu_ethnicity <- tibble::tribble(
 knitr::kable(ds_lu_ethnicity, caption = "Ethnicity Mapping")
 ```
 
-
-##  Apply Map to Observed Dataset
+### Apply Map to Observed Dataset
 
 ```{r local-apply-map}
 ds_summary_long <- codified::table_nih_enrollment(
@@ -107,8 +104,7 @@ ds_summary_long <- codified::table_nih_enrollment(
 knitr::kable(ds_summary_long, caption = "Counts of Each Subgroup")
 ```
 
-
-##  Conform to NIH Cosmetics 
+### Conform to NIH Cosmetics
 
 ```{r local-cosmetically-format}
 codified::table_nih_enrollment_pretty(
@@ -120,13 +116,13 @@ codified::table_nih_enrollment_pretty(
 ```
 
 REDCap Data Source
-=====================================================
+-----------------------------------------------------
 
 A hosted (fake) clinical trial dataset demonstrates how to extract demographic data from [REDCap](https://projectredcap.org/) and then present the demographic data in the NIH Inclusion Enrollment Report format.
 
-## Establish Datasets
+### Establish Datasets
 
-First, install the `REDCapR` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).  
+First, install the `REDCapR` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-redcapr}
 if( !requireNamespace("REDCapR", quietly=T) )
@@ -142,8 +138,9 @@ ds_2 <- REDCapR::redcap_read_oneshot(
   redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
   token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-specific token/password.
   guess_type = FALSE                                  # Keep all variables as strings/characters.
-)$data  
+)$data
 ```
+
 The following code is more complicated than normal, because the vignette has to account for different versions of REDCapR being installed on the machine.
 
 ```{r redcap-establish}
@@ -154,13 +151,13 @@ if( !requireNamespace("REDCapR", quietly=TRUE) ) {
     redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
     token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-specific token/password.
     guess_type = FALSE                                  # Keep all variables as strings/characters.
-  )$data  
+  )$data
 } else {
   # Older versions of REDCapR don't have the `guess_type` parameter
   ds_2 <- REDCapR::redcap_read_oneshot(
     redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
     token      = "F304DEC3793FECC3B6DEEFF66302CAD3"     # User-specific token/password.
-  )$data %>% 
+  )$data %>%
     dplyr::mutate(
       gender      = as.character(gender),
       race        = as.character(race),
@@ -169,8 +166,7 @@ if( !requireNamespace("REDCapR", quietly=TRUE) ) {
 }
 ```
 
-
-## Conform to NIH Cosmetics 
+### Conform to NIH Cosmetics
 
 Now, convert these demographic data into a properly formatted NIH enrollment table.  Pass the `ds_lu_gender`, `ds_lu_race`, and `ds_lu_ethnicity` metadata, which was defined above.  As a reminder, these translate values like `1` to `Male` and `3` to `Native Hawaiian or Other Pacific Islander`.
 
@@ -183,9 +179,8 @@ table_nih_enrollment_pretty(
 )
 ```
 
-
 Collapsing Levels
-=====================================================
+-----------------------------------------------------
 
 Many observed datasets may collect race with a different set of levels.  For instance in `ds_3`, the `American Indian` level is separate from the `Alaska Native` level.  In the first and second rows in the metadata below, the two levels are effectively combined into the`American Indian/Alaska Native` level, so it complies with the format of the NIH Enrollment table.
 
@@ -212,7 +207,7 @@ ds_3 <- tibble::tribble(
            5L,   "Male"   , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
            6L,   "Male"   , "Alaska Native"  ,  "Not Hispanic or Latino"   ,
            7L,   "Male"   , "White"          ,  "Not Hispanic or Latino"   ,
-           8L,   "Male"   , "White"          ,  "Not Hispanic or Latino"        
+           8L,   "Male"   , "White"          ,  "Not Hispanic or Latino"
 )
 
 table_nih_enrollment_pretty(
@@ -222,11 +217,11 @@ table_nih_enrollment_pretty(
 ```
 
 Feedback Welcome
-=====================================================
+-----------------------------------------------------
 
 Please share your opinions with us by creating an issue at https://github.com/OuhscBbmc/codified/issues.
 
-**Upcoming Features**
+### Upcoming Features
 
 1. Create tables in a fresh docx file with [flextable](https://davidgohel.github.io/flextable/). [Issue #5](https://github.com/OuhscBbmc/codified/issues/5)
 1. Create tables in a fresh pdf file [Issue #5](https://github.com/OuhscBbmc/codified/issues/5).
@@ -235,11 +230,11 @@ Please share your opinions with us by creating an issue at https://github.com/Ou
 1. Allow variable names to change (*e.g.*, `Gender` instead of `gender`).  [Issue #3](https://github.com/OuhscBbmc/codified/issues/3).
 1. [pkgdown site](http://pkgdown.r-lib.org/), like [REDCapR](https://ouhscbbmc.github.io/REDCapR/).
 
-**Group discussion**
+### Group discussion
 
 * Any holes in the functionality or concept?
 * What else (*e.g.*, features or explanation) do you think would be helpful?
 * Are people able to run this package?  Is the vignette clear?
 * What other standardized tables/graphs/whatever could this be applied to?
-    * IRB continuation tables?
-    * Graphs?
+  * IRB continuation tables?
+  * Graphs?
