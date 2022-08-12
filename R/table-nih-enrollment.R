@@ -38,14 +38,14 @@
 #' table_nih_enrollment_pretty(ds_1)
 #'
 #' table_nih_enrollment(ds_1) |>
-#'   tidyr::spread(key=gender, value=n)
+#'   tidyr::pivot_wider(names_from = gender, values_from = n)
 #'
 #' table_nih_enrollment(ds_1) |>
 #'   dplyr::mutate(
 #'     gender_ethnicity = paste0(gender, " by ", ethnicity)
 #'   ) |>
 #'   dplyr::select(-gender, -ethnicity) |>
-#'   tidyr::spread(key=gender_ethnicity, value=n)
+#'   tidyr::pivot_wider(names_from = gender_ethnicity, values_from = n)
 #'
 #' ds_2 <- tibble::tribble(
 #'   ~subject_id,  ~gender , ~race                      , ~ethnicity    ,
@@ -231,7 +231,10 @@ table_nih_enrollment_pretty <- function(
       gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
     ) |>
     dplyr::select(-.data$gender, -.data$ethnicity) |>
-    tidyr::spread(key = .data$gender_ethnicity, value = .data$n) |>
+    tidyr::pivot_wider(
+      names_from  = .data$gender_ethnicity,
+      values_from = .data$n
+    ) |>
     dplyr::select(!!column_order) |>
     knitr::kable(
       format      = "html",
