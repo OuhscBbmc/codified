@@ -1,7 +1,7 @@
 Description
 ============================
 
-This is a rerelease after it was removed a few days ago for "policy violation... On Internet access."  The vignette called an external server that was being upgraded (and I was in the middle of a two-week camping trip).
+This is a resubmission after the package was removed a few days ago for "policy violation... On Internet access."  The vignette called an external server that was being upgraded (and I was in the middle of a two-week camping trip).
 
 In the meantime, I've made some minor updates to code and reduced some package dependencies.
 
@@ -11,14 +11,13 @@ Thank you for taking the time to review my submission, and please tell me if the
 Test environments
 -----------------------------------------------
 
-The win-builder and a local machine have used the CRAN version of dplyr.  The others have used the current GitHub master version of dplyr.
-
 * Local Ubuntu, R 4.2.1 patched
-* [win-builder](https://win-builder.r-project.org/loyQ4mpg13bQ/) (version="R-devel")
+* Local Windows, R 4.2.1 patched
+* [win-builder](https://win-builder.r-project.org/07J2m64qPN89/) (version="R-devel")
 * R Hub -R Release
-  * [Fedora](https://builder.r-hub.io/status/codified_0.2.9001.tar.gz-04d7f8fa685f4838b58ef9d92646d6c4)
-  * [Ubuntu LTS](https://builder.r-hub.io/status/codified_0.2.9001.tar.gz-0b3d5e1af0d545acb1fed149064e3d98)
-  * [Windows Server](https://builder.r-hub.io/status/codified_0.2.9001.tar.gz-f19cf505473c4557984b8a4102f0c4a6)
+  * [Fedora](https://builder.r-hub.io/status/codified_0.3.0.tar.gz-92b1a5157605462c91aa670d0db084d8)
+  * [Ubuntu LTS](https://builder.r-hub.io/status/codified_0.3.0.tar.gz-e5752ab379f44b1698e25a7f71050589)
+  * [Windows Server](https://builder.r-hub.io/status/codified_0.3.0.tar.gz-350981c472ec43b79b7f87689a006938)
 * [GiHub Actions](https://github.com/OuhscBbmc/REDCapR/actions), Ubuntu 20.04 LTS
 
 R CMD check results
