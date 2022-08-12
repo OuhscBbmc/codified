@@ -72,7 +72,7 @@ test_that("ds_1b --ethnicity metadata required", {
     "Unknown"   ,  "Unknown/Not Reported Ethnicity"
   )
 
-  observed <- table_nih_enrollment(d_1b, d_lu_ethnicity=d_lu_ethnicity)
+  observed <- table_nih_enrollment(d_1b, d_lu_ethnicity = d_lu_ethnicity)
   expect_equal(observed, expected_1)
 })
 
@@ -112,7 +112,13 @@ test_that("ds_1c --all metadata required", {
     "Unknown"   ,  "Unknown/Not Reported Ethnicity"
   )
 
-  observed <- table_nih_enrollment(d_1c, d_lu_gender=d_lu_gender, d_lu_race=d_lu_race, d_lu_ethnicity=d_lu_ethnicity)
+  observed <-
+    table_nih_enrollment(
+      d_1c,
+      d_lu_gender     = d_lu_gender,
+      d_lu_race       = d_lu_race,
+      d_lu_ethnicity  = d_lu_ethnicity
+    )
   expect_equal(observed, expected_1)
 })
 
@@ -121,10 +127,16 @@ test_that("ds_1d --different variable names", {
     dplyr::rename(
       vg  = gender,
       vr  = race,
-      ve  = ethnicity
+      ve  = ethnicity,
     )
 
-  observed <- table_nih_enrollment(ds_1d, variable_gender="vg", variable_race="vr", variable_ethnicity="ve")
+  observed <-
+    table_nih_enrollment(
+      ds_1d,
+      variable_gender     = "vg",
+      variable_race       = "vr",
+      variable_ethnicity  = "ve"
+    )
   expect_equal(observed, expected_1)
 })
 

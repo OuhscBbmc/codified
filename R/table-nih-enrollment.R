@@ -118,8 +118,12 @@
 #' @export
 table_nih_enrollment <- function(
   d,
-  d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL,
-  variable_gender="gender", variable_race="race", variable_ethnicity="ethnicity"
+  d_lu_gender         = NULL,
+  d_lu_race           = NULL,
+  d_lu_ethnicity      = NULL,
+  variable_gender     = "gender",
+  variable_race       = "race",
+  variable_ethnicity  = "ethnicity"
 ) {
   checkmate::assert_data_frame(d                  , any.missing = FALSE)
   checkmate::assert_data_frame(d_lu_gender        , any.missing = FALSE, null.ok    = TRUE)
@@ -162,34 +166,34 @@ table_nih_enrollment <- function(
       race        = !!variable_race     ,
       ethnicity   = !!variable_ethnicity
     )
-  if( !is.null(d_lu_gender) ) {
+  if (!is.null(d_lu_gender)) {
     d <- d |>
-      dplyr::left_join(d_lu_gender, by=c("gender" = "input")) |>
+      dplyr::left_join(d_lu_gender, by = c("gender" = "input")) |>
       dplyr::select(-.data$gender) |>
       dplyr::rename(gender = .data$displayed)
   }
 
-  if( !is.null(d_lu_race) ) {
+  if (!is.null(d_lu_race)) {
     d <- d |>
-      dplyr::left_join(d_lu_race, by=c("race" = "input")) |>
+      dplyr::left_join(d_lu_race, by = c("race" = "input")) |>
       dplyr::select(-.data$race) |>
       dplyr::rename(race = .data$displayed)
   }
 
-  if( !is.null(d_lu_ethnicity) ) {
+  if (!is.null(d_lu_ethnicity)) {
     d <- d |>
-      dplyr::left_join(d_lu_ethnicity, by=c("ethnicity" = "input")) |>
+      dplyr::left_join(d_lu_ethnicity, by = c("ethnicity" = "input")) |>
       dplyr::select(-.data$ethnicity) |>
       dplyr::rename(ethnicity = .data$displayed)
   }
 
-  d_count <- d |>
+  d |>
     dplyr::count(.data$gender, .data$race, .data$ethnicity) |>
     dplyr::full_join(d_possible, by = c("gender", "race", "ethnicity")) |>
     dplyr::mutate(
-      gender    = factor(.data$gender   , levels=levels_gender    ),
-      race      = factor(.data$race     , levels=levels_race      ),
-      ethnicity = factor(.data$ethnicity, levels=levels_ethnicity ),
+      gender    = factor(.data$gender   , levels = levels_gender    ),
+      race      = factor(.data$race     , levels = levels_race      ),
+      ethnicity = factor(.data$ethnicity, levels = levels_ethnicity ),
       n         = dplyr::coalesce(.data$n, 0L)
     ) |>
     dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n) |>
@@ -199,8 +203,12 @@ table_nih_enrollment <- function(
 #' @export
 table_nih_enrollment_pretty <- function(
   d,
-  d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL,
-  variable_gender="gender", variable_race="race", variable_ethnicity="ethnicity"
+  d_lu_gender         = NULL,
+  d_lu_race           = NULL,
+  d_lu_ethnicity      = NULL,
+  variable_gender     = "gender",
+  variable_race       = "race",
+  variable_ethnicity  = "ethnicity"
 ) {
   column_order <- c(
     "race",
@@ -223,11 +231,11 @@ table_nih_enrollment_pretty <- function(
       gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
     ) |>
     dplyr::select(-.data$gender, -.data$ethnicity) |>
-    tidyr::spread(key=.data$gender_ethnicity, value=.data$n) |>
+    tidyr::spread(key = .data$gender_ethnicity, value = .data$n) |>
     dplyr::select(!!column_order) |>
     knitr::kable(
       format      = "html",
-      format.args = list(big.mark=","),
+      format.args = list(big.mark = ","),
       escape      = FALSE,
       col.names   = c(
         "Racial\nCategories",
