@@ -3,9 +3,9 @@ codified
 
 Produce standard/formalized demographics tables
 
-Clinical researchers often need to document and report the demographics of all consented subjects. A common use case is for reporting to funding agencies, including the National Institutes of Health (NIH). The NIH requires a particular format for the [PHS Inclusion Enrollment Report](https://www.era.nih.gov/erahelp/assist/Content/ASSIST_Help_Topics/3_Form_Screens/PHS_HS_CT/Incl_Enroll_Rprt.htm) in each annual Research Performance Progress Report ([RPPR](https://grants.nih.gov/grants/rppr/index.htm)).
+Clinical researchers often need to document and report the demographics of all consented subjects. A common use case is for reporting to funding agencies, including the National Institutes of Health (NIH). The NIH requires a particular format for the [PHS Inclusion Enrollment Report](https://www.era.nih.gov/erahelp/assist/Content/ASSIST_Help_Topics/3_Form_Screens/PHS_HS_CT/PHS_Summary.htm) in each annual Research Performance Progress Report ([RPPR](https://grants.nih.gov/grants/rppr/index.htm)).
 
-The **codified** package, in combination with the **REDCapR** package, provides a pipeline to directly extract the demographics of consented subjects from a REDCap database, and to rapidly and reproducibly produce standard demographics tables.  This pipeline is demonstrated in the vignette, *[NIH Enrollment Tables in HTML](https://ouhscbbmc.github.io/codified/articles/nih-enrollment-html.html)*.
+The [codified](https://ouhscbbmc.github.io/codified/) package, in combination with the [REDCapR](https://ouhscbbmc.github.io/REDCapR/) package, provides a pipeline to directly extract the demographics of consented subjects from a REDCap database, and to rapidly and reproducibly produce standard demographics tables.  This pipeline is demonstrated in the vignette, *[NIH Enrollment Tables in HTML](https://ouhscbbmc.github.io/codified/articles/nih-enrollment-html.html)*.
 
 Installation and Documentation
 -----------------------
@@ -14,7 +14,7 @@ The *development* version can be installed from [GitHub](https://github.com/Ouhs
 
 ```r
 install.packages("remotes") # Run this line if the 'remotes' package isn't installed already.
-remotes::install_github(repo="OuhscBbmc/codified")
+remotes::install_github(repo = "OuhscBbmc/codified")
 ```
 
 The *release* version can be installed from [CRAN](https://cran.r-project.org/package=codified).
