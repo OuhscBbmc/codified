@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codified</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -96,8 +96,8 @@
 </h2>
 <p>First, install the <code>codified</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package" class="external-link">load it into memory</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"codified"</span>, quietly<span class="op">=</span><span class="cn">T</span><span class="op">)</span> <span class="op">)</span></span>
-<span>  <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo<span class="op">=</span> <span class="st">"OuhscBbmc/codified"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># if( !requireNamespace("codified", quietly = TRUE) )</span></span>
+<span><span class="co">#   remotes::install_github(repo = "OuhscBbmc/codified")</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ouhscbbmc.github.io/codified/" class="external-link">codified</a></span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -108,9 +108,7 @@
 <h3 id="establish-datasets">Establish Datasets<a class="anchor" aria-label="anchor" href="#establish-datasets"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"misc/example-data-1.csv"</span>, package<span class="op">=</span><span class="st">"codified"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"misc/example-data-1.csv"</span>, package <span class="op">=</span> <span class="st">"codified"</span><span class="op">)</span></span>
 <span><span class="va">col_types</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html" class="external-link">cols_only</a></span><span class="op">(</span></span>
 <span>  record_id <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_integer</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  name_last <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -119,14 +117,14 @@
 <span>  race      <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_integer</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  ethnicity <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_integer</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">path</span>, col_types<span class="op">=</span><span class="va">col_types</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">path</span>, col_types <span class="op">=</span> <span class="va">col_types</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    gender     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>,</span>
 <span>    race       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">race</span><span class="op">)</span>,</span>
 <span>    ethnicity  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ethnicity</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="va">ds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">ds</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Observed Dataset (first ten rows)"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Observed Dataset (first ten rows)</caption>
@@ -338,13 +336,9 @@
 <span>  d_lu_gender    <span class="op">=</span> <span class="va">ds_lu_gender</span>,</span>
 <span>  d_lu_race      <span class="op">=</span> <span class="va">ds_lu_race</span>,</span>
 <span>  d_lu_ethnicity <span class="op">=</span> <span class="va">ds_lu_ethnicity</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: `select_()` was deprecated in dplyr 0.7.0.</span></span>
-<span><span class="co">## Please use `select()` instead.</span></span>
-<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
-<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span></span></code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">ds_summary_long</span>, caption <span class="op">=</span> <span class="st">"Counts of Each Subgroup"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">ds_summary_long</span>, caption <span class="op">=</span> <span class="st">"Counts of Each Subgroup"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Counts of Each Subgroup</caption>
 <colgroup>
@@ -744,7 +738,7 @@
 <div class="section level3">
 <h3 id="conform-to-nih-cosmetics">Conform to NIH Cosmetics<a class="anchor" aria-label="anchor" href="#conform-to-nih-cosmetics"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">codified</span><span class="fu">::</span><span class="fu"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span><span class="op">(</span></span>
 <span>  d              <span class="op">=</span> <span class="va">ds</span>,</span>
 <span>  d_lu_gender    <span class="op">=</span> <span class="va">ds_lu_gender</span>,</span>
@@ -1051,47 +1045,32 @@ Unknown or Not Reported
 <h3 id="establish-datasets-1">Establish Datasets<a class="anchor" aria-label="anchor" href="#establish-datasets-1"></a>
 </h3>
 <p>First, install the <code>REDCapR</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package" class="external-link">load it into memory</a>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"REDCapR"</span>, quietly<span class="op">=</span><span class="cn">T</span><span class="op">)</span> <span class="op">)</span></span>
-<span>  <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"OuhscBbmc/REDCapR"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># if( !requireNamespace("REDCapR", quietly = TRUE) )</span></span>
+<span><span class="co">#   remotes::install_github("OuhscBbmc/REDCapR")</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ouhscbbmc.github.io/REDCapR/" class="external-link">REDCapR</a></span><span class="op">)</span></span></code></pre></div>
 <p>Next, download the data from the REDCap database into the <code>ds_2</code> data.frame. If you’re running the most recent version of REDCapR (available on GitHub), the code will be:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ds_2</span> <span class="op">&lt;-</span> <span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_read_oneshot.html" class="external-link">redcap_read_oneshot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ds_2</span> <span class="op">&lt;-</span> <span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_read.html" class="external-link">redcap_read</a></span><span class="op">(</span></span>
 <span>  redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
 <span>  token      <span class="op">=</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>,    <span class="co"># User-specific token/password.</span></span>
 <span>  guess_type <span class="op">=</span> <span class="cn">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></span>
 <span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
-<p>The following code is more complicated than normal, because the vignette has to account for different versions of REDCapR being installed on the machine.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"REDCapR"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">ds</span> <span class="op">&lt;-</span> <span class="va">ds_2</span> <span class="co"># If REDCapR isn't installed, use the previous version of the dataset.</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span> <span class="st">"0.9.8"</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"REDCapR"</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">ds_2</span> <span class="op">&lt;-</span> <span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_read_oneshot.html" class="external-link">redcap_read_oneshot</a></span><span class="op">(</span></span>
-<span>    redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
-<span>    token      <span class="op">=</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>,    <span class="co"># User-specific token/password.</span></span>
-<span>    guess_type <span class="op">=</span> <span class="cn">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></span>
-<span>  <span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="co"># Older versions of REDCapR don't have the `guess_type` parameter</span></span>
-<span>  <span class="va">ds_2</span> <span class="op">&lt;-</span> <span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_read_oneshot.html" class="external-link">redcap_read_oneshot</a></span><span class="op">(</span></span>
-<span>    redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
-<span>    token      <span class="op">=</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>     <span class="co"># User-specific token/password.</span></span>
-<span>  <span class="op">)</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span>      gender      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>,</span>
-<span>      race        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">race</span><span class="op">)</span>,</span>
-<span>      ethnicity   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ethnicity</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<pre><code><span><span class="co">## 500 records and 13 columns were read from REDCap in 7.7 seconds.  The http status code was 200.</span></span></code></pre>
+<!-- readr::write_csv(ds_2, "inst/misc/example-data-2.csv") -->
+<p>However <a href="https://cran.r-project.org/web/packages/policies.html" class="external-link">CRAN policy</a> understandably discourages vignettes from using “Internet resources” so this vignette mimics the code above with this local call. On your own computer, feel free to call that demonstration REDCap project.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ds_2</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span></span>
+<span>    file      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"misc/example-data-2.csv"</span>, package <span class="op">=</span> <span class="st">"codified"</span><span class="op">)</span>,</span>
+<span>    col_types <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html" class="external-link">cols</a></span><span class="op">(</span>.default <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="conform-to-nih-cosmetics-1">Conform to NIH Cosmetics<a class="anchor" aria-label="anchor" href="#conform-to-nih-cosmetics-1"></a>
 </h3>
 <p>Now, convert these demographic data into a properly formatted NIH enrollment table. Pass the <code>ds_lu_gender</code>, <code>ds_lu_race</code>, and <code>ds_lu_ethnicity</code> metadata, which was defined above. As a reminder, these translate values like <code>1</code> to <code>Male</code> and <code>3</code> to <code>Native Hawaiian or Other Pacific Islander</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span><span class="op">(</span></span>
 <span>  d               <span class="op">=</span> <span class="va">ds_2</span>,</span>
 <span>  d_lu_gender     <span class="op">=</span> <span class="va">ds_lu_gender</span>,</span>
@@ -1394,7 +1373,7 @@ Unknown or Not Reported
 <h2 id="collapsing-levels">Collapsing Levels<a class="anchor" aria-label="anchor" href="#collapsing-levels"></a>
 </h2>
 <p>Many observed datasets may collect race with a different set of levels. For instance in <code>ds_3</code>, the <code>American Indian</code> level is separate from the <code>Alaska Native</code> level. In the first and second rows in the metadata below, the two levels are effectively combined into the<code>American Indian/Alaska Native</code> level, so it complies with the format of the NIH Enrollment table.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ds_lu_race_3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">input</span>                      , <span class="op">~</span><span class="va">displayed</span>                                  ,</span>
 <span>  <span class="st">"American Indian"</span>           , <span class="st">"American Indian/Alaska Native"</span>             , <span class="co"># Combine w/ Alaska Native</span></span>
@@ -1730,7 +1709,7 @@ Unknown or Not Reported
 <li>The ‘totals’ column &amp; row are calculated. The NIH form does this already, so this is mostly for the purpose of checking. <a href="https://github.com/OuhscBbmc/codified/issues/4" class="external-link">Issue #4</a>.</li>
 <li>Allow variable names to change (<em>e.g.</em>, <code>Gender</code> instead of <code>gender</code>). <a href="https://github.com/OuhscBbmc/codified/issues/3" class="external-link">Issue #3</a>.</li>
 <li>
-<a href="http://pkgdown.r-lib.org/" class="external-link">pkgdown site</a>, like <a href="https://ouhscbbmc.github.io/REDCapR/" class="external-link">REDCapR</a>.</li>
+<a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown site</a>, like <a href="https://ouhscbbmc.github.io/REDCapR/" class="external-link">REDCapR</a>.</li>
 </ol>
 </div>
 <div class="section level3">
