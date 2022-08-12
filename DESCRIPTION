@@ -28,7 +28,6 @@ Suggests:
     rmarkdown,
     testthat (>= 2.0)
 License: MIT + file LICENSE
-LazyData: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.2.1
