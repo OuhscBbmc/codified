@@ -16,11 +16,11 @@ vignette: >
 
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r declare, echo=F}
+```{r declare, echo = F}
 ```
 
 Install `codified` Package
@@ -29,8 +29,8 @@ Install `codified` Package
 First, install the `codified` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-codified}
-if( !requireNamespace("codified", quietly=T) )
-  devtools::install_github(repo= "OuhscBbmc/codified")
+# if( !requireNamespace("codified", quietly = TRUE) )
+#   remotes::install_github(repo = "OuhscBbmc/codified")
 
 library(codified)
 ```
@@ -41,9 +41,7 @@ Local Data Source
 ### Establish Datasets
 
 ```{r local-establish}
-library(magrittr)
-
-path <- system.file("misc/example-data-1.csv", package="codified")
+path <- system.file("misc/example-data-1.csv", package = "codified")
 col_types <- readr::cols_only(
   record_id = readr::col_integer(),
   name_last = readr::col_character(),
@@ -52,14 +50,14 @@ col_types <- readr::cols_only(
   race      = readr::col_integer(),
   ethnicity = readr::col_integer()
 )
-ds <- readr::read_csv(path, col_types=col_types) %>%
+ds <- readr::read_csv(path, col_types = col_types) |>
   dplyr::mutate(
     gender     = as.character(gender),
     race       = as.character(race),
     ethnicity  = as.character(ethnicity)
   )
-ds %>%
-  head(10) %>%
+ds |>
+  head(10) |>
   knitr::kable(caption = "Observed Dataset (first ten rows)")
 
 ds_lu_gender <- tibble::tribble(
@@ -125,8 +123,8 @@ A hosted (fake) clinical trial dataset demonstrates how to extract demographic d
 First, install the `REDCapR` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-redcapr}
-if( !requireNamespace("REDCapR", quietly=T) )
-  devtools::install_github("OuhscBbmc/REDCapR")
+# if( !requireNamespace("REDCapR", quietly = TRUE) )
+#   remotes::install_github("OuhscBbmc/REDCapR")
 
 library(REDCapR)
 ```
@@ -134,36 +132,23 @@ library(REDCapR)
 Next, download the data from the REDCap database into the `ds_2` data.frame.  If you're running the most recent version of REDCapR (available on GitHub), the code will be:
 
 ```r
-ds_2 <- REDCapR::redcap_read_oneshot(
+ds_2 <- REDCapR::redcap_read(
   redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
   token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-specific token/password.
   guess_type = FALSE                                  # Keep all variables as strings/characters.
 )$data
 ```
 
-The following code is more complicated than normal, because the vignette has to account for different versions of REDCapR being installed on the machine.
+<!-- readr::write_csv(ds_2, "inst/misc/example-data-2.csv") -->
+
+However [CRAN policy](https://cran.r-project.org/web/packages/policies.html) understandably discourages vignettes from using "Internet resources" so this vignette mimics the code above with this local call.  On your own computer, feel free to call that demonstration REDCap project.
 
 ```{r redcap-establish}
-if( !requireNamespace("REDCapR", quietly=TRUE) ) {
-  ds <- ds_2 # If REDCapR isn't installed, use the previous version of the dataset.
-} else if( "0.9.8" < packageVersion("REDCapR") ) {
-  ds_2 <- REDCapR::redcap_read_oneshot(
-    redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
-    token      = "F304DEC3793FECC3B6DEEFF66302CAD3",    # User-specific token/password.
-    guess_type = FALSE                                  # Keep all variables as strings/characters.
-  )$data
-} else {
-  # Older versions of REDCapR don't have the `guess_type` parameter
-  ds_2 <- REDCapR::redcap_read_oneshot(
-    redcap_uri = "https://bbmc.ouhsc.edu/redcap/api/",  # URL of REDCap Server.
-    token      = "F304DEC3793FECC3B6DEEFF66302CAD3"     # User-specific token/password.
-  )$data %>%
-    dplyr::mutate(
-      gender      = as.character(gender),
-      race        = as.character(race),
-      ethnicity   = as.character(ethnicity)
-    )
-}
+ds_2 <-
+  readr::read_csv(
+    file      = system.file("misc/example-data-2.csv", package = "codified"),
+    col_types = readr::cols(.default = readr::col_character())
+  )
 ```
 
 ### Conform to NIH Cosmetics
@@ -228,7 +213,7 @@ Please share your opinions with us by creating an issue at https://github.com/Ou
 1. Populate tables in an existing pdf file with [staplr](https://CRAN.R-project.org/package=staplr)?
 1. The 'totals' column & row are calculated.  The NIH form does this already, so this is mostly for the purpose of checking. [Issue #4](https://github.com/OuhscBbmc/codified/issues/4).
 1. Allow variable names to change (*e.g.*, `Gender` instead of `gender`).  [Issue #3](https://github.com/OuhscBbmc/codified/issues/3).
-1. [pkgdown site](http://pkgdown.r-lib.org/), like [REDCapR](https://ouhscbbmc.github.io/REDCapR/).
+1. [pkgdown site](https://pkgdown.r-lib.org/), like [REDCapR](https://ouhscbbmc.github.io/REDCapR/).
 
 ### Group discussion
 

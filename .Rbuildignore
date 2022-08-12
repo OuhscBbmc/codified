@@ -12,6 +12,7 @@ documentation-for-developers/
 playgrounds/
 utility/
 ^\.github$
+^\.lintr$
 ^\.markdownlist\.json$
 ^\.travis\.yml$
 ^appveyor\.yml$

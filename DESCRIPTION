@@ -2,34 +2,32 @@ Package: codified
 Title: Produce Standard/Formalized Demographics Tables
 Description: Augment clinical data with metadata to create
     output used in conventional publications and reports.
-Version: 0.2.9001
+Version: 0.3.0
 Authors@R: c(person("Will", "Beasley", role = c("aut", "cre"), email =
     "wibeasley@hotmail.com", comment = c(ORCID = "0000-0002-5613-5006")),
     person("Peter", "Higgins", role = "ctb"))
 URL: https://ouhscbbmc.github.io/codified/, https://github.com/OuhscBbmc/codified, https://github.com/higgi13425/nih_enrollment_table
 BugReports: https://github.com/OuhscBbmc/codified/issues
 Depends:
-    R(>= 3.0.0),
-    stats
+    R(>= 4.1.0)
 Imports:
     checkmate (>= 1.8.4),
-    dplyr (>= 0.7.0),
+    dplyr (>= 1.0.0),
     kableExtra,
     knitr (>= 1.18.0),
-    magrittr,
     rlang,
     tibble (>= 1.4.0),
-    tidyr (>= 0.7.0)
+    tidyr (>= 1.0.0)
 Suggests:
-    covr (>= 3.4),
-    devtools,
+    covr,
     readr (>= 1.1.0),
     REDCapR,
     rmarkdown,
-    testthat (>= 2.0)
+    testthat (>= 3.0)
 License: MIT + file LICENSE
-LazyData: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+Language: en-US

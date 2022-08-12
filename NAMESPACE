@@ -2,6 +2,5 @@
 
 export(table_nih_enrollment)
 export(table_nih_enrollment_pretty)
-importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
 importFrom(tibble,tibble)
