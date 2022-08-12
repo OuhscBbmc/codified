@@ -28,7 +28,7 @@ The package can be uninstalled from your local machine with `remove.packages("co
 Build Status and Package Characteristics
 -----------------------
 
-| [GitHub](https://github.com/OuhscBbmc/codified) | [Github Actions](https://github.com/OuhscBbmc/codified/actions) | [Coveralls](https://coveralls.io/r/OuhscBbmc/codified) |
+| [GitHub](https://github.com/OuhscBbmc/codified) | [GitHub Actions](https://github.com/OuhscBbmc/codified/actions) | [Coveralls](https://coveralls.io/r/OuhscBbmc/codified) |
 | :----- | :---------------------------: |  :-------: |
 | [Main](https://github.com/OuhscBbmc/codified/tree/main) | [![R-CMD-check](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml/badge.svg)](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml) | [![Coverage Status](https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=main)](https://coveralls.io/github/OuhscBbmc/codified?branch=main) |
 | [Dev](https://github.com/OuhscBbmc/codified/tree/dev) | [![R-CMD-check](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml/badge.svg?branch=dev)](https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml) | [![Coverage Status](https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=dev)](https://coveralls.io/github/OuhscBbmc/codified?branch=dev) |
