@@ -29,8 +29,8 @@ Install `codified` Package
 First, install the `codified` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-codified}
-if( !requireNamespace("codified", quietly=T) )
-  devtools::install_github(repo= "OuhscBbmc/codified")
+# if( !requireNamespace("codified", quietly=T) )
+#   remotes::install_github(repo= "OuhscBbmc/codified")
 
 library(codified)
 ```
@@ -123,8 +123,8 @@ A hosted (fake) clinical trial dataset demonstrates how to extract demographic d
 First, install the `REDCapR` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-redcapr}
-if( !requireNamespace("REDCapR", quietly=T) )
-  devtools::install_github("OuhscBbmc/REDCapR")
+# if( !requireNamespace("REDCapR", quietly=T) )
+#   remotes::install_github("OuhscBbmc/REDCapR")
 
 library(REDCapR)
 ```

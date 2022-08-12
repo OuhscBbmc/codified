@@ -9,19 +9,17 @@ Authors@R: c(person("Will", "Beasley", role = c("aut", "cre"), email =
 URL: https://ouhscbbmc.github.io/codified/, https://github.com/OuhscBbmc/codified, https://github.com/higgi13425/nih_enrollment_table
 BugReports: https://github.com/OuhscBbmc/codified/issues
 Depends:
-    R(>= 4.1.0),
-    stats
+    R(>= 4.1.0)
 Imports:
     checkmate (>= 1.8.4),
-    dplyr (>= 0.7.0),
+    dplyr (>= 1.0.0),
     kableExtra,
     knitr (>= 1.18.0),
     rlang,
     tibble (>= 1.4.0),
-    tidyr (>= 0.7.0)
+    tidyr (>= 1.0.0)
 Suggests:
-    covr (>= 3.4),
-    devtools,
+    covr,
     readr (>= 1.1.0),
     REDCapR,
     rmarkdown,
