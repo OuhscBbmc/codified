@@ -246,7 +246,7 @@ table_nih_enrollment_pretty <- function(
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width        = FALSE
     ) |>
-    kableExtra::column_spec(c(1, 4, 7), border_right = T) |>
+    kableExtra::column_spec(c(1, 4, 7), border_right = TRUE) |>
     kableExtra::add_header_above(c(
       " "                               = 1L,
       "Not Hispanic or Latino"          = 3L,
