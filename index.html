@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">codified</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9001</span>
       </span>
     </div>
 
@@ -83,47 +83,43 @@
 </h1></div>
 <p>Produce standard/formalized demographics tables</p>
 <p>Clinical researchers often need to document and report the demographics of all consented subjects. A common use case is for reporting to funding agencies, including the National Institutes of Health (NIH). The NIH requires a particular format for the <a href="https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm" class="external-link">PHS Inclusion Enrollment Report</a> in each annual Research Performance Progress Report (<a href="https://grants.nih.gov/grants/rppr/index.htm" class="external-link">RPPR</a>).</p>
-<p>The <b>codified</b> package, in combination with the <b>REDCapR</b> package, provides a pipeline to directly extract the demographics of consented subjects from a REDCap database, and to rapidly and reproducibly produce standard demographics tables. This pipeline is demonstrated in the vignette, <em><a href="https://ouhscbbmc.github.io/codified/articles/nih-enrollment-html.html" class="external-link">NIH Enrollment Tables in HTML</a></em>.</p>
-<div class="section level3">
-<h3 id="installation-and-documentation">Installation and Documentation<a class="anchor" aria-label="anchor" href="#installation-and-documentation"></a>
-</h3>
+<p>The <strong>codified</strong> package, in combination with the <strong>REDCapR</strong> package, provides a pipeline to directly extract the demographics of consented subjects from a REDCap database, and to rapidly and reproducibly produce standard demographics tables. This pipeline is demonstrated in the vignette, <em><a href="https://ouhscbbmc.github.io/codified/articles/nih-enrollment-html.html" class="external-link">NIH Enrollment Tables in HTML</a></em>.</p>
+<div class="section level2">
+<h2 id="installation-and-documentation">Installation and Documentation<a class="anchor" aria-label="anchor" href="#installation-and-documentation"></a>
+</h2>
 <p>The <em>development</em> version can be installed from <a href="https://github.com/OuhscBbmc/codified" class="external-link">GitHub</a> after installing the <a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span> <span class="co"># Run this line if the 'remotes' package isn't installed already.</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo<span class="op">=</span><span class="st">"OuhscBbmc/codified"</span><span class="op">)</span></span></code></pre></div>
 <p>The <em>release</em> version can be installed from <a href="https://cran.r-project.org/package=codified" class="external-link">CRAN</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"codified"</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"codified"</span><span class="op">)</span></span></code></pre></div>
 <p>The package can be uninstalled from your local machine with <code>remove.packages("codified")</code>.</p>
 </div>
-<div class="section level3">
-<h3 id="build-status-and-package-characteristics">Build Status and Package Characteristics<a class="anchor" aria-label="anchor" href="#build-status-and-package-characteristics"></a>
-</h3>
+<div class="section level2">
+<h2 id="build-status-and-package-characteristics">Build Status and Package Characteristics<a class="anchor" aria-label="anchor" href="#build-status-and-package-characteristics"></a>
+</h2>
 <table class="table">
 <thead><tr class="header">
 <th align="left"><a href="https://github.com/OuhscBbmc/codified" class="external-link">GitHub</a></th>
-<th align="center"><a href="https://travis-ci.org/OuhscBbmc/codified/builds" class="external-link">Travis-CI</a></th>
-<th align="center"><a href="https://ci.appveyor.com/project/wibeasley/codified/history" class="external-link">AppVeyor</a></th>
+<th align="center"><a href="https://github.com/OuhscBbmc/codified/actions" class="external-link">Github Actions</a></th>
 <th align="center"><a href="https://coveralls.io/r/OuhscBbmc/codified" class="external-link">Coveralls</a></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://github.com/OuhscBbmc/codified/tree/master" class="external-link">Master</a></td>
-<td align="center"><a href="https://travis-ci.org/OuhscBbmc/codified" class="external-link"><img src="https://travis-ci.org/OuhscBbmc/codified.svg?branch=master" alt="Build Status"></a></td>
-<td align="center"><a href="https://ci.appveyor.com/project/wibeasley/codified/branch/master" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/geka1g6d7ms45fh8/branch/master?svg=true" alt="Build status"></a></td>
-<td align="center"><a href="https://coveralls.io/github/OuhscBbmc/codified?branch=master" class="external-link"><img src="https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=master" alt="Coverage Status"></a></td>
+<td align="left"><a href="https://github.com/OuhscBbmc/codified/tree/main" class="external-link">Main</a></td>
+<td align="center"><a href="https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml" class="external-link"><img src="https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml/badge.svg" alt="R-CMD-check"></a></td>
+<td align="center"><a href="https://coveralls.io/github/OuhscBbmc/codified?branch=main" class="external-link"><img src="https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=main" alt="Coverage Status"></a></td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://github.com/OuhscBbmc/codified/tree/dev" class="external-link">Dev</a></td>
-<td align="center"><a href="https://travis-ci.org/OuhscBbmc/codified" class="external-link"><img src="https://travis-ci.org/OuhscBbmc/codified.svg?branch=dev" alt="Build Status"></a></td>
-<td align="center"><a href="https://ci.appveyor.com/project/wibeasley/codified/branch/dev" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/geka1g6d7ms45fh8/branch/dev?svg=true" alt="Build status"></a></td>
+<td align="center"><a href="https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml" class="external-link"><img src="https://github.com/OuhscBbmc/codified/actions/workflows/check-release.yml/badge.svg?branch=dev" alt="R-CMD-check"></a></td>
 <td align="center"><a href="https://coveralls.io/github/OuhscBbmc/codified?branch=dev" class="external-link"><img src="https://coveralls.io/repos/github/OuhscBbmc/codified/badge.svg?branch=dev" alt="Coverage Status"></a></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="center"><em>Ubuntu LTS</em></td>
 <td align="center"><em>Windows Server</em></td>
-<td align="center"><em>Test Coverage</em></td>
 </tr>
 </tbody>
 </table>

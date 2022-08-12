@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codified</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9001</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <h1 data-toc-skip>NIH Enrollment Tables in HTML</h1>
                         <h4 data-toc-skip class="author">Will Beasley and Peter Higgins</h4>
             
-            <h4 data-toc-skip class="date">2022-08-10</h4>
+            <h4 data-toc-skip class="date">2022-08-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/OuhscBbmc/codified/blob/HEAD/vignettes/nih-enrollment-html.Rmd" class="external-link"><code>vignettes/nih-enrollment-html.Rmd</code></a></small>
       <div class="hidden name"><code>nih-enrollment-html.Rmd</code></div>
@@ -125,8 +125,8 @@
 <span>    race       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">race</span><span class="op">)</span>,</span>
 <span>    ethnicity  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ethnicity</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="va">ds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="va">ds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Observed Dataset (first ten rows)"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Observed Dataset (first ten rows)</caption>
@@ -224,7 +224,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ds_lu_gender</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">input</span>,   <span class="op">~</span><span class="va">displayed</span>            ,</span>
-<span>  <span class="st">"0"</span>   ,  <span class="st">"Female"</span>               , </span>
+<span>  <span class="st">"0"</span>   ,  <span class="st">"Female"</span>               ,</span>
 <span>  <span class="st">"1"</span>   ,  <span class="st">"Male"</span>                 ,</span>
 <span>  <span class="st">"U"</span>   ,  <span class="st">"Unknown/Not Reported"</span></span>
 <span><span class="op">)</span></span>
@@ -1062,7 +1062,7 @@ Unknown or Not Reported
 <span>  redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
 <span>  token      <span class="op">=</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>,    <span class="co"># User-specific token/password.</span></span>
 <span>  guess_type <span class="op">=</span> <span class="cn">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></span>
-<span><span class="op">)</span><span class="op">$</span><span class="va">data</span>  </span></code></pre></div>
+<span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <p>The following code is more complicated than normal, because the vignette has to account for different versions of REDCapR being installed on the machine.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"REDCapR"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span></span>
@@ -1072,20 +1072,20 @@ Unknown or Not Reported
 <span>    redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
 <span>    token      <span class="op">=</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>,    <span class="co"># User-specific token/password.</span></span>
 <span>    guess_type <span class="op">=</span> <span class="cn">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></span>
-<span>  <span class="op">)</span><span class="op">$</span><span class="va">data</span>  </span>
+<span>  <span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="co"># Older versions of REDCapR don't have the `guess_type` parameter</span></span>
 <span>  <span class="va">ds_2</span> <span class="op">&lt;-</span> <span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_read_oneshot.html" class="external-link">redcap_read_oneshot</a></span><span class="op">(</span></span>
 <span>    redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
 <span>    token      <span class="op">=</span> <span class="st">"F304DEC3793FECC3B6DEEFF66302CAD3"</span>     <span class="co"># User-specific token/password.</span></span>
-<span>  <span class="op">)</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="op">)</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>      gender      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>,</span>
 <span>      race        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">race</span><span class="op">)</span>,</span>
 <span>      ethnicity   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ethnicity</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<pre><code><span><span class="co">## 500 records and 13 columns were read from REDCap in 0.5 seconds.  The http status code was 200.</span></span></code></pre>
+<pre><code><span><span class="co">## 500 records and 13 columns were read from REDCap in 7.7 seconds.  The http status code was 200.</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="conform-to-nih-cosmetics-1">Conform to NIH Cosmetics<a class="anchor" aria-label="anchor" href="#conform-to-nih-cosmetics-1"></a>
@@ -1417,7 +1417,7 @@ Unknown or Not Reported
 <span>           <span class="fl">5L</span>,   <span class="st">"Male"</span>   , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</span>
 <span>           <span class="fl">6L</span>,   <span class="st">"Male"</span>   , <span class="st">"Alaska Native"</span>  ,  <span class="st">"Not Hispanic or Latino"</span>   ,</span>
 <span>           <span class="fl">7L</span>,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span>   ,</span>
-<span>           <span class="fl">8L</span>,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span>        </span>
+<span>           <span class="fl">8L</span>,   <span class="st">"Male"</span>   , <span class="st">"White"</span>          ,  <span class="st">"Not Hispanic or Latino"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span><span class="op">(</span></span>
@@ -1719,7 +1719,9 @@ Unknown or Not Reported
 <h2 id="feedback-welcome">Feedback Welcome<a class="anchor" aria-label="anchor" href="#feedback-welcome"></a>
 </h2>
 <p>Please share your opinions with us by creating an issue at <a href="https://github.com/OuhscBbmc/codified/issues" class="external-link uri">https://github.com/OuhscBbmc/codified/issues</a>.</p>
-<p><strong>Upcoming Features</strong></p>
+<div class="section level3">
+<h3 id="upcoming-features">Upcoming Features<a class="anchor" aria-label="anchor" href="#upcoming-features"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Create tables in a fresh docx file with <a href="https://davidgohel.github.io/flextable/" class="external-link">flextable</a>. <a href="https://github.com/OuhscBbmc/codified/issues/5" class="external-link">Issue #5</a>
 </li>
@@ -1730,7 +1732,10 @@ Unknown or Not Reported
 <li>
 <a href="http://pkgdown.r-lib.org/" class="external-link">pkgdown site</a>, like <a href="https://ouhscbbmc.github.io/REDCapR/" class="external-link">REDCapR</a>.</li>
 </ol>
-<p><strong>Group discussion</strong></p>
+</div>
+<div class="section level3">
+<h3 id="group-discussion">Group discussion<a class="anchor" aria-label="anchor" href="#group-discussion"></a>
+</h3>
 <ul>
 <li>Any holes in the functionality or concept?</li>
 <li>What else (<em>e.g.</em>, features or explanation) do you think would be helpful?</li>
@@ -1742,6 +1747,7 @@ Unknown or Not Reported
 </ul>
 </li>
 </ul>
+</div>
 </div>
   </div>
 
