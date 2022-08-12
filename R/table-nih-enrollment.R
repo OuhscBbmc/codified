@@ -159,10 +159,10 @@ table_nih_enrollment <- function(
   )
 
   d <- d %>%
-    dplyr::select_(
-      "gender"      = variable_gender   ,
-      "race"        = variable_race     ,
-      "ethnicity"   = variable_ethnicity
+    dplyr::select(
+      gender      = !!variable_gender   ,
+      race        = !!variable_race     ,
+      ethnicity   = !!variable_ethnicity
     )
   if( !is.null(d_lu_gender) ) {
     d <- d %>%
