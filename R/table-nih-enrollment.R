@@ -123,13 +123,13 @@ table_nih_enrollment <- function(
   d_lu_gender=NULL, d_lu_race=NULL, d_lu_ethnicity=NULL,
   variable_gender="gender", variable_race="race", variable_ethnicity="ethnicity"
 ) {
-  checkmate::assert_data_frame(d                  , any.missing=F)
-  checkmate::assert_data_frame(d_lu_gender        , any.missing=F, null.ok=T)
-  checkmate::assert_data_frame(d_lu_race          , any.missing=F, null.ok=T)
-  checkmate::assert_data_frame(d_lu_ethnicity     , any.missing=F, null.ok=T)
-  checkmate::assert_character( variable_gender    , any.missing=F, min.chars=1, len=1)
-  checkmate::assert_character( variable_race      , any.missing=F, min.chars=1, len=1)
-  checkmate::assert_character( variable_ethnicity , any.missing=F, min.chars=1, len=1)
+  checkmate::assert_data_frame(d                  , any.missing = FALSE)
+  checkmate::assert_data_frame(d_lu_gender        , any.missing = FALSE, null.ok    = TRUE)
+  checkmate::assert_data_frame(d_lu_race          , any.missing = FALSE, null.ok    = TRUE)
+  checkmate::assert_data_frame(d_lu_ethnicity     , any.missing = FALSE, null.ok    = TRUE)
+  checkmate::assert_character( variable_gender    , any.missing = FALSE, min.chars  = 1, len = 1)
+  checkmate::assert_character( variable_race      , any.missing = FALSE, min.chars  = 1, len = 1)
+  checkmate::assert_character( variable_ethnicity , any.missing = FALSE, min.chars  = 1, len = 1)
 
   levels_gender <- c(
     "Female",
