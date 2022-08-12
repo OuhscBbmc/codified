@@ -117,7 +117,7 @@ test_that("ds_1c --all metadata required", {
 })
 
 test_that("ds_1d --different variable names", {
-  ds_1d <- ds_1a %>%
+  ds_1d <- ds_1a |>
     dplyr::rename(
       vg  = gender,
       vr  = race,
@@ -129,10 +129,8 @@ test_that("ds_1d --different variable names", {
 })
 
 test_that("ds_2 --500 patients w/ numeric codes", {
-
-  # library(magrittr)
-  path <- system.file("misc/example-data-1.csv", package="codified")
-  d_2 <- readr::read_csv(path) %>%
+  path <- system.file("misc/example-data-1.csv", package = "codified")
+  d_2 <- readr::read_csv(path) |>
     dplyr::mutate(
       gender     = as.character(gender),
       race       = as.character(race),

@@ -17,13 +17,11 @@
 #' @details
 #' https://grants.nih.gov/grants/how-to-apply-application-guide/forms-d/general/g.500-phs-inclusion-enrollment-report.htm
 #'
-#' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #'
 #' @author Will Beasley, Peter Higgins, Andrew Peters, Sreeharsha Mandem
 #'
 #' @examples
-#' library(magrittr)
 #' ds_1 <- tibble::tribble(
 #'   ~subject_id,   ~gender  , ~race                      ,   ~ethnicity                     ,
 #'            1L,   "Male"   , "Black or African American",  "Not Hispanic or Latino"        ,
@@ -39,14 +37,14 @@
 #' table_nih_enrollment(ds_1)
 #' table_nih_enrollment_pretty(ds_1)
 #'
-#' table_nih_enrollment(ds_1) %>%
+#' table_nih_enrollment(ds_1) |>
 #'   tidyr::spread(key=gender, value=n)
 #'
-#' table_nih_enrollment(ds_1) %>%
+#' table_nih_enrollment(ds_1) |>
 #'   dplyr::mutate(
 #'     gender_ethnicity = paste0(gender, " by ", ethnicity)
-#'   ) %>%
-#'   dplyr::select(-gender, -ethnicity) %>%
+#'   ) |>
+#'   dplyr::select(-gender, -ethnicity) |>
 #'   tidyr::spread(key=gender_ethnicity, value=n)
 #'
 #' ds_2 <- tibble::tribble(
@@ -72,7 +70,7 @@
 #'
 #' ## Read a 500-patient fake dataset
 #' path <- system.file("misc/example-data-1.csv", package="codified")
-#' ds_3 <- readr::read_csv(path) %>%
+#' ds_3 <- readr::read_csv(path) |>
 #'   dplyr::mutate(
 #'     gender     = as.character(gender),
 #'     race       = as.character(race),
@@ -158,43 +156,43 @@ table_nih_enrollment <- function(
     ethnicity = levels_ethnicity
   )
 
-  d <- d %>%
+  d <- d |>
     dplyr::select(
       gender      = !!variable_gender   ,
       race        = !!variable_race     ,
       ethnicity   = !!variable_ethnicity
     )
   if( !is.null(d_lu_gender) ) {
-    d <- d %>%
-      dplyr::left_join(d_lu_gender, by=c("gender" = "input")) %>%
-      dplyr::select(-.data$gender) %>%
+    d <- d |>
+      dplyr::left_join(d_lu_gender, by=c("gender" = "input")) |>
+      dplyr::select(-.data$gender) |>
       dplyr::rename(gender = .data$displayed)
   }
 
   if( !is.null(d_lu_race) ) {
-    d <- d %>%
-      dplyr::left_join(d_lu_race, by=c("race" = "input")) %>%
-      dplyr::select(-.data$race) %>%
+    d <- d |>
+      dplyr::left_join(d_lu_race, by=c("race" = "input")) |>
+      dplyr::select(-.data$race) |>
       dplyr::rename(race = .data$displayed)
   }
 
   if( !is.null(d_lu_ethnicity) ) {
-    d <- d %>%
-      dplyr::left_join(d_lu_ethnicity, by=c("ethnicity" = "input")) %>%
-      dplyr::select(-.data$ethnicity) %>%
+    d <- d |>
+      dplyr::left_join(d_lu_ethnicity, by=c("ethnicity" = "input")) |>
+      dplyr::select(-.data$ethnicity) |>
       dplyr::rename(ethnicity = .data$displayed)
   }
 
-  d_count <- d %>%
-    dplyr::count(.data$gender, .data$race, .data$ethnicity) %>%
-    dplyr::full_join(d_possible, by = c("gender", "race", "ethnicity")) %>%
+  d_count <- d |>
+    dplyr::count(.data$gender, .data$race, .data$ethnicity) |>
+    dplyr::full_join(d_possible, by = c("gender", "race", "ethnicity")) |>
     dplyr::mutate(
       gender    = factor(.data$gender   , levels=levels_gender    ),
       race      = factor(.data$race     , levels=levels_race      ),
       ethnicity = factor(.data$ethnicity, levels=levels_ethnicity ),
       n         = dplyr::coalesce(.data$n, 0L)
-    ) %>%
-    dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n) %>%
+    ) |>
+    dplyr::select(.data$gender, .data$race, .data$ethnicity, .data$n) |>
     dplyr::arrange(.data$gender, .data$race, .data$ethnicity)
 }
 
@@ -220,13 +218,13 @@ table_nih_enrollment_pretty <- function(
     "Unknown/Not Reported by Unknown/Not Reported Ethnicity"
   )
 
-  table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity, variable_gender, variable_race, variable_ethnicity) %>%
+  table_nih_enrollment(d, d_lu_gender, d_lu_race, d_lu_ethnicity, variable_gender, variable_race, variable_ethnicity) |>
     dplyr::mutate(
       gender_ethnicity  = paste0(.data$gender, " by ", .data$ethnicity)
-    ) %>%
-    dplyr::select(-.data$gender, -.data$ethnicity) %>%
-    tidyr::spread(key=.data$gender_ethnicity, value=.data$n) %>%
-    dplyr::select(!!column_order) %>%
+    ) |>
+    dplyr::select(-.data$gender, -.data$ethnicity) |>
+    tidyr::spread(key=.data$gender_ethnicity, value=.data$n) |>
+    dplyr::select(!!column_order) |>
     knitr::kable(
       format      = "html",
       format.args = list(big.mark=","),
@@ -243,17 +241,17 @@ table_nih_enrollment_pretty <- function(
         "Male",
         "Unknown/<br/>Not Reported"
       )
-    ) %>%
+    ) |>
     kableExtra::kable_styling(
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width        = FALSE
-    ) %>%
-    kableExtra::column_spec(c(1, 4, 7), border_right = T) %>%
+    ) |>
+    kableExtra::column_spec(c(1, 4, 7), border_right = T) |>
     kableExtra::add_header_above(c(
       " "                               = 1L,
       "Not Hispanic or Latino"          = 3L,
       "Hispanic or Latino"              = 3L,
       "Unknown/Not Reported Ethnicity"  = 3L
-    )) %>%
+    )) |>
     kableExtra::add_header_above(c(" " = 1L, "Ethnic Categories" = 9L))
 }

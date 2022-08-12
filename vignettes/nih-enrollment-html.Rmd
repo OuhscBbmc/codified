@@ -41,8 +41,6 @@ Local Data Source
 ### Establish Datasets
 
 ```{r local-establish}
-library(magrittr)
-
 path <- system.file("misc/example-data-1.csv", package="codified")
 col_types <- readr::cols_only(
   record_id = readr::col_integer(),
@@ -52,14 +50,14 @@ col_types <- readr::cols_only(
   race      = readr::col_integer(),
   ethnicity = readr::col_integer()
 )
-ds <- readr::read_csv(path, col_types=col_types) %>%
+ds <- readr::read_csv(path, col_types=col_types) |>
   dplyr::mutate(
     gender     = as.character(gender),
     race       = as.character(race),
     ethnicity  = as.character(ethnicity)
   )
-ds %>%
-  head(10) %>%
+ds |>
+  head(10) |>
   knitr::kable(caption = "Observed Dataset (first ten rows)")
 
 ds_lu_gender <- tibble::tribble(

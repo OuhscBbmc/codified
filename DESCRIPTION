@@ -9,14 +9,13 @@ Authors@R: c(person("Will", "Beasley", role = c("aut", "cre"), email =
 URL: https://ouhscbbmc.github.io/codified/, https://github.com/OuhscBbmc/codified, https://github.com/higgi13425/nih_enrollment_table
 BugReports: https://github.com/OuhscBbmc/codified/issues
 Depends:
-    R(>= 3.0.0),
+    R(>= 4.1.0),
     stats
 Imports:
     checkmate (>= 1.8.4),
     dplyr (>= 0.7.0),
     kableExtra,
     knitr (>= 1.18.0),
-    magrittr,
     rlang,
     tibble (>= 1.4.0),
     tidyr (>= 0.7.0)
@@ -26,7 +25,7 @@ Suggests:
     readr (>= 1.1.0),
     REDCapR,
     rmarkdown,
-    testthat (>= 2.0)
+    testthat (>= 3.0)
 License: MIT + file LICENSE
 VignetteBuilder: knitr
 Encoding: UTF-8
