@@ -16,11 +16,11 @@ vignette: >
 
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r declare, echo=F}
+```{r declare, echo = F}
 ```
 
 Install `codified` Package
@@ -29,8 +29,8 @@ Install `codified` Package
 First, install the `codified` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-codified}
-# if( !requireNamespace("codified", quietly=T) )
-#   remotes::install_github(repo= "OuhscBbmc/codified")
+# if( !requireNamespace("codified", quietly = TRUE) )
+#   remotes::install_github(repo = "OuhscBbmc/codified")
 
 library(codified)
 ```
@@ -123,7 +123,7 @@ A hosted (fake) clinical trial dataset demonstrates how to extract demographic d
 First, install the `REDCapR` package if necessary, and then [load it into memory](http://r-pkgs.had.co.nz/package.html#package).
 
 ```{r install-redcapr}
-# if( !requireNamespace("REDCapR", quietly=T) )
+# if( !requireNamespace("REDCapR", quietly = TRUE) )
 #   remotes::install_github("OuhscBbmc/REDCapR")
 
 library(REDCapR)

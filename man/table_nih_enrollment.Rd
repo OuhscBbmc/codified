@@ -83,11 +83,11 @@ ds_lu_ethnicity <- tibble::tribble(
   "Latino"    ,  "Hispanic or Latino"             ,
   "Unknown"   ,  "Unknown/Not Reported Ethnicity"
 )
-table_nih_enrollment(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
-table_nih_enrollment_pretty(ds_2, d_lu_ethnicity=ds_lu_ethnicity)
+table_nih_enrollment(ds_2, d_lu_ethnicity = ds_lu_ethnicity)
+table_nih_enrollment_pretty(ds_2, d_lu_ethnicity = ds_lu_ethnicity)
 
 ## Read a 500-patient fake dataset
-path <- system.file("misc/example-data-1.csv", package="codified")
+path <- system.file("misc/example-data-1.csv", package = "codified")
 ds_3 <- readr::read_csv(path) |>
   dplyr::mutate(
     gender     = as.character(gender),
