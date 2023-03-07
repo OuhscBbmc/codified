@@ -49,4 +49,5 @@ devtools::check( # Equivalent of R-hub
 devtools::check_rhub(email="wibeasley@hotmail.com")
 # devtools::check_win_devel() #CRAN submission policies encourage the development version
 # devtools::revdep_check(pkg="codified", recursive=TRUE)
+# usethis::use_release_issue()
 # devtools::release(check=FALSE) #Careful, the last question ultimately uploads it to CRAN, where you can't delete/reverse your decision.
