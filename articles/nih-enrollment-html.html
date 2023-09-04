@@ -80,9 +80,10 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>NIH Enrollment Tables in HTML</h1>
-                        <h4 data-toc-skip class="author">Will Beasley and Peter Higgins</h4>
+                        <h4 data-toc-skip class="author">Will Beasley
+and Peter Higgins</h4>
             
-            <h4 data-toc-skip class="date">2022-09-01</h4>
+            <h4 data-toc-skip class="date">2023-09-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/OuhscBbmc/codified/blob/HEAD/vignettes/nih-enrollment-html.Rmd" class="external-link"><code>vignettes/nih-enrollment-html.Rmd</code></a></small>
       <div class="hidden name"><code>nih-enrollment-html.Rmd</code></div>
@@ -94,7 +95,9 @@
 <div class="section level2">
 <h2 id="install-codified-package">Install <code>codified</code> Package<a class="anchor" aria-label="anchor" href="#install-codified-package"></a>
 </h2>
-<p>First, install the <code>codified</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package" class="external-link">load it into memory</a>.</p>
+<p>First, install the <code>codified</code> package if necessary, and
+then <a href="http://r-pkgs.had.co.nz/package.html#package" class="external-link">load it into
+memory</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># if( !requireNamespace("codified", quietly = TRUE) )</span></span>
 <span><span class="co">#   remotes::install_github(repo = "OuhscBbmc/codified")</span></span>
@@ -1040,17 +1043,24 @@ Unknown or Not Reported
 <div class="section level2">
 <h2 id="redcap-data-source">REDCap Data Source<a class="anchor" aria-label="anchor" href="#redcap-data-source"></a>
 </h2>
-<p>A hosted (fake) clinical trial dataset demonstrates how to extract demographic data from <a href="https://projectredcap.org/" class="external-link">REDCap</a> and then present the demographic data in the NIH Inclusion Enrollment Report format.</p>
+<p>A hosted (fake) clinical trial dataset demonstrates how to extract
+demographic data from <a href="https://projectredcap.org/" class="external-link">REDCap</a>
+and then present the demographic data in the NIH Inclusion Enrollment
+Report format.</p>
 <div class="section level3">
 <h3 id="establish-datasets-1">Establish Datasets<a class="anchor" aria-label="anchor" href="#establish-datasets-1"></a>
 </h3>
-<p>First, install the <code>REDCapR</code> package if necessary, and then <a href="http://r-pkgs.had.co.nz/package.html#package" class="external-link">load it into memory</a>.</p>
+<p>First, install the <code>REDCapR</code> package if necessary, and
+then <a href="http://r-pkgs.had.co.nz/package.html#package" class="external-link">load it into
+memory</a>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># if( !requireNamespace("REDCapR", quietly = TRUE) )</span></span>
 <span><span class="co">#   remotes::install_github("OuhscBbmc/REDCapR")</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ouhscbbmc.github.io/REDCapR/" class="external-link">REDCapR</a></span><span class="op">)</span></span></code></pre></div>
-<p>Next, download the data from the REDCap database into the <code>ds_2</code> data.frame. If you’re running the most recent version of REDCapR (available on GitHub), the code will be:</p>
+<p>Next, download the data from the REDCap database into the
+<code>ds_2</code> data.frame. If you’re running the most recent version
+of REDCapR (available on GitHub), the code will be:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ds_2</span> <span class="op">&lt;-</span> <span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_read.html" class="external-link">redcap_read</a></span><span class="op">(</span></span>
 <span>  redcap_uri <span class="op">=</span> <span class="st">"https://bbmc.ouhsc.edu/redcap/api/"</span>,  <span class="co"># URL of REDCap Server.</span></span>
@@ -1058,7 +1068,11 @@ Unknown or Not Reported
 <span>  guess_type <span class="op">=</span> <span class="cn">FALSE</span>                                  <span class="co"># Keep all variables as strings/characters.</span></span>
 <span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <!-- readr::write_csv(ds_2, "inst/misc/example-data-2.csv") -->
-<p>However <a href="https://cran.r-project.org/web/packages/policies.html" class="external-link">CRAN policy</a> understandably discourages vignettes from using “Internet resources” so this vignette mimics the code above with this local call. On your own computer, feel free to call that demonstration REDCap project.</p>
+<p>However <a href="https://cran.r-project.org/web/packages/policies.html" class="external-link">CRAN
+policy</a> understandably discourages vignettes from using “Internet
+resources” so this vignette mimics the code above with this local call.
+On your own computer, feel free to call that demonstration REDCap
+project.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ds_2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span></span>
@@ -1069,7 +1083,12 @@ Unknown or Not Reported
 <div class="section level3">
 <h3 id="conform-to-nih-cosmetics-1">Conform to NIH Cosmetics<a class="anchor" aria-label="anchor" href="#conform-to-nih-cosmetics-1"></a>
 </h3>
-<p>Now, convert these demographic data into a properly formatted NIH enrollment table. Pass the <code>ds_lu_gender</code>, <code>ds_lu_race</code>, and <code>ds_lu_ethnicity</code> metadata, which was defined above. As a reminder, these translate values like <code>1</code> to <code>Male</code> and <code>3</code> to <code>Native Hawaiian or Other Pacific Islander</code>.</p>
+<p>Now, convert these demographic data into a properly formatted NIH
+enrollment table. Pass the <code>ds_lu_gender</code>,
+<code>ds_lu_race</code>, and <code>ds_lu_ethnicity</code> metadata,
+which was defined above. As a reminder, these translate values like
+<code>1</code> to <code>Male</code> and <code>3</code> to
+<code>Native Hawaiian or Other Pacific Islander</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/table_nih_enrollment.html">table_nih_enrollment_pretty</a></span><span class="op">(</span></span>
 <span>  d               <span class="op">=</span> <span class="va">ds_2</span>,</span>
@@ -1372,7 +1391,13 @@ Unknown or Not Reported
 <div class="section level2">
 <h2 id="collapsing-levels">Collapsing Levels<a class="anchor" aria-label="anchor" href="#collapsing-levels"></a>
 </h2>
-<p>Many observed datasets may collect race with a different set of levels. For instance in <code>ds_3</code>, the <code>American Indian</code> level is separate from the <code>Alaska Native</code> level. In the first and second rows in the metadata below, the two levels are effectively combined into the<code>American Indian/Alaska Native</code> level, so it complies with the format of the NIH Enrollment table.</p>
+<p>Many observed datasets may collect race with a different set of
+levels. For instance in <code>ds_3</code>, the
+<code>American Indian</code> level is separate from the
+<code>Alaska Native</code> level. In the first and second rows in the
+metadata below, the two levels are effectively combined into
+the<code>American Indian/Alaska Native</code> level, so it complies with
+the format of the NIH Enrollment table.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ds_lu_race_3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">input</span>                      , <span class="op">~</span><span class="va">displayed</span>                                  ,</span>
@@ -1706,8 +1731,10 @@ Unknown or Not Reported
 </li>
 <li>Create tables in a fresh pdf file <a href="https://github.com/OuhscBbmc/codified/issues/5" class="external-link">Issue #5</a>.</li>
 <li>Populate tables in an existing pdf file with <a href="https://CRAN.R-project.org/package=staplr" class="external-link">staplr</a>?</li>
-<li>The ‘totals’ column &amp; row are calculated. The NIH form does this already, so this is mostly for the purpose of checking. <a href="https://github.com/OuhscBbmc/codified/issues/4" class="external-link">Issue #4</a>.</li>
-<li>Allow variable names to change (<em>e.g.</em>, <code>Gender</code> instead of <code>gender</code>). <a href="https://github.com/OuhscBbmc/codified/issues/3" class="external-link">Issue #3</a>.</li>
+<li>The ‘totals’ column &amp; row are calculated. The NIH form does this
+already, so this is mostly for the purpose of checking. <a href="https://github.com/OuhscBbmc/codified/issues/4" class="external-link">Issue #4</a>.</li>
+<li>Allow variable names to change (<em>e.g.</em>, <code>Gender</code>
+instead of <code>gender</code>). <a href="https://github.com/OuhscBbmc/codified/issues/3" class="external-link">Issue #3</a>.</li>
 <li>
 <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown site</a>, like <a href="https://ouhscbbmc.github.io/REDCapR/" class="external-link">REDCapR</a>.</li>
 </ol>
@@ -1717,9 +1744,11 @@ Unknown or Not Reported
 </h3>
 <ul>
 <li>Any holes in the functionality or concept?</li>
-<li>What else (<em>e.g.</em>, features or explanation) do you think would be helpful?</li>
+<li>What else (<em>e.g.</em>, features or explanation) do you think
+would be helpful?</li>
 <li>Are people able to run this package? Is the vignette clear?</li>
-<li>What other standardized tables/graphs/whatever could this be applied to?
+<li>What other standardized tables/graphs/whatever could this be applied
+to?
 <ul>
 <li>IRB continuation tables?</li>
 <li>Graphs?</li>
@@ -1747,7 +1776,7 @@ Unknown or Not Reported
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
